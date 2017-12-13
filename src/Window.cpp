@@ -42,3 +42,8 @@ SDL_Surface *Window::getSurface() {
     if(screenSurface == nullptr) throw Error("Surface of window could not be created!");
     return screenSurface;
 }
+
+void Window::updateSurface() {
+    int ret = SDL_UpdateWindowSurface(window_);
+    if(ret < 0) throw Error("Window could not update its surface!");
+}
