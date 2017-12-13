@@ -8,13 +8,15 @@
 
 using namespace SDL2pp;
 
+Surface::Surface() {}
+
 Surface::Surface(SDL_Surface* surface) : surface_{surface}, hasToBeFreed_{false} {
     if( surface == nullptr ) throw std::invalid_argument("Surface pointer must not be nullptr!");
 }
 
 Surface::Surface(std::string pathBMP) : hasToBeFreed_{true} {
     if( pathBMP.empty() ) throw std::invalid_argument("Path to BMP must not be empty!");
-    SDL_Surface* bmp = SDL_LoadBMP( "02_getting_an_image_on_the_screen/hello_world.bmp" );
+    SDL_Surface* bmp = SDL_LoadBMP( pathBMP.c_str() );
     if(bmp == nullptr) throw Error("Surface could not load BMP " + pathBMP + "!");
     surface_ = bmp;
 }
@@ -41,4 +43,13 @@ void Surface::blitOnto(Surface &destination, const SDL_Rect *srcRect, SDL_Rect *
     if(ret < 0) throw Error("Surface could not blit onto  its surface!");
 }
 
+const SDL_PixelFormat *Surface::getFormat() const {
+    return surface_->format;
+}
 
+Surface Surface::convertTo(const SDL_PixelFormat *fmt, uint32_t flags) {
+    SDL_Surface* converted = SDL_ConvertSurface( surface_, fmt, flags);
+    Surface conv_surf(converted);
+    conv_surf.hasToBeFreed_ = true;
+    return conv_surf;
+}

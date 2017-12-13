@@ -23,6 +23,7 @@ int main( int argc, char* args[] )
 	//The surface contained by the window
 	//Get window surface
 	SDL2pp::Surface screen = window.getSurface();
+	//Loads media
 	//Load splash image
 	SDL2pp::Surface halloWorld( "02_getting_an_image_on_the_screen/hello_world.bmp" );
 
