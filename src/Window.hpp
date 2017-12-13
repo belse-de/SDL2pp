@@ -7,6 +7,7 @@
 
 #include <string>
 #include <SDL2/SDL_video.h>
+#include "Surface.hpp"
 
 namespace SDL2pp {
     class Window {
@@ -18,7 +19,7 @@ namespace SDL2pp {
 
         SDL_Window* operator&() {return window_;}
 
-        SDL_Surface* getSurface();
+        Surface getSurface();
         void updateSurface();
 
     private:
