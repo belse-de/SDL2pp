@@ -15,6 +15,8 @@ namespace SDL2pp {
 
         SDL_Surface* operator&() {return surface_;}
 
+        uint32_t mapRGB(uint8_t r, uint8_t g, uint8_t b);
+
     private:
         SDL_Surface* surface_;
     };

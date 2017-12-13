@@ -30,7 +30,7 @@ int main( int argc, char* args[] )
         SDL2pp::Surface screen = window.getSurface();
 
         //Fill the surface white
-        screen.fillRect( SDL_MapRGB( (&screen)->format, 0xFF, 0xFF, 0xFF ) );
+        screen.fillRect( screen.mapRGB(0xFF,0xFF,0xFF) );
 
         //Update the surface
         window.updateSurface();
