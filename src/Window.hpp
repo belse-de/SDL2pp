@@ -18,6 +18,8 @@ namespace SDL2pp {
 
         SDL_Window* operator&() {return window_;}
 
+        SDL_Surface* getSurface();
+
     private:
         SDL_Window *window_ = nullptr;
 

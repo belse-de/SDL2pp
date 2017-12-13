@@ -32,3 +32,13 @@ Window::~Window() {
     SDL_DestroyWindow( window_ );
     window_ = nullptr;
 }
+
+SDL_Surface *Window::getSurface() {
+    //The surface contained by the window
+    SDL_Surface* screenSurface;
+    //Get window surface
+    screenSurface = SDL_GetWindowSurface( window_ );
+
+    if(screenSurface == nullptr) throw Error("Surface of window could not be created!");
+    return screenSurface;
+}
