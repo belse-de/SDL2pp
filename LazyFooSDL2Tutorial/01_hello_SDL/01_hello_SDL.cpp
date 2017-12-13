@@ -14,13 +14,10 @@ const int SCREEN_HEIGHT = 480;
 
 int main( int argc, char* args[] )
 {
-
-	
-	//The surface contained by the window
-	SDL_Surface* screenSurface = NULL;
-
+    using namespace std::chrono_literals;
+    
     try {
-        SDL2pp::SDL2 sdl();
+        SDL2pp::SDL2 sdl;
 
         //The window we'll be rendering to
         SDL2pp::Window window( "SDL Tutorial", SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -30,13 +27,13 @@ int main( int argc, char* args[] )
         SDL2pp::Surface screen = window.getSurface();
 
         //Fill the surface white
-        screen.fillRect( screen.mapRGB(0xFF,0xFF,0xFF) );
+        screen.fillRect( screen.mapRGB( 0xFF, 0xFF, 0xFF) );
 
         //Update the surface
         window.updateSurface();
 
         //Wait
-        SDL_Delay( 100 );
+        sdl.delay( 100ms );
 
     }catch( std::exception &e )
     {

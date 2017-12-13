@@ -21,3 +21,7 @@ SDL2::~SDL2() {
     //Quit SDL subsystems
     SDL_Quit();
 }
+
+void SDL2::delay(std::chrono::milliseconds ms) {
+    SDL_Delay(ms.count());
+}
