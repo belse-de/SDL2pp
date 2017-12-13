@@ -12,38 +12,6 @@ and may not be redistributed without written permission.*/
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 
-//Loads media
-bool loadMedia();
-
-//Frees media and shuts down SDL
-void close();
-
-//The image we will load and show on the screen
-SDL_Surface* gHelloWorld = NULL;
-
-bool loadMedia()
-{
-	//Loading success flag
-	bool success = true;
-
-	//Load splash image
-	gHelloWorld = SDL_LoadBMP( "02_getting_an_image_on_the_screen/hello_world.bmp" );
-	if( gHelloWorld == NULL )
-	{
-		printf( "Unable to load image %s! SDL Error: %s\n", "02_getting_an_image_on_the_screen/hello_world.bmp", SDL_GetError() );
-		success = false;
-	}
-
-	return success;
-}
-
-void close()
-{
-	//Deallocate surface
-	SDL_FreeSurface( gHelloWorld );
-	gHelloWorld = NULL;
-}
-
 int main( int argc, char* args[] )
 {
 	using namespace std::chrono_literals;
@@ -55,26 +23,20 @@ int main( int argc, char* args[] )
 	//The surface contained by the window
 	//Get window surface
 	SDL2pp::Surface screen = window.getSurface();
+	//Load splash image
+	SDL2pp::Surface halloWorld( "02_getting_an_image_on_the_screen/hello_world.bmp" );
 
-		//Load media
-		if( !loadMedia() )
-		{
-			printf( "Failed to load media!\n" );
-		}
-		else
-		{
-			//Apply the image
-			SDL_BlitSurface( gHelloWorld, NULL, &screen, NULL );
-			
-			//Update the surface
-			window.updateSurface();
+	//Apply the image
+	halloWorld.blitOnto(screen);
 
-			//Wait
-			sdl.delay( 1000ms );
-		}
+	//Update the surface
+	window.updateSurface();
+
+	//Wait
+	sdl.delay( 100ms );
 
 	//Free resources and close SDL
-	close();
+	// via destructor; RAII for the win
 
 	return 0;
 }

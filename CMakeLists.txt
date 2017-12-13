@@ -23,9 +23,13 @@ target_link_libraries(LazyFooSDL2Tutorial_01 SDL2pp )
 add_executable(LazyFooSDL2Tutorial_02 LazyFooSDL2Tutorial/02_getting_an_image_on_the_screen/02_getting_an_image_on_the_screen.cpp)
 target_link_libraries(LazyFooSDL2Tutorial_02 SDL2pp )
 
+add_executable(LazyFooSDL2Tutorial_03 LazyFooSDL2Tutorial/03_event_driven_programming/03_event_driven_programming.cpp)
+target_link_libraries(LazyFooSDL2Tutorial_03 SDL2pp )
+
+
 add_test( LazyFoo_01 LazyFooSDL2Tutorial_01 )
 add_test( LazyFoo_02 LazyFooSDL2Tutorial_02 )
-#add_test( LazyFoo_03 LazyFooSDL2Tutorial_03 )
+add_test( LazyFoo_03 LazyFooSDL2Tutorial_03 )
 #add_test( LazyFoo_04 LazyFooSDL2Tutorial_04 )
 #add_test( LazyFoo_05 LazyFooSDL2Tutorial_05 )
 #add_test( LazyFoo_06 LazyFooSDL2Tutorial_06 )
