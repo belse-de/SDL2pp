@@ -15,7 +15,7 @@ const int SCREEN_HEIGHT = 480;
 int main( int argc, char* args[] )
 {
     using namespace std::chrono_literals;
-    
+
     try {
         SDL2pp::SDL2 sdl;
 
