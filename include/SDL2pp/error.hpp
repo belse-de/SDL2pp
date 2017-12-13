@@ -17,7 +17,7 @@ namespace SDL2pp {
         Error( const std::string& what_arg ):
             std::runtime_error( what_arg + std::string {"\r\n"} + std::string {"SDL Error: "} + SDL_GetError() ) {}
 
-        ~SDL_Error() = default;
+        ~Error() = default;
     };
 };
 

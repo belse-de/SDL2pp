@@ -3,7 +3,8 @@ project(SDL2pp CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 
-set(SOURCE_FILES library.cpp library.h include/SDL2pp/error.hpp include/SDL2pp/IMG_error.hpp src/SDL2pp.cpp src/SDL2pp.hpp)
+include_directories(include/ src/)
+set(SOURCE_FILES library.cpp library.h include/SDL2pp/error.hpp include/SDL2pp/IMG_error.hpp src/SDL2.cpp src/SDL2.hpp)
 add_library(SDL2pp ${SOURCE_FILES})
 
 include(FindPkgConfig)
@@ -12,13 +13,15 @@ pkg_search_module(SDL2IMAGE REQUIRED SDL2_image)
 include_directories(${SDL2_INCLUDE_DIRS} ${SDL2IMAGE_INCLUDE_DIRS})
 target_link_libraries(SDL2pp ${SDL2_LIBRARIES} ${SDL2IMAGE_LIBRARIES})
 
+
+
+enable_testing()
+
 add_executable(LazyFooSDL2Tutorial_01 LazyFooSDL2Tutorial/01_hello_SDL/01_hello_SDL.cpp)
 target_link_libraries(LazyFooSDL2Tutorial_01 SDL2pp )
 
 add_executable(LazyFooSDL2Tutorial_02 LazyFooSDL2Tutorial/02_getting_an_image_on_the_screen/02_getting_an_image_on_the_screen.cpp)
 target_link_libraries(LazyFooSDL2Tutorial_02 SDL2pp )
-
-enable_testing()
 
 add_test( LazyFoo_01 LazyFooSDL2Tutorial_01 )
 add_test( LazyFoo_02 LazyFooSDL2Tutorial_02 )
