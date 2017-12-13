@@ -4,7 +4,7 @@ project(SDL2pp CXX)
 set(CMAKE_CXX_STANDARD 17)
 
 include_directories(include/ src/)
-set(SOURCE_FILES library.cpp library.h include/SDL2pp/error.hpp include/SDL2pp/IMG_error.hpp src/SDL2.cpp src/SDL2.hpp)
+set(SOURCE_FILES library.cpp library.h include/SDL2pp/Error.hpp include/SDL2pp/IMG_Error.hpp src/SDL2.cpp src/SDL2.hpp src/Window.cpp src/Window.hpp)
 add_library(SDL2pp ${SOURCE_FILES})
 
 include(FindPkgConfig)

@@ -3,7 +3,7 @@
 //
 
 #include "SDL2.hpp"
-#include "SDL2pp/error.hpp"
+#include "SDL2pp/Error.hpp"
 
 #include <SDL2/SDL.h>
 
