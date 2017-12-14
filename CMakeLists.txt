@@ -14,7 +14,6 @@ include_directories(${SDL2_INCLUDE_DIRS} ${SDL2IMAGE_INCLUDE_DIRS})
 target_link_libraries(SDL2pp ${SDL2_LIBRARIES} ${SDL2IMAGE_LIBRARIES})
 
 
-
 enable_testing()
 
 add_executable(LazyFooSDL2Tutorial_01 LazyFooSDL2Tutorial/01_hello_SDL/01_hello_SDL.cpp)
@@ -32,12 +31,16 @@ target_link_libraries(LazyFooSDL2Tutorial_04 SDL2pp )
 add_executable(LazyFooSDL2Tutorial_05 LazyFooSDL2Tutorial/05_optimized_surface_loading_and_soft_stretching/05_optimized_surface_loading_and_soft_stretching.cpp)
 target_link_libraries(LazyFooSDL2Tutorial_05 SDL2pp )
 
+add_executable(LazyFooSDL2Tutorial_06 LazyFooSDL2Tutorial/06_extension_libraries_and_loading_other_image_formats/06_extension_libraries_and_loading_other_image_formats.cpp)
+target_link_libraries(LazyFooSDL2Tutorial_06 SDL2pp )
+
+
 add_test( LazyFoo_01 LazyFooSDL2Tutorial_01 )
 add_test( LazyFoo_02 LazyFooSDL2Tutorial_02 )
 add_test( LazyFoo_03 LazyFooSDL2Tutorial_03 )
 add_test( LazyFoo_04 LazyFooSDL2Tutorial_04 )
 add_test( LazyFoo_05 LazyFooSDL2Tutorial_05 )
-#add_test( LazyFoo_06 LazyFooSDL2Tutorial_06 )
+add_test( LazyFoo_06 LazyFooSDL2Tutorial_06 )
 #add_test( LazyFoo_07 LazyFooSDL2Tutorial_07 )
 #add_test( LazyFoo_08 LazyFooSDL2Tutorial_08 )
 #add_test( LazyFoo_09 LazyFooSDL2Tutorial_09 )

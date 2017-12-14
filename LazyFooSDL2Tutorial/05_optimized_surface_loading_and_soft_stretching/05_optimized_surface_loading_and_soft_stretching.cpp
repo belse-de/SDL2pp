@@ -29,36 +29,22 @@ int main( int argc, char* args[] )
 	SDL2pp::Surface stretchedSurface( "05_optimized_surface_loading_and_soft_stretching/stretch.bmp" );
 	SDL2pp::Surface optimizedSurface = stretchedSurface.convertTo(screen.getFormat());
 
-			//Main loop flag
-			bool quit = false;
 
-			//Event handler
-			SDL_Event e;
+	screen.fillRect( screen.mapRGB( 0x00, 0x00, 0x00) );
 
-			//While application is running
-			while( !quit )
-			{
-				//Handle events on queue
-				while( SDL_PollEvent( &e ) != 0 )
-				{
-					//User requests quit
-					if( e.type == SDL_QUIT )
-					{
-						quit = true;
-					}
-				}
+	//Apply the image stretched
+	SDL_Rect stretchRect;
+	stretchRect.x = 0;
+	stretchRect.y = 0;
+	stretchRect.w = SCREEN_WIDTH;
+	stretchRect.h = SCREEN_HEIGHT;
+	optimizedSurface.blitAndScaleOnto(screen, nullptr, &stretchRect);
 
-				//Apply the image stretched
-				SDL_Rect stretchRect;
-				stretchRect.x = 0;
-				stretchRect.y = 0;
-				stretchRect.w = SCREEN_WIDTH;
-				stretchRect.h = SCREEN_HEIGHT;
-				stretchedSurface.blitOnto(screen, nullptr,&stretchRect);
-			
-				//Update the surface
-				window.updateSurface();
-			}
+	//Update the surface
+	window.updateSurface();
+
+	sdl.delay(550ms);
+
 
 	//Free resources and close SDL
 

@@ -43,6 +43,11 @@ void Surface::blitOnto(Surface &destination, const SDL_Rect *srcRect, SDL_Rect *
     if(ret < 0) throw Error("Surface could not blit onto  its surface!");
 }
 
+void Surface::blitAndScaleOnto(Surface &destination, const SDL_Rect *srcRect, SDL_Rect *dstRect) {
+    int ret = SDL_BlitScaled(surface_, srcRect, destination.surface_, dstRect);
+    if(ret < 0) throw Error("Surface could not blit onto  its surface!");
+}
+
 const SDL_PixelFormat *Surface::getFormat() const {
     return surface_->format;
 }

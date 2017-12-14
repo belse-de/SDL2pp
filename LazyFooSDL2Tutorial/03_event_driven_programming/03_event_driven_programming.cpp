@@ -26,32 +26,13 @@ int main(int argc, char *args[]) {
     SDL2pp::Surface xOut("03_event_driven_programming/x.bmp");
 
 
-    //Main loop flag
-    bool quit = false;
+    //Apply the image
+    xOut.blitOnto(screen);
 
-    //Event handler
-    SDL_Event e;
-
-    //While application is running
-    while (!quit) {
-        //Handle events on queue
-        while (SDL_PollEvent(&e) != 0) {
-            //User requests quit
-            if (e.type == SDL_QUIT) {
-                quit = true;
-            }
-        }
-
-        //Apply the image
-        xOut.blitOnto(screen);
-
-        //Update the surface
-        window.updateSurface();
-        // for less cpu hugging
-        sdl.delay(50ms);
-    }
-
-
+    //Update the surface
+    window.updateSurface();
+    // for less cpu hugging
+    sdl.delay(100ms);
 
     //Free resources and close SDL
     // via destructor; RAII for the win

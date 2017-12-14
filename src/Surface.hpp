@@ -21,6 +21,7 @@ namespace SDL2pp {
         uint32_t mapRGB(uint8_t r, uint8_t g, uint8_t b);
         void fillRect( uint32_t color, const SDL_Rect* rect = nullptr);
         void blitOnto(Surface &destination, const SDL_Rect *srcRect = nullptr, SDL_Rect *dstRect = nullptr);
+        void blitAndScaleOnto(Surface &destination, const SDL_Rect *srcRect = nullptr, SDL_Rect *dstRect = nullptr);
         const SDL_PixelFormat* getFormat() const;
         Surface convertTo(const SDL_PixelFormat* fmt, uint32_t flags = 0);
     private:
