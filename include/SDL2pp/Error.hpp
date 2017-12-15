@@ -12,10 +12,10 @@
 
 namespace SDL2pp {
     struct Error : public std::runtime_error {
-        Error():Error( "" ) {}
-        Error( const char* what_arg ):Error( std::string {what_arg} ) {}
-        Error( const std::string& what_arg ):
-            std::runtime_error( what_arg + std::string {"\r\n"} + std::string {"SDL Error: "} + SDL_GetError() ) {}
+        Error() : Error("") {}
+
+        Error(const std::string &what_arg) :
+            std::runtime_error(what_arg + std::string {"\r\n"} + std::string {"SDL Error: "} + SDL_GetError()) {}
 
         ~Error() = default;
     };
