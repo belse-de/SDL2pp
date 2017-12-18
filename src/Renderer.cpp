@@ -49,3 +49,26 @@ Texture Renderer::createTexture(const Surface& surface) const {
     if(ret == nullptr) throw Error("Renderer could not create texture from surface!");
     return Texture(ret);
 }
+
+void Renderer::fillRect(const SDL_Rect *rect) {
+    int ret = SDL_RenderFillRect(renderer_, rect);
+    if(ret < 0) throw Error("Renderer could not fill rect!");
+}
+
+void Renderer::drawRect(const SDL_Rect *rect) {
+    int ret = SDL_RenderDrawRect(renderer_, rect);
+    if(ret < 0) throw Error("Renderer could not draw rect!");
+}
+
+void Renderer::drawLine(int x1, int y1, int x2, int y2) {
+    int ret = SDL_RenderDrawLine(renderer_, x1, y1, x2, y2);
+    if(ret < 0) throw Error("Renderer could not draw line!");
+}
+
+void Renderer::drawPoint(int x, int y) {
+    int ret = SDL_RenderDrawPoint(renderer_, x, y);
+    if(ret < 0) throw Error("Renderer could not draw point!");
+
+}
+
+

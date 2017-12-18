@@ -22,6 +22,11 @@ namespace SDL2pp {
         void renderCopy(const Texture& texture, const SDL_Rect* srcRect, const SDL_Rect* dstRect);
         Texture createTexture(const Surface& surface) const;
 
+        void fillRect(const SDL_Rect *rect);
+        void drawRect(const SDL_Rect *rect);
+        void drawLine(int x1, int y1, int x2, int y2);
+        void drawPoint(int x, int y);
+
     private:
         SDL_Renderer* renderer_;
     };

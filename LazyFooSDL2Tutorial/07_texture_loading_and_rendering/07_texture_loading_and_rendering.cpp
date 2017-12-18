@@ -46,7 +46,7 @@ int main(int argc, char *args[]) {
     //Update screen
     renderer.present();
 
-    sdl.delay(250ms);
+    sdl.delay(100ms);
 
 
     return 0;
