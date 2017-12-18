@@ -24,8 +24,10 @@ Surface::Surface(std::string pathBMP) : hasToBeFreed_{true} {
 Surface::~Surface() {
     if(hasToBeFreed_){
         //Deallocate surface
-        SDL_FreeSurface( surface_ );
-        surface_ = nullptr;
+        if(surface_) {
+            SDL_FreeSurface(surface_);
+            surface_ = nullptr;
+        }
     }
 }
 

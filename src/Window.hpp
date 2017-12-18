@@ -7,7 +7,9 @@
 
 #include <string>
 #include <SDL2/SDL_video.h>
+#include <SDL2/SDL_render.h>
 #include "Surface.hpp"
+#include "Renderer.hpp"
 
 namespace SDL2pp {
     class Window {
@@ -21,6 +23,9 @@ namespace SDL2pp {
 
         Surface getSurface();
         void updateSurface();
+
+        Renderer createRenderer(int index, uint32_t flags);
+
 
     private:
         SDL_Window *window_ = nullptr;

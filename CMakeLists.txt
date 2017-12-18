@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_VERBOSE_MAKEFILE ON)
 
 include_directories(include/ src/)
-set(SOURCE_FILES library.cpp library.h include/SDL2pp/Error.hpp include/SDL2pp/Img/Error.hpp src/SDL2.cpp src/SDL2.hpp src/Window.cpp src/Window.hpp src/Surface.cpp src/Surface.hpp src/Image.cpp src/Image.hpp src/SDL2Image.cpp src/SDL2Image.hpp)
+set(SOURCE_FILES library.cpp library.h include/SDL2pp/Error.hpp include/SDL2pp/Img/Error.hpp src/SDL2.cpp src/SDL2.hpp src/Window.cpp src/Window.hpp src/Surface.cpp src/Surface.hpp src/Image.cpp src/Image.hpp src/SDL2Image.cpp src/SDL2Image.hpp src/Renderer.cpp src/Renderer.hpp src/Texture.cpp src/Texture.hpp)
 add_library(SDL2pp ${SOURCE_FILES})
 
 include(FindPkgConfig)

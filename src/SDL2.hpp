@@ -13,7 +13,10 @@ namespace SDL2pp {
         SDL2();
         virtual ~SDL2();
 
-        void delay(std::chrono::milliseconds ms);
+        void delay(std::chrono::milliseconds ms) const;
+
+        bool setHint(const char* name, const char* value) const;
+
     };
 };
 

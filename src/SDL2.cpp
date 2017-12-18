@@ -22,6 +22,11 @@ SDL2::~SDL2() {
     SDL_Quit();
 }
 
-void SDL2::delay(std::chrono::milliseconds ms) {
+void SDL2::delay(std::chrono::milliseconds ms) const{
     SDL_Delay(ms.count());
+}
+
+bool SDL2::setHint(const char *name, const char *value) const{
+    SDL_bool ret = SDL_SetHint(name, value);
+    return ret ==  SDL_TRUE ? true : false;
 }

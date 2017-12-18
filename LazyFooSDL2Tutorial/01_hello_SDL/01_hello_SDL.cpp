@@ -20,7 +20,7 @@ int main( int argc, char* args[] )
         SDL2pp::SDL2 sdl;
 
         //The window we'll be rendering to
-        SDL2pp::Window window( "SDL Tutorial", SCREEN_WIDTH, SCREEN_HEIGHT);
+        SDL2pp::Window window( "SDL Tutorial 01", SCREEN_WIDTH, SCREEN_HEIGHT);
 
         //The surface contained by the window
         //Get window surface

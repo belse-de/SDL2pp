@@ -47,3 +47,9 @@ void Window::updateSurface() {
     int ret = SDL_UpdateWindowSurface(window_);
     if(ret < 0) throw Error("Window could not update its surface!");
 }
+
+Renderer Window::createRenderer(int index, uint32_t flags) {
+    SDL_Renderer* ret = SDL_CreateRenderer(window_, index, flags);
+    if(ret == nullptr) throw Error("Renderer could not be created!");
+    return Renderer(ret);
+}

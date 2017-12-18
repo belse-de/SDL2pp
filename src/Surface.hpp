@@ -9,7 +9,9 @@
 #include <SDL2/SDL_surface.h>
 
 namespace SDL2pp {
+    class Renderer;
     class Surface {
+        friend class Renderer;
     public:
         Surface();
 
