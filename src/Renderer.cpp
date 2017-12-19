@@ -68,7 +68,11 @@ void Renderer::drawLine(int x1, int y1, int x2, int y2) {
 void Renderer::drawPoint(int x, int y) {
     int ret = SDL_RenderDrawPoint(renderer_, x, y);
     if(ret < 0) throw Error("Renderer could not draw point!");
+}
 
+void Renderer::setViewport(const SDL_Rect *pRect) {
+    int ret = SDL_RenderSetViewport(renderer_, pRect);
+    if(ret < 0) throw Error("Renderer could set viewport!");
 }
 
 

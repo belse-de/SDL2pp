@@ -3,234 +3,86 @@ and may not be redistributed without written permission.*/
 
 //Using SDL, SDL_image, standard IO, and strings
 #include <SDL.h>
-#include <SDL_image.h>
-#include <stdio.h>
 #include <string>
+#include <chrono>
+#include <SDL2.hpp>
+#include <SDL2Image.hpp>
+#include <iostream>
+#include <Window.hpp>
+#include <Image.hpp>
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 
-//Starts up SDL and creates window
-bool init();
+int main(int argc, char *args[]) {
+    using namespace std::chrono_literals;
+    //Start up SDL and create window
+    //Initialize SDL
+    SDL2pp::SDL2 sdl;
+    SDL2pp::Img::SDL2Image img;
 
-//Loads media
-bool loadMedia();
+    if (not sdl.setHint(SDL_HINT_RENDER_SCALE_QUALITY, "1"))
+        std::clog << "Warning: Linear texture filtering not enabled!" << std::endl;
+    //The window we'll be rendering to
+    SDL2pp::Window window("SDL Tutorial 09", SCREEN_WIDTH, SCREEN_HEIGHT);
+    //The surface contained by the window
+    //Get window surface
+    SDL2pp::Surface screen = window.getSurface();
+    SDL2pp::Renderer renderer = window.createRenderer(1, SDL_RENDERER_ACCELERATED);
+    //Initialize renderer color
+    renderer.setDrawColor(0xFF, 0xFF, 0xFF, 0xFF);
 
-//Frees media and shuts down SDL
-void close();
-
-//Loads individual image as texture
-SDL_Texture* loadTexture( std::string path );
-
-//The window we'll be rendering to
-SDL_Window* gWindow = NULL;
-
-//The window renderer
-SDL_Renderer* gRenderer = NULL;
-
-//Current displayed texture
-SDL_Texture* gTexture = NULL;
-
-bool init()
-{
-	//Initialization flag
-	bool success = true;
-
-	//Initialize SDL
-	if( SDL_Init( SDL_INIT_VIDEO ) < 0 )
-	{
-		printf( "SDL could not initialize! SDL Error: %s\n", SDL_GetError() );
-		success = false;
-	}
-	else
-	{
-		//Set texture filtering to linear
-		if( !SDL_SetHint( SDL_HINT_RENDER_SCALE_QUALITY, "1" ) )
-		{
-			printf( "Warning: Linear texture filtering not enabled!" );
-		}
-
-		//Create window
-		gWindow = SDL_CreateWindow( "SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
-		if( gWindow == NULL )
-		{
-			printf( "Window could not be created! SDL Error: %s\n", SDL_GetError() );
-			success = false;
-		}
-		else
-		{
-			//Create renderer for window
-			gRenderer = SDL_CreateRenderer( gWindow, -1, SDL_RENDERER_ACCELERATED );
-			if( gRenderer == NULL )
-			{
-				printf( "Renderer could not be created! SDL Error: %s\n", SDL_GetError() );
-				success = false;
-			}
-			else
-			{
-				//Initialize renderer color
-				SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
-
-				//Initialize PNG loading
-				int imgFlags = IMG_INIT_PNG;
-				if( !( IMG_Init( imgFlags ) & imgFlags ) )
-				{
-					printf( "SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError() );
-					success = false;
-				}
-			}
-		}
-	}
-
-	return success;
-}
-
-bool loadMedia()
-{
-	//Loading success flag
-	bool success = true;
-
-	//Load texture
-	gTexture = loadTexture( "09_the_viewport/viewport.png" );
-	if( gTexture == NULL )
-	{
-		printf( "Failed to load texture image!\n" );
-		success = false;
-	}
-
-	//Nothing to load
-	return success;
-}
-
-void close()
-{
-	//Free loaded image
-	SDL_DestroyTexture( gTexture );
-	gTexture = NULL;
-
-	//Destroy window	
-	SDL_DestroyRenderer( gRenderer );
-	SDL_DestroyWindow( gWindow );
-	gWindow = NULL;
-	gRenderer = NULL;
-
-	//Quit SDL subsystems
-	IMG_Quit();
-	SDL_Quit();
-}
-
-SDL_Texture* loadTexture( std::string path )
-{
-	//The final texture
-	SDL_Texture* newTexture = NULL;
-
-	//Load image at specified path
-	SDL_Surface* loadedSurface = IMG_Load( path.c_str() );
-	if( loadedSurface == NULL )
-	{
-		printf( "Unable to load image %s! SDL_image Error: %s\n", path.c_str(), IMG_GetError() );
-	}
-	else
-	{
-		//Create texture from surface pixels
-        newTexture = SDL_CreateTextureFromSurface( gRenderer, loadedSurface );
-		if( newTexture == NULL )
-		{
-			printf( "Unable to create texture from %s! SDL Error: %s\n", path.c_str(), SDL_GetError() );
-		}
-
-		//Get rid of old loaded surface
-		SDL_FreeSurface( loadedSurface );
-	}
-
-	return newTexture;
-}
-
-int main( int argc, char* args[] )
-{
-	//Start up SDL and create window
-	if( !init() )
-	{
-		printf( "Failed to initialize!\n" );
-	}
-	else
-	{
-		//Load media
-		if( !loadMedia() )
-		{
-			printf( "Failed to load media!\n" );
-		}
-		else
-		{	
-			//Main loop flag
-			bool quit = false;
-
-			//Event handler
-			SDL_Event e;
-
-			//While application is running
-			while( !quit )
-			{
-				//Handle events on queue
-				while( SDL_PollEvent( &e ) != 0 )
-				{
-					//User requests quit
-					if( e.type == SDL_QUIT )
-					{
-						quit = true;
-					}
-				}
-
-				//Clear screen
-				SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
-				SDL_RenderClear( gRenderer );
-
-				//Top left corner viewport
-				SDL_Rect topLeftViewport;
-				topLeftViewport.x = 0;
-				topLeftViewport.y = 0;
-				topLeftViewport.w = SCREEN_WIDTH / 2;
-				topLeftViewport.h = SCREEN_HEIGHT / 2;
-				SDL_RenderSetViewport( gRenderer, &topLeftViewport );
-				
-				//Render texture to screen
-				SDL_RenderCopy( gRenderer, gTexture, NULL, NULL );
+    SDL2pp::Img::Image texture_surface("09_the_viewport/viewport.png");
+    SDL2pp::Texture texture = renderer.createTexture(texture_surface);
 
 
-				//Top right viewport
-				SDL_Rect topRightViewport;
-				topRightViewport.x = SCREEN_WIDTH / 2;
-				topRightViewport.y = 0;
-				topRightViewport.w = SCREEN_WIDTH / 2;
-				topRightViewport.h = SCREEN_HEIGHT / 2;
-				SDL_RenderSetViewport( gRenderer, &topRightViewport );
-				
-				//Render texture to screen
-				SDL_RenderCopy( gRenderer, gTexture, NULL, NULL );
+
+    //Clear screen
+    renderer.setDrawColor(0xFF, 0xFF, 0xFF, 0xFF);
+    renderer.clear();
+
+    //Top left corner viewport
+    SDL_Rect topLeftViewport;
+    topLeftViewport.x = 0;
+    topLeftViewport.y = 0;
+    topLeftViewport.w = SCREEN_WIDTH / 2;
+    topLeftViewport.h = SCREEN_HEIGHT / 2;
+    renderer.setViewport(&topLeftViewport);
+
+    //Render texture to screen
+    renderer.renderCopy(texture);
 
 
-				//Bottom viewport
-				SDL_Rect bottomViewport;
-				bottomViewport.x = 0;
-				bottomViewport.y = SCREEN_HEIGHT / 2;
-				bottomViewport.w = SCREEN_WIDTH;
-				bottomViewport.h = SCREEN_HEIGHT / 2;
-				SDL_RenderSetViewport( gRenderer, &bottomViewport );
+    //Top right viewport
+    SDL_Rect topRightViewport;
+    topRightViewport.x = SCREEN_WIDTH / 2;
+    topRightViewport.y = 0;
+    topRightViewport.w = SCREEN_WIDTH / 2;
+    topRightViewport.h = SCREEN_HEIGHT / 2;
+    renderer.setViewport(&topRightViewport);
 
-				
-				//Render texture to screen
-				SDL_RenderCopy( gRenderer, gTexture, NULL, NULL );
+    //Render texture to screen
+    renderer.renderCopy(texture);
 
 
-				//Update screen
-				SDL_RenderPresent( gRenderer );
-			}
-		}
-	}
+    //Bottom viewport
+    SDL_Rect bottomViewport;
+    bottomViewport.x = 0;
+    bottomViewport.y = SCREEN_HEIGHT / 2;
+    bottomViewport.w = SCREEN_WIDTH;
+    bottomViewport.h = SCREEN_HEIGHT / 2;
+    renderer.setViewport(&bottomViewport);
 
-	//Free resources and close SDL
-	close();
 
-	return 0;
+    //Render texture to screen
+    renderer.renderCopy(texture);
+
+
+    //Update screen
+    renderer.present();
+
+    sdl.delay(100ms);
+
+    return 0;
 }
