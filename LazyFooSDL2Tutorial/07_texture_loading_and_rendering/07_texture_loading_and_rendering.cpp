@@ -29,7 +29,7 @@ int main(int argc, char *args[]) {
     //The surface contained by the window
     //Get window surface
     SDL2pp::Surface screen = window.getSurface();
-    SDL2pp::Renderer renderer = window.createRenderer(1, SDL_RENDERER_ACCELERATED);
+    SDL2pp::Renderer renderer = window.createRenderer(-1, SDL_RENDERER_ACCELERATED);
     //Initialize renderer color
     renderer.setDrawColor(0xFF, 0xFF, 0xFF, 0xFF);
 
