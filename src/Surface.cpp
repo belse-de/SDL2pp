@@ -47,7 +47,7 @@ void Surface::blitOnto(Surface &destination, const SDL_Rect *srcRect, SDL_Rect *
 
 void Surface::blitAndScaleOnto(Surface &destination, const SDL_Rect *srcRect, SDL_Rect *dstRect) {
     int ret = SDL_BlitScaled(surface_, srcRect, destination.surface_, dstRect);
-    if(ret < 0) throw Error("Surface could not blit onto  its surface!");
+    if(ret < 0) throw Error("Surface could not blit onto its surface!");
 }
 
 const SDL_PixelFormat *Surface::getFormat() const {
@@ -59,4 +59,17 @@ Surface Surface::convertTo(const SDL_PixelFormat *fmt, uint32_t flags) {
     Surface conv_surf(converted);
     conv_surf.hasToBeFreed_ = true;
     return conv_surf;
+}
+
+void Surface::setColorKey(bool enable, uint32_t colorkey) {
+    int ret = SDL_SetColorKey(surface_, enable?SDL_TRUE:SDL_FALSE, colorkey);
+    if(ret < 0) throw Error("Surface could not set color key!");
+}
+
+int Surface::getWidth() {
+    return surface_->w;
+}
+
+int Surface::getHeight() {
+    return surface_->h;
 }

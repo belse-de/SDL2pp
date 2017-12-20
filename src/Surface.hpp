@@ -26,6 +26,10 @@ namespace SDL2pp {
         void blitAndScaleOnto(Surface &destination, const SDL_Rect *srcRect = nullptr, SDL_Rect *dstRect = nullptr);
         const SDL_PixelFormat* getFormat() const;
         Surface convertTo(const SDL_PixelFormat* fmt, uint32_t flags = 0);
+        void setColorKey(bool enable, uint32_t colorkey);
+
+        int getWidth();
+        int getHeight();
 
     protected:
         SDL_Surface* surface_ = nullptr;
