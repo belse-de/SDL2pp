@@ -74,7 +74,7 @@ int main( int argc, char* args[] )
 		//Render current frame
 		SDL_Rect* currentClip = &spriteClips[ frame % WALKING_ANIMATION_FRAMES ];
 		SDL_Rect  position = {SCREEN_WIDTH - (currentClip->w / 4) * frame, (SCREEN_HEIGHT - currentClip->h) / 2, 64, 205};
-		renderer.renderCopy(sprite_tex, currentClip, &position);
+        renderer.copy(sprite_tex, currentClip, &position);
 
 		//Update screen
 		renderer.present();

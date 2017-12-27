@@ -70,19 +70,19 @@ int main(int argc, char *args[]) {
 
     //Render top left sprite
     SDL_Rect target_tl = {0, 0, 100, 100};
-    renderer.renderCopy(spriteSheet_tex, &spriteClips[0], &target_tl);
+    renderer.copy(spriteSheet_tex, &spriteClips[0], &target_tl);
 
     //Render top right sprite
     SDL_Rect target_tr = {SCREEN_WIDTH - spriteClips[1].w, 0, 100, 100};
-    renderer.renderCopy(spriteSheet_tex, &spriteClips[1], &target_tr);
+    renderer.copy(spriteSheet_tex, &spriteClips[1], &target_tr);
 
     //Render bottom left sprite
     SDL_Rect target_bl = {0, SCREEN_HEIGHT - spriteClips[2].h, 100, 100};
-    renderer.renderCopy(spriteSheet_tex, &spriteClips[2], &target_bl);
+    renderer.copy(spriteSheet_tex, &spriteClips[2], &target_bl);
 
     //Render bottom right sprite
     SDL_Rect target_br = {SCREEN_WIDTH - spriteClips[3].w, SCREEN_HEIGHT - spriteClips[3].h, 100, 100};
-    renderer.renderCopy(spriteSheet_tex, &spriteClips[3], &target_br);
+    renderer.copy(spriteSheet_tex, &spriteClips[3], &target_br);
 
 
     //Update screen

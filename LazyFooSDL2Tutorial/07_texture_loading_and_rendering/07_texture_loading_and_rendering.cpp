@@ -41,7 +41,7 @@ int main(int argc, char *args[]) {
     renderer.clear();
 
     //Render texture to screen
-    renderer.renderCopy(texture, nullptr, nullptr);
+    renderer.copy(texture, nullptr, nullptr);
 
     //Update screen
     renderer.present();

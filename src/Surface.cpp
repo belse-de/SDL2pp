@@ -10,7 +10,7 @@ using namespace SDL2pp;
 
 Surface::Surface() {}
 
-Surface::Surface(SDL_Surface* surface) : surface_{surface}, hasToBeFreed_{false} {
+Surface::Surface(SDL_Surface *surface, bool hasToBeFreed) : surface_{surface}, hasToBeFreed_{hasToBeFreed} {
     if( surface == nullptr ) throw std::invalid_argument("Surface pointer must not be nullptr!");
 }
 
@@ -56,7 +56,7 @@ const SDL_PixelFormat *Surface::getFormat() const {
 
 Surface Surface::convertTo(const SDL_PixelFormat *fmt, uint32_t flags) {
     SDL_Surface* converted = SDL_ConvertSurface( surface_, fmt, flags);
-    Surface conv_surf(converted);
+    Surface conv_surf(converted, false);
     conv_surf.hasToBeFreed_ = true;
     return conv_surf;
 }

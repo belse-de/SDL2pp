@@ -50,7 +50,7 @@ int main( int argc, char* args[] )
                 renderer.clear();
 
                 modulated_tex.setColorMod(r, g, b);
-                renderer.renderCopy(modulated_tex);
+                renderer.copy(modulated_tex);
 
                 renderer.present();
                 sdl.delay(10ms);

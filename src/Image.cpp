@@ -11,7 +11,7 @@ using namespace SDL2pp::Img;
 Image::Image(std::string pathIMG) {
     if( pathIMG.empty() ) throw std::invalid_argument("Path to BMP must not be empty!");
     SDL_Surface* img = IMG_Load( pathIMG.c_str() );
-    if(img == nullptr) throw Error("Surface could not load image " + pathIMG + "!");
+    if(img == nullptr) throw Error("Could not load image " + pathIMG + "!");
     surface_ = img;
     hasToBeFreed_ = true;
 }

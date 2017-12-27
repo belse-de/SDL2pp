@@ -51,12 +51,12 @@ int main(int argc, char *args[]) {
     //Render background texture to screen
     background_quad.x = 0;
     background_quad.y = 0;
-    renderer.renderCopy(background_texture, nullptr, &background_quad);
+    renderer.copy(background_texture, nullptr, &background_quad);
 
     //Render Foo' to the screen
     foo_quad.x = 240;
     foo_quad.y = 190;
-    renderer.renderCopy(foo_texture, nullptr, &foo_quad);
+    renderer.copy(foo_texture, nullptr, &foo_quad);
 
     //Update screen
     renderer.present();

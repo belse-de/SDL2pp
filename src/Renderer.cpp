@@ -39,7 +39,7 @@ void Renderer::present() {
     SDL_RenderPresent(renderer_);
 }
 
-void Renderer::renderCopy(const Texture& texture, const SDL_Rect *srcRect, const SDL_Rect *dstRect) {
+void Renderer::copy(const Texture &texture, const SDL_Rect *srcRect, const SDL_Rect *dstRect) {
     int ret = SDL_RenderCopy(renderer_, texture.texture_, srcRect, dstRect);
     if(ret < 0) throw Error("Renderer could not copy texture!");
 }
@@ -73,6 +73,15 @@ void Renderer::drawPoint(int x, int y) {
 void Renderer::setViewport(const SDL_Rect *pRect) {
     int ret = SDL_RenderSetViewport(renderer_, pRect);
     if(ret < 0) throw Error("Renderer could set viewport!");
+}
+
+void
+Renderer::copyExtended(const Texture &texture, const SDL_Rect *srcRect, const SDL_Rect *dstRect, const double angle,
+                       const SDL_Point *center, const SDL_RendererFlip flip) {
+    int ret = SDL_RenderCopyEx(renderer_, texture.texture_,
+                               srcRect, dstRect,
+                               angle, center, flip);
+    if(ret < 0) throw Error("Renderer could not copy texture!");
 }
 
 

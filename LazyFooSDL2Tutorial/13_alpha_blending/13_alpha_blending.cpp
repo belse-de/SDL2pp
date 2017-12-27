@@ -48,11 +48,11 @@ int main(int argc, char *args[]) {
         renderer.clear();
 
         //Render background
-        renderer.renderCopy(background_tex);
+        renderer.copy(background_tex);
 
         //Render front blended
         modulated_tex.setAlphaMod(a);
-        renderer.renderCopy(modulated_tex);
+        renderer.copy(modulated_tex);
 
         renderer.present();
         sdl.delay(100ms);
@@ -64,11 +64,11 @@ int main(int argc, char *args[]) {
         renderer.clear();
 
         //Render background
-        renderer.renderCopy(background_tex);
+        renderer.copy(background_tex);
 
         //Render front blended
         modulated_tex.setAlphaMod(a);
-        renderer.renderCopy(modulated_tex);
+        renderer.copy(modulated_tex);
 
         renderer.present();
         sdl.delay(100ms);

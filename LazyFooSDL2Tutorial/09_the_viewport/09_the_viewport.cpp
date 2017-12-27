@@ -51,7 +51,7 @@ int main(int argc, char *args[]) {
     renderer.setViewport(&topLeftViewport);
 
     //Render texture to screen
-    renderer.renderCopy(texture);
+    renderer.copy(texture);
 
 
     //Top right viewport
@@ -63,7 +63,7 @@ int main(int argc, char *args[]) {
     renderer.setViewport(&topRightViewport);
 
     //Render texture to screen
-    renderer.renderCopy(texture);
+    renderer.copy(texture);
 
 
     //Bottom viewport
@@ -76,7 +76,7 @@ int main(int argc, char *args[]) {
 
 
     //Render texture to screen
-    renderer.renderCopy(texture);
+    renderer.copy(texture);
 
 
     //Update screen

@@ -15,7 +15,7 @@ namespace SDL2pp {
     public:
         Surface();
 
-        Surface(SDL_Surface* surface);
+        Surface(SDL_Surface *surface, bool hasToBeFreed = false);
         Surface(std::string pathBMP);
 
         virtual ~Surface();

@@ -40,7 +40,7 @@ Surface Window::getSurface() {
     screenSurface = SDL_GetWindowSurface( window_ );
 
     if(screenSurface == nullptr) throw Error("Surface of window could not be created!");
-    return Surface(screenSurface);
+    return Surface(screenSurface, false);
 }
 
 void Window::updateSurface() {
