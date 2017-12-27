@@ -22,8 +22,18 @@ Texture::~Texture() {
     }
 }
 
-void Texture::setColorMode(uint8_t red, uint8_t green, uint8_t blue) {
+void Texture::setColorMod(uint8_t red, uint8_t green, uint8_t blue) {
     //Modulate texture
     int ret = SDL_SetTextureColorMod( texture_, red, green, blue );
-    if(ret < 0) throw Error("Texture could not set color mode!");
+    if(ret < 0) throw Error("Texture could not set color modification!");
+}
+
+void Texture::setBlendMode(SDL_BlendMode blendMode) {
+    int ret = SDL_SetTextureBlendMode(texture_, blendMode);
+    if(ret < 0) throw Error("Texture could not set blend mode!");
+}
+
+void Texture::setAlphaMod(uint8_t alpha) {
+    int ret = SDL_SetTextureAlphaMod(texture_, alpha);
+    if(ret < 0) throw Error("Texture could not set alpha modification!");
 }

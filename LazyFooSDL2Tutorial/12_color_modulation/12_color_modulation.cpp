@@ -49,11 +49,11 @@ int main( int argc, char* args[] )
                 renderer.setDrawColor( 0xFF, 0xFF, 0xFF, 0xFF );
                 renderer.clear();
 
-                modulated_tex.setColorMode(r,g,b);
+                modulated_tex.setColorMod(r, g, b);
                 renderer.renderCopy(modulated_tex);
 
                 renderer.present();
-                sdl.delay(25ms);
+                sdl.delay(10ms);
             }
         }
     }

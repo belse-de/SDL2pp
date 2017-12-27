@@ -42,7 +42,10 @@ add_executable(LazyFooSDL2Tutorial_11 LazyFooSDL2Tutorial/11_clip_rendering_and_
 target_link_libraries(LazyFooSDL2Tutorial_11 SDL2pp )
 add_executable(LazyFooSDL2Tutorial_12 LazyFooSDL2Tutorial/12_color_modulation/12_color_modulation.cpp)
 target_link_libraries(LazyFooSDL2Tutorial_12 SDL2pp )
-
+add_executable(LazyFooSDL2Tutorial_13 LazyFooSDL2Tutorial/13_alpha_blending/13_alpha_blending.cpp)
+target_link_libraries(LazyFooSDL2Tutorial_13 SDL2pp )
+add_executable(LazyFooSDL2Tutorial_14 LazyFooSDL2Tutorial/14_animated_sprites_and_vsync/14_animated_sprites_and_vsync.cpp)
+target_link_libraries(LazyFooSDL2Tutorial_14 SDL2pp )
 
 add_test( LazyFoo_01 LazyFooSDL2Tutorial_01 )
 add_test( LazyFoo_02 LazyFooSDL2Tutorial_02 )

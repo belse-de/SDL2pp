@@ -18,7 +18,9 @@ namespace SDL2pp {
         Texture(SDL_Texture* texture);
         ~Texture();
 
-        void setColorMode(uint8_t r, uint8_t g, uint8_t b);
+        void setColorMod(uint8_t r, uint8_t g, uint8_t b);
+        void setAlphaMod(uint8_t alpha);
+        void setBlendMode(SDL_BlendMode blendMode);
 
     private:
         SDL_Texture *texture_ = nullptr;
