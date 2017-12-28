@@ -4,7 +4,7 @@
 
 #include <stdexcept>
 #include <SDL2pp/Img/Error.hpp>
-#include "Image.hpp"
+#include "SDL2pp/Img/Image.hpp"
 
 using namespace SDL2pp::Img;
 

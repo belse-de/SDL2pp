@@ -5,8 +5,8 @@ and may not be redistributed without written permission.*/
 #include <SDL2/SDL.h>
 #include <exception>
 #include <iostream>
-#include "SDL2.hpp"
-#include "Window.hpp"
+#include "SDL2pp/SDL2.hpp"
+#include "SDL2pp/Window.hpp"
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 640;

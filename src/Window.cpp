@@ -2,7 +2,7 @@
 // Created by belse on 13.12.17.
 //
 
-#include "Window.hpp"
+#include "SDL2pp/Window.hpp"
 
 #include <SDL2/SDL.h>
 #include <SDL2pp/Error.hpp>

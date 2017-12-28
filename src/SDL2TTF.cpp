@@ -4,7 +4,7 @@
 
 #include <SDL_ttf.h>
 #include <SDL2pp/TTF/Error.hpp>
-#include "SDL2TTF.hpp"
+#include "SDL2pp/TTF/SDL2TTF.hpp"
 
 using  namespace SDL2pp::TTF;
 

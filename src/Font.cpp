@@ -3,8 +3,8 @@
 //
 
 #include <SDL2pp/TTF/Error.hpp>
-#include "Surface.hpp"
-#include "Font.hpp"
+#include "SDL2pp/Surface.hpp"
+#include "SDL2pp/TTF/Font.hpp"
 
 
 using namespace SDL2pp::TTF;

@@ -8,10 +8,10 @@ and may not be redistributed without written permission.*/
 #include <string>
 #include <cmath>
 #include <chrono>
-#include <SDL2.hpp>
-#include <SDL2Image.hpp>
-#include <Window.hpp>
-#include <Image.hpp>
+#include <SDL2pp/SDL2.hpp>
+#include <SDL2pp/Img/SDL2Image.hpp>
+#include <SDL2pp/Window.hpp>
+#include <SDL2pp/Img/Image.hpp>
 #include <iostream>
 
 //Screen dimension constants

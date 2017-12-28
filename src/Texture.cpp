@@ -3,7 +3,7 @@
 //
 
 #include <SDL2pp/Error.hpp>
-#include "Texture.hpp"
+#include "SDL2pp/Texture.hpp"
 
 using namespace SDL2pp;
 

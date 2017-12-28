@@ -4,9 +4,9 @@ and may not be redistributed without written permission.*/
 //Using SDL and standard IO
 #include <SDL.h>
 #include <stdio.h>
-#include <Surface.hpp>
-#include <Window.hpp>
-#include <SDL2.hpp>
+#include <SDL2pp/Surface.hpp>
+#include <SDL2pp/Window.hpp>
+#include <SDL2pp/SDL2.hpp>
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 640;

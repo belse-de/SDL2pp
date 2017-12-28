@@ -5,9 +5,9 @@
 #include <SDL_render.h>
 #include <stdexcept>
 #include <SDL2pp/Error.hpp>
-#include "Renderer.hpp"
-#include "Texture.hpp"
-#include "Surface.hpp"
+#include "SDL2pp/Renderer.hpp"
+#include "SDL2pp/Texture.hpp"
+#include "SDL2pp/Surface.hpp"
 
 using namespace SDL2pp;
 

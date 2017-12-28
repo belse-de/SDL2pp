@@ -10,14 +10,14 @@ set(SOURCE_FILES
         include/SDL2pp/Error.hpp
         include/SDL2pp/Img/Error.hpp
         include/SDL2pp/TTF/Error.hpp
-        src/SDL2.cpp src/SDL2.hpp
-        src/Window.cpp src/Window.hpp
-        src/Surface.cpp src/Surface.hpp
-        src/Image.cpp src/Image.hpp
-        src/SDL2Image.cpp src/SDL2Image.hpp
-        src/Renderer.cpp src/Renderer.hpp
-        src/Texture.cpp src/Texture.hpp
-        src/SDL2TTF.cpp src/SDL2TTF.hpp src/Font.cpp src/Font.hpp)
+        src/SDL2.cpp include/SDL2pp/SDL2.hpp
+        src/Window.cpp include/SDL2pp/Window.hpp
+        src/Surface.cpp include/SDL2pp/Surface.hpp
+        src/Image.cpp include/SDL2pp/Img/Image.hpp
+        src/SDL2Image.cpp include/SDL2pp/Img/SDL2Image.hpp
+        src/Renderer.cpp include/SDL2pp/Renderer.hpp
+        src/Texture.cpp include/SDL2pp/Texture.hpp
+        src/SDL2TTF.cpp include/SDL2pp/TTF/SDL2TTF.hpp src/Font.cpp include/SDL2pp/TTF/Font.hpp)
 add_library(SDL2pp ${SOURCE_FILES})
 
 include(FindPkgConfig)
@@ -70,6 +70,8 @@ add_executable(LazyFooSDL2Tutorial_15 LazyFooSDL2Tutorial/15_rotation_and_flippi
 target_link_libraries(LazyFooSDL2Tutorial_15 SDL2pp)
 add_executable(LazyFooSDL2Tutorial_16 LazyFooSDL2Tutorial/16_true_type_fonts/16_true_type_fonts.cpp)
 target_link_libraries(LazyFooSDL2Tutorial_16 SDL2pp)
+add_executable(LazyFooSDL2Tutorial_17 LazyFooSDL2Tutorial/17_mouse_events/17_mouse_events.cpp)
+target_link_libraries(LazyFooSDL2Tutorial_17 SDL2pp)
 
 add_test( LazyFoo_01 LazyFooSDL2Tutorial_01 )
 add_test( LazyFoo_02 LazyFooSDL2Tutorial_02 )
