@@ -109,8 +109,8 @@ add_executable(LazyFooSDL2Tutorial_32 LazyFooSDL2Tutorial/32_text_input_and_clip
 target_link_libraries(LazyFooSDL2Tutorial_32 SDL2pp)
 add_executable(LazyFooSDL2Tutorial_33 LazyFooSDL2Tutorial/33_file_reading_and_writing/33_file_reading_and_writing.cpp)
 target_link_libraries(LazyFooSDL2Tutorial_33 SDL2pp)
-
-
+#
+#
 add_executable(LazyFooSDL2Tutorial_35 LazyFooSDL2Tutorial/35_window_events/35_window_events.cpp)
 target_link_libraries(LazyFooSDL2Tutorial_35 SDL2pp)
 add_executable(LazyFooSDL2Tutorial_36 LazyFooSDL2Tutorial/36_multiple_windows/36_multiple_windows.cpp)
@@ -121,6 +121,27 @@ add_executable(LazyFooSDL2Tutorial_38 LazyFooSDL2Tutorial/38_particle_engines/38
 target_link_libraries(LazyFooSDL2Tutorial_38 SDL2pp)
 add_executable(LazyFooSDL2Tutorial_39 LazyFooSDL2Tutorial/39_tiling/39_tiling.cpp)
 target_link_libraries(LazyFooSDL2Tutorial_39 SDL2pp)
+
+add_executable(LazyFooSDL2Tutorial_40 LazyFooSDL2Tutorial/40_texture_manipulation/40_texture_manipulation.cpp)
+target_link_libraries(LazyFooSDL2Tutorial_40 SDL2pp)
+add_executable(LazyFooSDL2Tutorial_41 LazyFooSDL2Tutorial/41_bitmap_fonts/41_bitmap_fonts.cpp)
+target_link_libraries(LazyFooSDL2Tutorial_41 SDL2pp)
+add_executable(LazyFooSDL2Tutorial_42 LazyFooSDL2Tutorial/42_texture_streaming/42_texture_streaming.cpp)
+target_link_libraries(LazyFooSDL2Tutorial_42 SDL2pp)
+add_executable(LazyFooSDL2Tutorial_43 LazyFooSDL2Tutorial/43_render_to_texture/43_render_to_texture.cpp)
+target_link_libraries(LazyFooSDL2Tutorial_43 SDL2pp)
+add_executable(LazyFooSDL2Tutorial_44 LazyFooSDL2Tutorial/44_frame_independent_movement/44_frame_independent_movement.cpp)
+target_link_libraries(LazyFooSDL2Tutorial_44 SDL2pp)
+#add_executable(LazyFooSDL2Tutorial_45 LazyFooSDL2Tutorial/25_capping_frame_rate/25_capping_frame_rate.cpp)
+#target_link_libraries(LazyFooSDL2Tutorial_45 SDL2pp)
+add_executable(LazyFooSDL2Tutorial_46 LazyFooSDL2Tutorial/46_multithreading/46_multithreading.cpp)
+target_link_libraries(LazyFooSDL2Tutorial_46 SDL2pp)
+add_executable(LazyFooSDL2Tutorial_47 LazyFooSDL2Tutorial/47_semaphores/47_semaphores.cpp)
+target_link_libraries(LazyFooSDL2Tutorial_47 SDL2pp)
+add_executable(LazyFooSDL2Tutorial_48 LazyFooSDL2Tutorial/48_atomic_operations/48_atomic_operations.cpp)
+target_link_libraries(LazyFooSDL2Tutorial_48 SDL2pp)
+add_executable(LazyFooSDL2Tutorial_49 LazyFooSDL2Tutorial/49_mutexes_and_conditions/49_mutexes_and_conditions.cpp)
+target_link_libraries(LazyFooSDL2Tutorial_49 SDL2pp)
 
 add_test( LazyFoo_01 LazyFooSDL2Tutorial_01 )
 add_test( LazyFoo_02 LazyFooSDL2Tutorial_02 )
@@ -158,7 +179,7 @@ add_test( LazyFoo_30 LazyFooSDL2Tutorial_30 )
 add_test( LazyFoo_31 LazyFooSDL2Tutorial_31 )
 add_test( LazyFoo_32 LazyFooSDL2Tutorial_32 )
 add_test( LazyFoo_33 LazyFooSDL2Tutorial_33 )
-
+#
 add_test( LazyFoo_35 LazyFooSDL2Tutorial_35 )
 add_test( LazyFoo_36 LazyFooSDL2Tutorial_36 )
 add_test( LazyFoo_37 LazyFooSDL2Tutorial_37 )
