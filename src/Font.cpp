@@ -37,7 +37,7 @@ SDL2pp::Surface Font::renderSolid_Latin1(const std::string &text, SDL_Color colo
 SDL2pp::Surface Font::renderSolid_UTF8(const std::string &text, SDL_Color color) {
     // Render the text in solid to a new surface
     SDL_Surface *text_surface;
-    text_surface = TTF_RenderText_Solid(font_, text.c_str(), color);
+    text_surface = TTF_RenderUTF8_Solid(font_, text.c_str(), color);
     if (text_surface == nullptr) throw Error("Font could not render text!");
     return SDL2pp::Surface(text_surface, true);
 }
