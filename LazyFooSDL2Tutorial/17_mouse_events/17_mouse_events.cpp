@@ -142,6 +142,6 @@ int main(int argc, char *args[]) {
         renderer.present();
         sdl.delay(1ms);
     }
-    
+
     return 0;
 }
