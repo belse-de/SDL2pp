@@ -613,7 +613,7 @@ bool setTiles( Tile* tiles[] )
     std::ifstream map( "39_tiling/lazy.map" );
 
     //If the map couldn't be loaded
-    if( map == NULL )
+    if( not map.is_open() )
     {
 		printf( "Unable to load map file!\n" );
 		tilesLoaded = false;

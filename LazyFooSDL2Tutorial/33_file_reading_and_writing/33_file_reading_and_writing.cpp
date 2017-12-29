@@ -367,10 +367,10 @@ bool loadMedia()
 	}
 
 	//Initialize data textures
-	gDataTextures[ 0 ].loadFromRenderedText( std::to_string( (_Longlong)gData[ 0 ] ), highlightColor );
+	gDataTextures[ 0 ].loadFromRenderedText( std::to_string( (long long)gData[ 0 ] ), highlightColor );
 	for( int i = 1; i < TOTAL_DATA; ++i )
 	{
-		gDataTextures[ i ].loadFromRenderedText( std::to_string( (_Longlong)gData[ i ] ), textColor );
+		gDataTextures[ i ].loadFromRenderedText( std::to_string( (long long)gData[ i ] ), textColor );
 	}
 
 	return success;
@@ -466,7 +466,7 @@ int main( int argc, char* args[] )
 							//Previous data entry
 							case SDLK_UP:
 							//Rerender previous entry input point
-							gDataTextures[ currentData ].loadFromRenderedText( std::to_string( (_Longlong)gData[ currentData ] ), textColor );
+							gDataTextures[ currentData ].loadFromRenderedText( std::to_string( (long long)gData[ currentData ] ), textColor );
 							--currentData;
 							if( currentData < 0 )
 							{
@@ -474,13 +474,13 @@ int main( int argc, char* args[] )
 							}
 							
 							//Rerender current entry input point
-							gDataTextures[ currentData ].loadFromRenderedText( std::to_string( (_Longlong)gData[ currentData ] ), highlightColor );
+							gDataTextures[ currentData ].loadFromRenderedText( std::to_string( (long long)gData[ currentData ] ), highlightColor );
 							break;
 							
 							//Next data entry
 							case SDLK_DOWN:
 							//Rerender previous entry input point
-							gDataTextures[ currentData ].loadFromRenderedText( std::to_string( (_Longlong)gData[ currentData ] ), textColor );
+							gDataTextures[ currentData ].loadFromRenderedText( std::to_string( (long long)gData[ currentData ] ), textColor );
 							++currentData;
 							if( currentData == TOTAL_DATA )
 							{
@@ -488,19 +488,19 @@ int main( int argc, char* args[] )
 							}
 							
 							//Rerender current entry input point
-							gDataTextures[ currentData ].loadFromRenderedText( std::to_string( (_Longlong)gData[ currentData ] ), highlightColor );
+							gDataTextures[ currentData ].loadFromRenderedText( std::to_string( (long long)gData[ currentData ] ), highlightColor );
 							break;
 
 							//Decrement input point
 							case SDLK_LEFT:
 							--gData[ currentData ];
-							gDataTextures[ currentData ].loadFromRenderedText( std::to_string( (_Longlong)gData[ currentData ] ), highlightColor );
+							gDataTextures[ currentData ].loadFromRenderedText( std::to_string( (long long)gData[ currentData ] ), highlightColor );
 							break;
 							
 							//Increment input point
 							case SDLK_RIGHT:
 							++gData[ currentData ];
-							gDataTextures[ currentData ].loadFromRenderedText( std::to_string( (_Longlong)gData[ currentData ] ), highlightColor );
+							gDataTextures[ currentData ].loadFromRenderedText( std::to_string( (long long)gData[ currentData ] ), highlightColor );
 							break;
 						}
 					}

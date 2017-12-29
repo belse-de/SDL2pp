@@ -473,7 +473,7 @@ void close()
 int threadFunction( void* data )
 {
 	//Print incoming data
-	printf( "Running thread with value = %d\n", (int)data );
+	printf( "Running thread with value = %d\n", reinterpret_cast<int64_t>(data) );
 
 	return 0;
 }
@@ -501,8 +501,8 @@ int main( int argc, char* args[] )
 			SDL_Event e;
 
 			//Run the thread
-			int data = 101;
-			SDL_Thread* threadID = SDL_CreateThread( threadFunction, "LazyThread", (void*)data );
+			int64_t data = 101;
+			SDL_Thread* threadID = SDL_CreateThread( threadFunction, "LazyThread", reinterpret_cast<void*>(data) );
 
 			//While application is running
 			while( !quit )
