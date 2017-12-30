@@ -233,66 +233,27 @@ add_test( kiss_01 kiss_example_01 )
 add_test( kiss_02 kiss_example_02 )
 
 
-# single-file sources:
-set( SOURCES_TEST_010
-        test/example/010-TestCase.cpp
-        )
-
 # multiple-file modules:
 set( SOURCES_TEST_020
         test/example/020-TestCase-1.cpp
         test/example/020-TestCase-2.cpp
         )
 
-# main for idiomatic test sources:
-set( SOURCES_TEST_IDIOMATIC_MAIN
-        test/example/000-CatchMain.cpp
-        )
 # sources to combine with 000-CatchMain.cpp:
 set( SOURCES_TEST_IDIOMATIC
         test/example/030-Asn-Require-Check.cpp
         test/example/100-Fix-Section.cpp
         test/example/110-Fix-ClassFixture.cpp
         test/example/120-Bdd-ScenarioGivenWhenThen.cpp
-        test/example/210-Evt-EventListeners.cpp
         )
-# create target names:
-string( REPLACE ".cpp" "" BASENAMES_SOURCES_TEST_010       "${SOURCES_TEST_010}" )
-string( REPLACE ".cpp" "" BASENAMES_SOURCES_TEST_IDIOMATIC "${SOURCES_TEST_IDIOMATIC}" )
-set( TARGETS_TEST_010       ${BASENAMES_SOURCES_TEST_010} )
-set( TARGETS_TEST_IDIOMATIC ${BASENAMES_SOURCES_TEST_IDIOMATIC} )
-set( TARGETS_TEST_ALL       ${TARGETS_TEST_010} ${TARGETS_TEST_IDIOMATIC} 020-TestCase CatchMain )
-
 # define program targets:
-add_library( CatchMain OBJECT test/example/000-CatchMain.cpp test/catch.hpp )
+add_library( CatchMain OBJECT test/catchMain.cpp test/catch.hpp )
 target_include_directories( CatchMain PRIVATE test )
-
-add_executable( 010-TestCase ${SOURCES_TEST_010} test/catch.hpp )
-target_include_directories( 010-TestCase PRIVATE test )
-set_property(TARGET 010-TestCase PROPERTY CXX_STANDARD 11)
-
-add_executable( 020-TestCase ${SOURCES_TEST_020} test/catch.hpp )
-target_include_directories( 020-TestCase PRIVATE test )
-set_property(TARGET 020-TestCase PROPERTY CXX_STANDARD 11)
-
-add_executable( 030-TestCase test/example/030-Asn-Require-Check.cpp $<TARGET_OBJECTS:CatchMain> test/catch.hpp)
-target_include_directories( 030-TestCase PRIVATE test )
-set_property(TARGET 030-TestCase PROPERTY CXX_STANDARD 11)
-
-add_executable( 100-TestCase test/example/100-Fix-Section.cpp $<TARGET_OBJECTS:CatchMain> test/catch.hpp)
-target_include_directories( 100-TestCase PRIVATE test )
-set_property(TARGET 100-TestCase PROPERTY CXX_STANDARD 11)
-
-add_executable( 110-TestCase test/example/110-Fix-ClassFixture.cpp $<TARGET_OBJECTS:CatchMain> test/catch.hpp)
-target_include_directories( 110-TestCase PRIVATE test )
-set_property(TARGET 110-TestCase PROPERTY CXX_STANDARD 11)
-
-add_executable( 120-TestCase test/example/120-Bdd-ScenarioGivenWhenThen.cpp $<TARGET_OBJECTS:CatchMain> test/catch.hpp)
-target_include_directories( 120-TestCase PRIVATE test )
-set_property(TARGET 120-TestCase PROPERTY CXX_STANDARD 11)
-
-add_executable( 210-TestCase test/example/210-Evt-EventListeners.cpp $<TARGET_OBJECTS:CatchMain> test/catch.hpp)
-target_include_directories( 210-TestCase PRIVATE test )
-set_property(TARGET 210-TestCase PROPERTY CXX_STANDARD 11)
-
-add_test( CATCH 010-TestCase 020-TestCase 030-TestCase 100-TestCase 110-TestCase 120-TestCase 210-TestCase)
+add_executable( TestCase
+        ${SOURCES_TEST_020}
+        ${SOURCES_TEST_IDIOMATIC}
+        $<TARGET_OBJECTS:CatchMain>
+        test/catch.hpp)
+target_include_directories( TestCase PRIVATE test )
+set_property(TARGET TestCase PROPERTY CXX_STANDARD 11)
+add_test( CATCH TestCase )
