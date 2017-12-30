@@ -30,3 +30,8 @@ bool SDL2::setHint(const char *name, const char *value) const{
     SDL_bool ret = SDL_SetHint(name, value);
     return ret ==  SDL_TRUE ? true : false;
 }
+
+std::chrono::milliseconds SDL2::getTicks() {
+    uint32_t ticks = SDL_GetTicks();
+    return std::chrono::milliseconds(ticks);
+}

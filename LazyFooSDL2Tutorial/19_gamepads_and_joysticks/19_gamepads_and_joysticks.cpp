@@ -7,6 +7,12 @@ and may not be redistributed without written permission.*/
 #include <stdio.h>
 #include <string>
 #include <cmath>
+#include <iostream>
+#include <chrono>
+#include <SDL2pp/SDL2.hpp>
+#include <SDL2pp/Img/SDL2Image.hpp>
+#include <SDL2pp/TTF/SDL2TTF.hpp>
+#include <SDL2pp/Window.hpp>
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 640;
@@ -337,6 +343,24 @@ void close()
 
 int main( int argc, char* args[] )
 {
+    using namespace std::chrono_literals;
+    //Start up SDL and create window
+    //Initialize SDL
+    SDL2pp::SDL2 sdl;
+    SDL2pp::Img::SDL2Image img;
+    SDL2pp::TTF::SDL2TTF ttf;
+
+    if (not sdl.setHint(SDL_HINT_RENDER_SCALE_QUALITY, "1"))
+        std::clog << "Warning: Linear texture filtering not enabled!" << std::endl;
+    //The window we'll be rendering to
+    SDL2pp::Window window("SDL Tutorial 19", SCREEN_WIDTH, SCREEN_HEIGHT);
+    //The surface contained by the window
+    //Get window surface
+    SDL2pp::Surface screen = window.getSurface();
+    SDL2pp::Renderer renderer = window.createRenderer(-1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+    //Initialize renderer color
+    renderer.setDrawColor(0xFF, 0xFF, 0xFF, 0xFF);
+
 	//Start up SDL and create window
 	if( !init() )
 	{
