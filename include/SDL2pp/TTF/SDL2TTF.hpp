@@ -11,6 +11,11 @@ namespace SDL2pp::TTF {
         SDL2TTF();
 
         virtual ~SDL2TTF();
+
+        static bool wasInit();
+
+    private:
+        static bool isInit_;
     };
 };
 

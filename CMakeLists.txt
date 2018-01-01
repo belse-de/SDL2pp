@@ -10,6 +10,8 @@ set(SOURCE_FILES
         include/SDL2pp/Error.hpp
         include/SDL2pp/Img/Error.hpp
         include/SDL2pp/TTF/Error.hpp
+        include/SDL2pp/Mix/Error.hpp
+        include/SDL2pp/Net/Error.hpp
         src/SDL2.cpp include/SDL2pp/SDL2.hpp
         src/Window.cpp include/SDL2pp/Window.hpp
         src/Surface.cpp include/SDL2pp/Surface.hpp
@@ -18,7 +20,9 @@ set(SOURCE_FILES
         src/Renderer.cpp include/SDL2pp/Renderer.hpp
         src/Texture.cpp include/SDL2pp/Texture.hpp
         src/SDL2TTF.cpp include/SDL2pp/TTF/SDL2TTF.hpp
-        src/Font.cpp include/SDL2pp/TTF/Font.hpp)
+        src/Font.cpp include/SDL2pp/TTF/Font.hpp
+        src/SDL2Mixer.cpp include/SDL2pp/Mix/SDL2Mixer.hpp
+        include/SDL2pp/Net/SDL2Net.cpp include/SDL2pp/Net/SDL2Net.hpp)
 add_library(SDL2pp ${SOURCE_FILES})
 
 # https://cmake.org/cmake/help/v3.0/module/FindOpenGL.html
@@ -31,12 +35,14 @@ pkg_search_module(SDL2      REQUIRED sdl2)
 pkg_search_module(SDL2IMAGE REQUIRED sdl2_image)
 pkg_search_module(SDL2TTF   REQUIRED sdl2_ttf)
 pkg_search_module(SDL2MIXER REQUIRED sdl2_mixer)
+pkg_search_module(SDL2NET   REQUIRED SDL2_net)
 
 include_directories(
         ${SDL2_INCLUDE_DIRS}
         ${SDL2IMAGE_INCLUDE_DIRS}
         ${SDL2TTF_INCLUDE_DIRS}
         ${SDL2MIXER_INCLUDE_DIRS}
+        ${SDL2NET_INCLUDE_DIRS}
         ${OPENGL_INCLUDE_DIR}
         ${GLEW_INCLUDE_DIRS})
 target_link_libraries(SDL2pp
@@ -44,6 +50,7 @@ target_link_libraries(SDL2pp
         ${SDL2IMAGE_LIBRARIES}
         ${SDL2TTF_LIBRARIES}
         ${SDL2MIXER_LIBRARIES}
+        ${SDL2NET_LIBRARIES}
         ${OPENGL_LIBRARIES}
         ${GLEW_LIBRARIES})
 
@@ -247,8 +254,9 @@ set( SOURCES_TEST_IDIOMATIC
         test/example/120-Bdd-ScenarioGivenWhenThen.cpp
         )
 # define program targets:
-add_library( CatchMain OBJECT test/catchMain.cpp test/catch.hpp )
+add_library( CatchMain OBJECT test/catchMain.cpp test/catch.hpp)
 target_include_directories( CatchMain PRIVATE test )
+
 add_executable( TestCase
         ${SOURCES_TEST_020}
         ${SOURCES_TEST_IDIOMATIC}
@@ -257,3 +265,12 @@ add_executable( TestCase
 target_include_directories( TestCase PRIVATE test )
 set_property(TARGET TestCase PROPERTY CXX_STANDARD 11)
 add_test( CATCH TestCase )
+
+set(SOURCE_TEST
+        test/TestEngine.cpp)
+add_executable( Test
+        ${SOURCE_TEST}
+        $<TARGET_OBJECTS:CatchMain>
+        test/catch.hpp)
+target_link_libraries(Test SDL2pp)
+add_test(FullTestSuite Test)

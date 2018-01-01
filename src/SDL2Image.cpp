@@ -7,9 +7,11 @@
 
 using  namespace SDL2pp::Img;
 
-SDL2Image::SDL2Image() {
-    int imgFlags = IMG_INIT_PNG;
-    if( !( IMG_Init( imgFlags ) & imgFlags ) )
+SDL2Image::SDL2Image() : SDL2Image(IMG_INIT_PNG) {
+}
+
+SDL2Image::SDL2Image(int flags) {
+    if( not ( IMG_Init( flags ) & flags ) )
     {
         throw Error("SDL_image could not initialize!");
     }

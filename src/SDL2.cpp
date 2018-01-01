@@ -9,9 +9,12 @@
 
 using namespace SDL2pp;
 
-SDL2::SDL2() {
+SDL2::SDL2() : SDL2(SDL_INIT_EVERYTHING) {
+}
+
+SDL2::SDL2(uint32_t flags) {
     //Initialize SDL
-    if( SDL_Init( SDL_INIT_VIDEO ) < 0 )
+    if( SDL_Init( flags ) < 0 )
     {
         throw Error("SDL could not initialize!");
     }
@@ -35,3 +38,4 @@ std::chrono::milliseconds SDL2::getTicks() {
     uint32_t ticks = SDL_GetTicks();
     return std::chrono::milliseconds(ticks);
 }
+
