@@ -417,7 +417,7 @@ int main(int argc, char* argv[]){
 
     sdl.delay(500ms);
 
-    //TODO: 03, 04 event driven programming
+    //TODO: 03, 04, 17, 18, 19, 20 event driven programming
 
     exit(EXIT_SUCCESS);
 }
