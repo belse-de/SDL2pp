@@ -8,6 +8,7 @@
 #include <SDL2pp/TTF/Font.hpp>
 #include <SDL2pp/Img/SDL2Image.hpp>
 #include <SDL2pp/TTF/SDL2TTF.hpp>
+#include <array>
 
 #include "SDL2pp/SDL2.hpp"
 #include "SDL2pp/Window.hpp"
@@ -31,7 +32,7 @@ int main(int argc, char* argv[]){
     SDL2pp::TTF::SDL2TTF ttf;
 
     //The window we'll be rendering to
-    Window window( "SDL Tutorials 01-", SCREEN_WIDTH, SCREEN_HEIGHT);
+    Window window( "SDL Tutorials 01-16", SCREEN_WIDTH, SCREEN_HEIGHT);
 
     //01
     //The surface contained by the window
@@ -417,7 +418,79 @@ int main(int argc, char* argv[]){
 
     sdl.delay(500ms);
 
-    //TODO: 03, 04, 17, 18, 19, 20 event driven programming
+    //TODO: 17, 18, 19, 20 event driven programming
+
+    //03, 04
+    //Key press surfaces constants
+    enum KeyPressSurfaces {
+        KEY_PRESS_SURFACE_DEFAULT,
+        KEY_PRESS_SURFACE_UP,
+        KEY_PRESS_SURFACE_DOWN,
+        KEY_PRESS_SURFACE_LEFT,
+        KEY_PRESS_SURFACE_RIGHT,
+        KEY_PRESS_SURFACE_TOTAL
+    };
+    //Load key press images
+    std::array<SDL2pp::Surface *, 5> keyPressSurfaces = {
+        new SDL2pp::Surface("res/LazyFooTut/press.bmp"),
+        new SDL2pp::Surface("res/LazyFooTut/up.bmp"),
+        new SDL2pp::Surface("res/LazyFooTut/down.bmp"),
+        new SDL2pp::Surface("res/LazyFooTut/left.bmp"),
+        new SDL2pp::Surface("res/LazyFooTut/right.bmp"),
+
+    };
+    //Set default current surface
+    SDL2pp::Surface *currentKeyPress = keyPressSurfaces[KEY_PRESS_SURFACE_DEFAULT];
+
+    //Main loop flag
+    bool quit = false;
+    //Event handler
+    SDL_Event e;
+    //While application is running
+    while (!quit) {
+        //Handle events on queue
+        while (SDL_PollEvent(&e) != 0) {
+            //User requests quit
+            if (e.type == SDL_QUIT) {
+                quit = true;
+            }
+                //User presses a key
+            else if (e.type == SDL_KEYDOWN) {
+                //Select surfaces based on key press
+                switch (e.key.keysym.sym) {
+                    case SDLK_UP:
+                        currentKeyPress = keyPressSurfaces[KEY_PRESS_SURFACE_UP];
+                        break;
+
+                    case SDLK_DOWN:
+                        currentKeyPress = keyPressSurfaces[KEY_PRESS_SURFACE_DOWN];
+                        break;
+
+                    case SDLK_LEFT:
+                        currentKeyPress = keyPressSurfaces[KEY_PRESS_SURFACE_LEFT];
+                        break;
+
+                    case SDLK_RIGHT:
+                        currentKeyPress = keyPressSurfaces[KEY_PRESS_SURFACE_RIGHT];
+                        break;
+
+                    default:
+                        currentKeyPress = keyPressSurfaces[KEY_PRESS_SURFACE_DEFAULT];
+                        break;
+                }
+            }
+        }
+        //Apply the current image
+        renderer.copy(renderer.createTexture(*currentKeyPress));
+        //Update the surface
+        renderer.present();
+        sdl.delay(50ms);
+    }
+
+    //Free resources and close SDL
+    for (auto s : keyPressSurfaces) {
+        delete s;
+    }
 
     exit(EXIT_SUCCESS);
 }
