@@ -5,6 +5,9 @@
 #include <iostream>
 #include <chrono>
 #include <SDL2pp/Img/Image.hpp>
+#include <SDL2pp/TTF/Font.hpp>
+#include <SDL2pp/Img/SDL2Image.hpp>
+#include <SDL2pp/TTF/SDL2TTF.hpp>
 
 #include "SDL2pp/SDL2.hpp"
 #include "SDL2pp/Window.hpp"
@@ -20,10 +23,12 @@ using namespace SDL2pp;
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 
-const auto stepDelay = 350ms;
+const auto stepDelay = 250ms;
 
 int main(int argc, char* argv[]){
     SDL2 sdl;
+    SDL2pp::Img::SDL2Image img;
+    SDL2pp::TTF::SDL2TTF ttf;
 
     //The window we'll be rendering to
     Window window( "SDL Tutorials 01-", SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -42,7 +47,7 @@ int main(int argc, char* argv[]){
     //02
     //Loads media
     //Load splash image
-    SDL2pp::Surface halloWorld( "02_getting_an_image_on_the_screen/hello_world.bmp" );
+    SDL2pp::Surface halloWorld( "res/LazyFooTut/hello_world.bmp" );
     //Apply the image
     halloWorld.blitOnto(screen);
     //Update the surface
@@ -54,7 +59,7 @@ int main(int argc, char* argv[]){
 
     //05
     //Load stretching surface
-    SDL2pp::Surface stretchedSurface( "05_optimized_surface_loading_and_soft_stretching/stretch.bmp" );
+    SDL2pp::Surface stretchedSurface( "res/LazyFooTut/stretch.bmp" );
     SDL2pp::Surface optimizedSurface = stretchedSurface.convertTo(screen.getFormat());
     screen.fillRect( screen.mapRGB( 0x00, 0x00, 0x00) );
     //Apply the image stretched
@@ -71,7 +76,7 @@ int main(int argc, char* argv[]){
 
     //06
     //Load PNG image
-    SDL2pp::Img::Image PNGSurfaceRaw("06_extension_libraries_and_loading_other_image_formats/loaded.png");
+    SDL2pp::Img::Image PNGSurfaceRaw("res/LazyFooTut/loaded.png");
     SDL2pp::Surface PNGSurface = PNGSurfaceRaw.convertTo(screen.getFormat());
     //Apply the PNG image
     PNGSurface.blitOnto(screen);
@@ -82,9 +87,9 @@ int main(int argc, char* argv[]){
 
     //07
     //Create renderer for window
-    SDL2pp::Renderer renderer = window.createRenderer(-1, SDL_RENDERER_ACCELERATED);
+    SDL2pp::Renderer renderer = window.createRenderer(-1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     //Load PNG image as texture
-    SDL2pp::Img::Image texture_surface("07_texture_loading_and_rendering/texture.png");
+    SDL2pp::Img::Image texture_surface("res/LazyFooTut/texture.png");
     SDL2pp::Texture texture = renderer.createTexture(texture_surface);
     //Initialize renderer color
     renderer.setDrawColor(0xFF, 0xFF, 0xFF, 0xFF);
@@ -124,7 +129,7 @@ int main(int argc, char* argv[]){
 
     //09
     //Load viewport PNG image
-    SDL2pp::Img::Image viewport_surface("09_the_viewport/viewport.png");
+    SDL2pp::Img::Image viewport_surface("res/LazyFooTut/viewport.png");
     SDL2pp::Texture viewport = renderer.createTexture(viewport_surface);
     //Clear screen
     renderer.setDrawColor(0xFF, 0xFF, 0xFF, 0xFF);
@@ -169,11 +174,11 @@ int main(int argc, char* argv[]){
     sdl.delay( stepDelay );
 
     //10
-    SDL2pp::Img::Image background_sur("10_color_keying/background.png");
+    SDL2pp::Img::Image background_sur("res/LazyFooTut/background.png");
     background_sur.setColorKey(true, background_sur.mapRGB(0x00, 0xFF, 0xFF));
     SDL_Rect background_quad = {0, 0, background_sur.getWidth(), background_sur.getHeight()};
     SDL2pp::Texture background_texture = renderer.createTexture(background_sur);
-    SDL2pp::Img::Image foo_sur("10_color_keying/foo.png");
+    SDL2pp::Img::Image foo_sur("res/LazyFooTut/foo.png");
     foo_sur.setColorKey(true, foo_sur.mapRGB(0x00, 0xFF, 0xFF));
     SDL_Rect foo_quad = {0, 0, foo_sur.getWidth(), foo_sur.getHeight()};
     SDL2pp::Texture foo_texture = renderer.createTexture(foo_sur);
@@ -195,7 +200,7 @@ int main(int argc, char* argv[]){
 
     //11
     //Load sprite sheet PNG image
-    SDL2pp::Img::Image spriteSheet_sur("11_clip_rendering_and_sprite_sheets/dots.png");
+    SDL2pp::Img::Image spriteSheet_sur("res/LazyFooTut/dots.png");
     spriteSheet_sur.setColorKey(true, spriteSheet_sur.mapRGB(0x00, 0xFF, 0xFF));
     SDL2pp::Texture spriteSheet_tex = renderer.createTexture(spriteSheet_sur);
     //Scene sprites
@@ -242,7 +247,7 @@ int main(int argc, char* argv[]){
 
     //12
     //Load colorful PNG image
-    SDL2pp::Img::Image modulated_sur("12_color_modulation/colors.png");
+    SDL2pp::Img::Image modulated_sur("res/LazyFooTut/colors.png");
     modulated_sur.setColorKey(true, modulated_sur.mapRGB(0x00, 0xFF, 0xFF));
     SDL2pp::Texture modulated_tex = renderer.createTexture(modulated_sur);
 
@@ -266,11 +271,11 @@ int main(int argc, char* argv[]){
     sdl.delay( stepDelay );
 
     //13
-    SDL2pp::Img::Image fadeout_sur("13_alpha_blending/fadeout.png");
+    SDL2pp::Img::Image fadeout_sur("res/LazyFooTut/fadeout.png");
     fadeout_sur.setColorKey(true, fadeout_sur.mapRGB(0x00, 0xFF, 0xFF));
     SDL2pp::Texture fadeout_tex = renderer.createTexture(fadeout_sur);
 
-    SDL2pp::Img::Image fadein_sur("13_alpha_blending/fadein.png");
+    SDL2pp::Img::Image fadein_sur("res/LazyFooTut/fadein.png");
     fadein_sur.setColorKey(true, fadein_sur.mapRGB(0x00, 0xFF, 0xFF));
     SDL2pp::Texture fadein_tex = renderer.createTexture(fadein_sur);
     //Fade out
@@ -307,6 +312,108 @@ int main(int argc, char* argv[]){
     }
     //Wait
     sdl.delay( stepDelay );
+
+    //14
+    //Load figure PNG image
+    SDL2pp::Img::Image sprite_sur("res/LazyFooTut/foo_walk.png");
+    sprite_sur.setColorKey(true, sprite_sur.mapRGB(0x00, 0xFF, 0xFF));
+    SDL2pp::Texture sprite_tex = renderer.createTexture(sprite_sur);
+    //Walking animation
+    const int WALKING_ANIMATION_FRAMES = 4;
+    SDL_Rect walkingSpriteClips[ WALKING_ANIMATION_FRAMES ];
+    //Set sprite clips
+    //Animation step 0
+    walkingSpriteClips[ 0 ].x =   0;
+    walkingSpriteClips[ 0 ].y =   0;
+    walkingSpriteClips[ 0 ].w =  64;
+    walkingSpriteClips[ 0 ].h = 205;
+    //Animation step 1
+    walkingSpriteClips[ 1 ].x =  64;
+    walkingSpriteClips[ 1 ].y =   0;
+    walkingSpriteClips[ 1 ].w =  64;
+    walkingSpriteClips[ 1 ].h = 205;
+    //Animation step 2
+    walkingSpriteClips[ 2 ].x = 128;
+    walkingSpriteClips[ 2 ].y =   0;
+    walkingSpriteClips[ 2 ].w =  64;
+    walkingSpriteClips[ 2 ].h = 205;
+    //Animation step 3
+    walkingSpriteClips[ 3 ].x = 196;
+    walkingSpriteClips[ 3 ].y =   0;
+    walkingSpriteClips[ 3 ].w =  64;
+    walkingSpriteClips[ 3 ].h = 205;
+    //Play animation
+    for(int frame = 0; frame < WALKING_ANIMATION_FRAMES * 12 ; frame++){
+        //Clear screen
+        renderer.setDrawColor(0xFF, 0xFF, 0xFF, 0xFF);
+        renderer.clear();
+        //Render current frame
+        SDL_Rect* currentClip = &walkingSpriteClips[ frame % WALKING_ANIMATION_FRAMES ];
+        SDL_Rect  position = {SCREEN_WIDTH - (currentClip->w / 4) * frame, (SCREEN_HEIGHT - currentClip->h) / 2, 64, 205};
+        renderer.copy(sprite_tex, currentClip, &position);
+        //Update screen
+        renderer.present();
+        sdl.delay(60ms);
+    }
+    //Wait
+    sdl.delay( stepDelay );
+
+    //15
+    //Load asymmetric arrow PNG image
+    SDL2pp::Img::Image arrow_sur("res/LazyFooTut/arrow.png");
+    arrow_sur.setColorKey(true, arrow_sur.mapRGB(0x00, 0xFF, 0xFF));
+    SDL2pp::Texture arrow_tex = renderer.createTexture(arrow_sur);
+    //Flip types
+    SDL_RendererFlip flipTypes[3] = {
+        SDL_FLIP_NONE,
+        SDL_FLIP_HORIZONTAL,
+        SDL_FLIP_VERTICAL,
+    };
+    SDL_Rect arrow_pos = {
+        ( SCREEN_WIDTH  - arrow_sur.getWidth()  ) / 2,
+        ( SCREEN_HEIGHT - arrow_sur.getHeight() ) / 2,
+        arrow_sur.getWidth(),
+        arrow_sur.getHeight(),
+    };
+    //Run animation
+    int stepSize = 5;
+    for(int step=0; step<=3*360/stepSize; step++){
+        renderer.setDrawColor(0xFF, 0xFF, 0xFF, 0xFF);
+        renderer.clear();
+
+        renderer.copyExtended(arrow_tex, nullptr, &arrow_pos,
+                              1.*stepSize*step, nullptr,
+                              flipTypes[(step/60)%3]);
+
+        renderer.present();
+        sdl.delay(10ms);
+    }
+    //Wait
+    sdl.delay( stepDelay );
+
+    //16
+    //Load TTF fong
+    SDL2pp::TTF::Font font( "res/LazyFooTut/lazy.ttf", 28 );
+    //Render text
+    SDL_Color textColor = { 0, 0, 0 };
+    SDL2pp::Surface text_sur = font.renderSolid_UTF8(u8"The quick brown fox jumps over the lazy dog", textColor);
+    SDL2pp::Texture text_tex = renderer.createTexture(text_sur);
+    //Clear screen
+    renderer.setDrawColor(0xFF, 0xFF, 0xFF, 0xFF);
+    renderer.clear();
+    SDL_Rect text_pos = {
+        ( SCREEN_WIDTH - text_sur.getWidth() ) / 2,
+        ( SCREEN_HEIGHT - text_sur.getHeight() ) / 2,
+        text_sur.getWidth(),
+        text_sur.getHeight()};
+    //Render current frame
+    renderer.copy(text_tex, nullptr, &text_pos);
+    //Update screen
+    renderer.present();
+    //Wait
+    sdl.delay( stepDelay );
+
+    //17, 18, 19, 20 events for mouse and game controllers, keyboard states
 
     sdl.delay(500ms);
 
