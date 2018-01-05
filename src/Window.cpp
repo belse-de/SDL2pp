@@ -3,6 +3,8 @@
 //
 
 #include "SDL2pp/Window.hpp"
+#include "SDL2pp/Surface.hpp"
+#include "SDL2pp/Renderer.hpp"
 
 #include <SDL2/SDL.h>
 #include <SDL2pp/Error.hpp>

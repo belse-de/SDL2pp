@@ -56,7 +56,8 @@ target_link_libraries(SDL2pp
 
 
 
-enable_testing()
+add_executable(LazyFooTut LazyFooSDL2Tutorial/LazyFooTut.cpp)
+target_link_libraries(LazyFooTut SDL2pp)
 
 add_executable(LFTut2_01 LazyFooSDL2Tutorial/01_hello_SDL/01_hello_SDL.cpp)
 target_link_libraries(LFTut2_01 SDL2pp)
@@ -179,67 +180,8 @@ add_executable(kiss_example_02 kiss_sdl/kiss_example2.c
         kiss_sdl/kiss_posix.c)
 target_link_libraries(kiss_example_02 SDL2pp)
 
-add_test( LazyFoo_01 LFTut2_01 )
-add_test( LazyFoo_02 LFTut2_02 )
-add_test( LazyFoo_03 LFTut2_03 )
-add_test( LazyFoo_04 LFTut2_04 )
-add_test( LazyFoo_05 LFTut2_05 )
-add_test( LazyFoo_06 LFTut2_06 )
-add_test( LazyFoo_07 LFTut2_07 )
-add_test( LazyFoo_08 LFTut2_08 )
-add_test( LazyFoo_09 LFTut2_09 )
 
-add_test( LazyFoo_10 LFTut2_10 )
-add_test( LazyFoo_11 LFTut2_11 )
-add_test( LazyFoo_12 LFTut2_12 )
-add_test( LazyFoo_13 LFTut2_13 )
-add_test( LazyFoo_14 LFTut2_14 )
-add_test( LazyFoo_15 LFTut2_15 )
-add_test( LazyFoo_16 LFTut2_16 )
-add_test( LazyFoo_17 LFTut2_17 )
-add_test( LazyFoo_18 LFTut2_18 )
-add_test( LazyFoo_19 LFTut2_19 )
-
-add_test( LazyFoo_20 LFTut2_20 )
-add_test( LazyFoo_21 LFTut2_21 )
-add_test( LazyFoo_22 LFTut2_22 )
-add_test( LazyFoo_23 LFTut2_23 )
-add_test( LazyFoo_24 LFTut2_24 )
-add_test( LazyFoo_25 LFTut2_25 )
-add_test( LazyFoo_26 LFTut2_26 )
-add_test( LazyFoo_27 LFTut2_27 )
-add_test( LazyFoo_28 LFTut2_28 )
-add_test( LazyFoo_29 LFTut2_29 )
-
-add_test( LazyFoo_30 LFTut2_30 )
-add_test( LazyFoo_31 LFTut2_31 )
-add_test( LazyFoo_32 LFTut2_32 )
-add_test( LazyFoo_33 LFTut2_33 )
-#
-add_test( LazyFoo_35 LFTut2_35 )
-add_test( LazyFoo_36 LFTut2_36 )
-add_test( LazyFoo_37 LFTut2_37 )
-add_test( LazyFoo_38 LFTut2_38 )
-add_test( LazyFoo_39 LFTut2_39 )
-
-add_test( LazyFoo_40 LFTut2_40 )
-add_test( LazyFoo_41 LFTut2_41 )
-add_test( LazyFoo_42 LFTut2_42 )
-add_test( LazyFoo_43 LFTut2_43 )
-add_test( LazyFoo_44 LFTut2_44 )
-add_test( LazyFoo_45 LFTut2_45 )
-add_test( LazyFoo_46 LFTut2_46 )
-add_test( LazyFoo_47 LFTut2_47 )
-add_test( LazyFoo_48 LFTut2_48 )
-add_test( LazyFoo_49 LFTut2_49 )
-
-add_test( LazyFoo_50 LFTut2_50 )
-add_test( LazyFoo_51 LFTut2_51 )
-
-add_test( kiss_01 kiss_example_01 )
-add_test( kiss_02 kiss_example_02 )
-
-
+enable_testing()
 # multiple-file modules:
 set( SOURCES_TEST_020
         test/example/020-TestCase-1.cpp
