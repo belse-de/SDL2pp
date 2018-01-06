@@ -33,7 +33,7 @@ int main(int argc, char* argv[]){
     SDL2pp::TTF::SDL2TTF ttf;
 
     //The window we'll be rendering to
-    Window window( "SDL Tutorials 01-16", SCREEN_WIDTH, SCREEN_HEIGHT);
+    Window window( "SDL Tutorials 01-18", SCREEN_WIDTH, SCREEN_HEIGHT);
 
     //01
     //The surface contained by the window
