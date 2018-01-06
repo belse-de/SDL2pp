@@ -452,12 +452,15 @@ int main(int argc, char* argv[]){
         while (SDL_PollEvent(&e) != 0) {
             //User requests quit
             if (e.type == SDL_QUIT) {
-                quit = true;
+                exit(EXIT_SUCCESS);
             }
                 //User presses a key
             else if (e.type == SDL_KEYDOWN) {
                 //Select surfaces based on key press
                 switch (e.key.keysym.sym) {
+                    case SDLK_ESCAPE:
+                        quit = true;
+                        break;
                     case SDLK_UP:
                         currentKeyPress = keyPressSurfaces[KEY_PRESS_SURFACE_UP];
                         break;
@@ -479,6 +482,9 @@ int main(int argc, char* argv[]){
                         break;
                 }
             }
+            else if (e.type == SDL_KEYDOWN) {
+                currentKeyPress = keyPressSurfaces[KEY_PRESS_SURFACE_DEFAULT];
+            }
         }
         //Apply the current image
         renderer.copy(renderer.createTexture(*currentKeyPress));
@@ -490,6 +496,109 @@ int main(int argc, char* argv[]){
     //Free resources and close SDL
     for (auto s : keyPressSurfaces) {
         delete s;
+    }
+
+
+
+    //17
+    //Button constants
+    const int BUTTON_WIDTH = 300;
+    const int BUTTON_HEIGHT = 200;
+    const int TOTAL_BUTTONS = 4;
+
+    enum class ButtonSprite {
+        BUTTON_SPRITE_MOUSE_OUT = 0,
+        BUTTON_SPRITE_MOUSE_OVER_MOTION = 1,
+        BUTTON_SPRITE_MOUSE_DOWN = 2,
+        BUTTON_SPRITE_MOUSE_UP = 3,
+        BUTTON_SPRITE_TOTAL = 4
+    };
+    //Load button PNG sprite sheet image
+    SDL2pp::Img::Image button_sur("res/LazyFooTut/<button.png");
+    button_sur.setColorKey(true, button_sur.mapRGB(0x00, 0xFF, 0xFF));
+    SDL2pp::Texture button_tex = renderer.createTexture(button_sur);
+    //Set sprites
+    SDL_Rect buttonSpriteClips[static_cast<int>(ButtonSprite::BUTTON_SPRITE_TOTAL)];
+    for (int i = 0; i < static_cast<int>(ButtonSprite::BUTTON_SPRITE_TOTAL); ++i) {
+        buttonSpriteClips[i].x = 0;
+        buttonSpriteClips[i].y = i * 200;
+        buttonSpriteClips[i].w = BUTTON_WIDTH;
+        buttonSpriteClips[i].h = BUTTON_HEIGHT;
+    }
+    //Set buttons in corners
+    SDL_Rect button_pos[TOTAL_BUTTONS];
+    for (int i = 0; i < TOTAL_BUTTONS; ++i) {
+        int X = i % 2;
+        int Y = i / 2;
+
+        button_pos[i].x = X * (SCREEN_WIDTH - BUTTON_WIDTH);
+        button_pos[i].y = Y * (SCREEN_HEIGHT - BUTTON_HEIGHT);
+        button_pos[i].w = BUTTON_WIDTH;
+        button_pos[i].h = BUTTON_HEIGHT;
+
+    }
+    ButtonSprite button_state[TOTAL_BUTTONS];
+    for (int i = 0; i < TOTAL_BUTTONS; ++i) {
+        button_state[i] = ButtonSprite::BUTTON_SPRITE_MOUSE_OUT;
+    }
+
+
+    //Main loop flag
+    quit = false;
+    //While application is running
+    while (!quit) {
+        //Handle events on queue
+        while (SDL_PollEvent(&e) != 0) {
+            //User requests quit
+            if (e.type == SDL_QUIT) {
+                quit = true;
+            }
+                //If mouse event happened
+            else if (e.type == SDL_MOUSEMOTION || e.type == SDL_MOUSEBUTTONDOWN || e.type == SDL_MOUSEBUTTONUP) {
+                //Get mouse position
+                int x, y;
+                SDL_GetMouseState(&x, &y);
+
+                //Handle button events
+                //Check if mouse is in button
+                for (int i = 0; i < TOTAL_BUTTONS; ++i) {
+                    if (x >= button_pos[i].x
+                        and y >= button_pos[i].y
+                        and x <= (button_pos[i].x + button_pos[i].w)
+                        and y <= (button_pos[i].y + button_pos[i].h)) {
+                        //Mouse is inside button
+                        if (e.type == SDL_MOUSEMOTION) {
+                            button_state[i] = ButtonSprite::BUTTON_SPRITE_MOUSE_OVER_MOTION;
+                        } else if (e.type == SDL_MOUSEBUTTONDOWN) {
+                            button_state[i] = ButtonSprite::BUTTON_SPRITE_MOUSE_DOWN;
+                        } else if (e.type == SDL_MOUSEBUTTONUP) {
+                            button_state[i] = ButtonSprite::BUTTON_SPRITE_MOUSE_UP;
+                        } else {
+                            button_state[i] = ButtonSprite::BUTTON_SPRITE_MOUSE_OUT;
+                        }
+                    } else {
+                        //Mouse is outside button
+                        button_state[i] = ButtonSprite::BUTTON_SPRITE_MOUSE_OUT;
+                    }
+                }
+                std::clog << std::flush;
+            }
+        }
+
+        //Clear screen
+        renderer.setDrawColor(0xFF, 0xFF, 0xFF, 0xFF);
+        renderer.clear();
+
+        //Render buttons
+        for (int i = 0; i < TOTAL_BUTTONS; ++i) {
+            renderer.copy(button_tex,
+                          &buttonSpriteClips[static_cast<int>(button_state[i])],
+                          &button_pos[i]);
+        }
+
+        //Update screen
+        renderer.present();
+        sdl.delay(50ms);
     }
 
     exit(EXIT_SUCCESS);
