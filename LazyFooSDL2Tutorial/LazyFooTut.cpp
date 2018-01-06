@@ -417,11 +417,13 @@ int main(int argc, char* argv[]){
 
     //17, 18, 19, 20 events for mouse and game controllers, keyboard states
 
+    //21
+
 //######################################################################################################################
     sdl.delay(500ms);
 //######################################################################################################################
 
-    //TODO: 17, 18, 19, 20 event driven programming
+    //TODO: 19, 20 event driven programming
 
     //03, 04
     //Key press surfaces constants
