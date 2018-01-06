@@ -25,6 +25,7 @@ const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 
 const auto stepDelay = 250ms;
+const auto reactionDelay = 50ms;
 
 int main(int argc, char* argv[]){
     SDL2 sdl;
@@ -293,7 +294,7 @@ int main(int argc, char* argv[]){
         renderer.copy(fadeout_tex);
 
         renderer.present();
-        sdl.delay(50ms);
+        sdl.delay( reactionDelay );
     }
     //Fade in
     for (uint8_t a = 0x00; a < 0xf0; a += 0x10) {
@@ -309,7 +310,7 @@ int main(int argc, char* argv[]){
         renderer.copy(fadeout_tex);
 
         renderer.present();
-        sdl.delay(50ms);
+        sdl.delay( reactionDelay );
     }
     //Wait
     sdl.delay( stepDelay );
@@ -354,7 +355,7 @@ int main(int argc, char* argv[]){
         renderer.copy(sprite_tex, currentClip, &position);
         //Update screen
         renderer.present();
-        sdl.delay(60ms);
+        sdl.delay( reactionDelay );
     }
     //Wait
     sdl.delay( stepDelay );
@@ -416,7 +417,9 @@ int main(int argc, char* argv[]){
 
     //17, 18, 19, 20 events for mouse and game controllers, keyboard states
 
+//######################################################################################################################
     sdl.delay(500ms);
+//######################################################################################################################
 
     //TODO: 17, 18, 19, 20 event driven programming
 
@@ -490,7 +493,7 @@ int main(int argc, char* argv[]){
         renderer.copy(renderer.createTexture(*currentKeyPress));
         //Update the surface
         renderer.present();
-        sdl.delay(50ms);
+        sdl.delay( reactionDelay );
     }
 
     //Free resources and close SDL
@@ -514,7 +517,7 @@ int main(int argc, char* argv[]){
         BUTTON_SPRITE_TOTAL = 4
     };
     //Load button PNG sprite sheet image
-    SDL2pp::Img::Image button_sur("res/LazyFooTut/<button.png");
+    SDL2pp::Img::Image button_sur("res/LazyFooTut/button.png");
     button_sur.setColorKey(true, button_sur.mapRGB(0x00, 0xFF, 0xFF));
     SDL2pp::Texture button_tex = renderer.createTexture(button_sur);
     //Set sprites
@@ -551,6 +554,9 @@ int main(int argc, char* argv[]){
         while (SDL_PollEvent(&e) != 0) {
             //User requests quit
             if (e.type == SDL_QUIT) {
+                exit(EXIT_SUCCESS);
+            }
+            else if (e.type == SDL_KEYDOWN and e.key.keysym.sym == SDLK_ESCAPE){
                 quit = true;
             }
                 //If mouse event happened
@@ -598,7 +604,62 @@ int main(int argc, char* argv[]){
 
         //Update screen
         renderer.present();
-        sdl.delay(50ms);
+        sdl.delay( reactionDelay );
+    }
+
+    SDL2pp::Img::Image sur_default("res/LazyFooTut/press.png");
+    SDL2pp::Img::Image sur_up("res/LazyFooTut/up.png");
+    SDL2pp::Img::Image sur_down("res/LazyFooTut/down.png");
+    SDL2pp::Img::Image sur_left("res/LazyFooTut/left.png");
+    SDL2pp::Img::Image sur_right("res/LazyFooTut/right.png");
+    SDL2pp::Texture tex_default = renderer.createTexture(sur_default);
+    SDL2pp::Texture tex_up = renderer.createTexture(sur_up);
+    SDL2pp::Texture tex_down = renderer.createTexture(sur_down);
+    SDL2pp::Texture tex_left = renderer.createTexture(sur_left);
+    SDL2pp::Texture tex_right = renderer.createTexture(sur_right);
+    //Set default current surface
+    SDL2pp::Texture *tex_current = &tex_default;
+
+
+    //18
+    //Main loop flag
+    quit = false;
+    //While application is running
+    while (!quit) {
+        //Handle events on queue
+        while (SDL_PollEvent(&e) != 0) {
+            //User requests quit
+            //User requests quit
+            if (e.type == SDL_QUIT) {
+                exit(EXIT_SUCCESS);
+            }
+            else if (e.type == SDL_KEYDOWN and e.key.keysym.sym == SDLK_ESCAPE){
+                quit = true;
+            }
+        }
+
+        //Set texture based on current keystate
+        const Uint8 *currentKeyStates = SDL_GetKeyboardState(nullptr);
+        if (currentKeyStates[SDL_SCANCODE_UP]) {
+            tex_current = &tex_up;
+        } else if (currentKeyStates[SDL_SCANCODE_DOWN]) {
+            tex_current = &tex_down;
+        } else if (currentKeyStates[SDL_SCANCODE_LEFT]) {
+            tex_current = &tex_left;
+        } else if (currentKeyStates[SDL_SCANCODE_RIGHT]) {
+            tex_current = &tex_right;
+        } else {
+            tex_current = &tex_default;
+        }
+
+        //Clear screen
+        renderer.setDrawColor(0xFF, 0xFF, 0xFF, 0xFF);
+        renderer.clear();
+        //Apply the current image
+        renderer.copy(*tex_current);
+        //Update the surface
+        renderer.present();
+        sdl.delay( reactionDelay );
     }
 
     exit(EXIT_SUCCESS);
