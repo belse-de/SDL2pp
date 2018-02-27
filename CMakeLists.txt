@@ -7,22 +7,22 @@ set(CMAKE_VERBOSE_MAKEFILE OFF)
 include_directories(include/ src/)
 set(SOURCE_FILES
         library.cpp library.h
-        include/SDL2pp/Error.hpp
-        include/SDL2pp/Img/Error.hpp
-        include/SDL2pp/TTF/Error.hpp
-        include/SDL2pp/Mix/Error.hpp
-        include/SDL2pp/Net/Error.hpp
-        src/SDL2.cpp include/SDL2pp/SDL2.hpp
-        src/Window.cpp include/SDL2pp/Window.hpp
-        src/Surface.cpp include/SDL2pp/Surface.hpp
-        src/Image.cpp include/SDL2pp/Img/Image.hpp
-        src/SDL2Image.cpp include/SDL2pp/Img/SDL2Image.hpp
-        src/Renderer.cpp include/SDL2pp/Renderer.hpp
-        src/Texture.cpp include/SDL2pp/Texture.hpp
-        src/SDL2TTF.cpp include/SDL2pp/TTF/SDL2TTF.hpp
-        src/Font.cpp include/SDL2pp/TTF/Font.hpp
-        src/SDL2Mixer.cpp include/SDL2pp/Mix/SDL2Mixer.hpp
-        include/SDL2pp/Net/SDL2Net.cpp include/SDL2pp/Net/SDL2Net.hpp)
+        include/libSDL2pp/Error.hpp
+        include/libSDL2pp/Img/Error.hpp
+        include/libSDL2pp/TTF/Error.hpp
+        include/libSDL2pp/Mix/Error.hpp
+        include/libSDL2pp/Net/Error.hpp
+        src/libSDL2pp/SDL2.cpp include/libSDL2pp/SDL2.hpp
+        src/libSDL2pp/Window.cpp src/libSDL2pp/Window.hpp
+        src/libSDL2pp/Surface.cpp include/libSDL2pp/Surface.hpp
+        src/libSDL2pp/Image.cpp include/libSDL2pp/Img/Image.hpp
+        src/libSDL2pp/Img/SDL2Image.cpp include/libSDL2pp/Img/SDL2Image.hpp
+        src/libSDL2pp/Renderer.cpp include/libSDL2pp/Renderer.hpp
+        src/libSDL2pp/Texture.cpp include/libSDL2pp/Texture.hpp
+        src/libSDL2pp/TTF/SDL2TTF.cpp include/libSDL2pp/TTF/SDL2TTF.hpp
+        src/libSDL2pp/TTF/Font.cpp include/libSDL2pp/TTF/Font.hpp
+        src/libSDL2pp/Mix/SDL2Mixer.cpp include/libSDL2pp/Mix/SDL2Mixer.hpp
+        include/libSDL2pp/Net/SDL2Net.cpp include/libSDL2pp/Net/SDL2Net.hpp)
 add_library(SDL2pp ${SOURCE_FILES})
 
 # https://cmake.org/cmake/help/v3.0/module/FindOpenGL.html
