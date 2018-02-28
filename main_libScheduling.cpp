@@ -30,3 +30,12 @@ int main() {
     scheduler.printStatistics();
     return 0;
 }
+
+/*
+ * Sources:
+ *   Round robin:
+ *     https://www.codeproject.com/Questions/801175/Review-of-Round-robin-code-in-cplusplus
+ *       2018-01-05T20:25
+ *     https://www.thecrazyprogrammer.com/2015/09/round-robin-scheduling-program-in-c.html
+ *       2018-01-05T20:30
+*/

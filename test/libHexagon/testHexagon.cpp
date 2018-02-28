@@ -3,7 +3,7 @@
 #include <iostream>
 #include <glm/ext.hpp>
 
-#include "libhex.hpp"
+#include "libHexagon/libhex.hpp"
 
 using namespace Hexagon;
 
