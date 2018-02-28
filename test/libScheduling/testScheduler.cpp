@@ -3,9 +3,9 @@
 //
 
 #include <catch.hpp>
-#include "../lib/SystemTimer.hpp"
-#include "../Strategies/RoundRobinStrategy.hpp"
-#include "../lib/Scheduler.hpp"
+#include <libScheduling/SystemTimer.hpp>
+#include <libScheduling/Strategies/RoundRobinStrategy.hpp>
+#include <libScheduling/Scheduler.hpp>
 
 TEST_CASE("simple run scheduler round robin", "[roundrobin][scheduler]") {
     SystemTimer timer(23ms);

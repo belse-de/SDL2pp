@@ -46,6 +46,7 @@ set(SOURCES_EXE_SDL2PP
 add_library(sdl2pp ${SOURCES_LIB_SDL2PP})
 add_executable(test_sdl2pp ${SOURCES_TEST_SDL2PP})
 target_include_directories(test_sdl2pp PUBLIC ${CMAKE_SOURCE_DIR}/extern/Catch2-master/single_include)
+add_test(TEST_sdl2pp test_sdl2pp)
 add_executable(main_sdl2pp ${SOURCES_EXE_SDL2PP})
 
 ########################################################################################################################
@@ -87,6 +88,7 @@ set(SOURCES_EXE_SCHEDULING
 add_library(scheduling ${SOURCES_LIB_SCHEDULING})
 add_executable(test_scheduling ${SOURCES_TEST_SCHEDULING})
 target_include_directories(test_scheduling PUBLIC ${CMAKE_SOURCE_DIR}/extern/Catch2-master/single_include)
+add_test(TEST_scheduling test_scheduling)
 add_executable(main_scheduling ${SOURCES_EXE_SCHEDULING})
 
 ########################################################################################################################
@@ -105,7 +107,12 @@ set(SOURCES_EXE_HEXAGON
 add_library(hexagon ${SOURCES_LIB_HEXAGON})
 add_executable(test_hexagon ${SOURCES_TEST_HEXAGON})
 target_include_directories(test_hexagon PUBLIC ${CMAKE_SOURCE_DIR}/extern/Catch2-master/single_include)
+add_test(TEST_hexagon test_hexagon)
 add_executable(main_hexagon ${SOURCES_EXE_HEXAGON})
+
+########################################################################################################################
+# Executeables and test
+########################################################################################################################
 
 # https://cmake.org/cmake/help/v3.0/module/FindOpenGL.html
 find_package(OpenGL REQUIRED)

@@ -3,6 +3,8 @@
 #include <iostream>
 #include <glm/ext.hpp>
 
+#include <catch.hpp>
+
 #include "libHexagon/libhex.hpp"
 
 using namespace Hexagon;
@@ -14,6 +16,7 @@ void equal_Hex(const char* name, Hex a, Hex b)
         fprintf(stderr, "%s\n",name);
         std::cerr << glm::to_string(static_cast<glm::vec3>(a)) << std::endl;
         std::cerr << glm::to_string(static_cast<glm::vec3>(b)) << std::endl;
+        CHECK(a == b);
     }
 }
 
@@ -25,7 +28,7 @@ void equal_offsetcoord(const char* name, OffsetCoord a, OffsetCoord b)
         fprintf(stderr, "%s\n",name);
         std::cerr << glm::to_string(static_cast<glm::vec2>(a)) << std::endl;
         std::cerr << glm::to_string(static_cast<glm::vec2>(b)) << std::endl;
-        
+        CHECK(a == b);
     }
 }
 
@@ -37,6 +40,7 @@ void equal_int(const char* name, int a, int b)
         fprintf(stderr, "%s\n",name);
         std::cerr << a << std::endl;
         std::cerr << b << std::endl;
+        CHECK(a == b);
     }
 }
 
@@ -164,6 +168,6 @@ void test_all()
 }
 
 
-int main() {
-  test_all();
+TEST_CASE("Process", "[hexagon][lib]") {
+    test_all();
 }

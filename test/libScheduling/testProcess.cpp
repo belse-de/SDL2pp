@@ -3,8 +3,7 @@
 //
 
 #include <catch.hpp>
-
-#include "../lib/Process.hpp"
+#include <libScheduling/Process.hpp>
 
 using Catch::Matchers::Equals;
 

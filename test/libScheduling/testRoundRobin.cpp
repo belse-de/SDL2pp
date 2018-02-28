@@ -3,7 +3,8 @@
 //
 
 #include <catch.hpp>
-#include "../Strategies/RoundRobinStrategy.hpp"
+#include <libScheduling/Strategies/RoundRobinStrategy.hpp>
+#include <libScheduling/Process.hpp>
 
 // TEST_CASE("","[]"){}
 
