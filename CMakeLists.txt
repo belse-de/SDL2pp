@@ -1,10 +1,50 @@
 cmake_minimum_required(VERSION 3.8)
 project(sdl2pp CXX C)
-
 set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_C_STANDARD 11)
+
 set(CMAKE_VERBOSE_MAKEFILE OFF)
 
-include_directories(src/)
+enable_testing()
+
+include_directories(src/ include/)
+
+# https://cmake.org/cmake/help/v3.0/module/FindOpenGL.html
+find_package(OpenGL REQUIRED)
+# https://cmake.org/cmake/help/v3.0/module/FindGLEW.html
+find_package(GLEW REQUIRED)
+
+include(FindPkgConfig)
+pkg_search_module(SDL2      REQUIRED sdl2)
+pkg_search_module(SDL2IMAGE REQUIRED sdl2_image)
+pkg_search_module(SDL2TTF   REQUIRED sdl2_ttf)
+pkg_search_module(SDL2MIXER REQUIRED sdl2_mixer)
+pkg_search_module(SDL2NET   REQUIRED SDL2_net)
+
+########################################################################################################################
+# lib CATCH
+########################################################################################################################
+# define program targets:
+add_library( CatchMain OBJECT test/catchMain.cpp test/catch.hpp)
+target_include_directories(CatchMain PUBLIC ${CMAKE_SOURCE_DIR}/extern/Catch2-master/single_include)
+
+# CATCH Examples
+########################################################################################################################
+# multiple-file modules:
+set( SOURCES_TEST_CATCH_020
+        test/example/020-TestCase-1.cpp
+        test/example/020-TestCase-2.cpp
+        )
+# sources to combine with 000-CatchMain.cpp:
+set( SOURCES_TEST_CATCH_IDIOMATIC
+
+        test/example/100-Fix-Section.cpp
+        test/example/110-Fix-ClassFixture.cpp
+        test/example/120-Bdd-ScenarioGivenWhenThen.cpp
+        )
+#TODO set to ignored
+#test/example/030-Asn-Require-Check.cpp
+
 
 ########################################################################################################################
 # lib sdl2pp
@@ -38,16 +78,30 @@ set(SOURCES_LIB_SDL2PP
         src/libSDL2pp/Net/SDL2Net.cpp
         src/libSDL2pp/Net/SDL2Net.hpp)
 set(SOURCES_TEST_SDL2PP
-        test/catchMain.cpp
-        ${SOURCES_LIB_SDL2PP})
+        )
 set(SOURCES_EXE_SDL2PP
-        main_libSDL2pp.cpp
-        ${SOURCES_LIB_SDL2PP} )
+        main_libSDL2pp.cpp)
+
 add_library(sdl2pp ${SOURCES_LIB_SDL2PP})
-add_executable(test_sdl2pp ${SOURCES_TEST_SDL2PP})
-target_include_directories(test_sdl2pp PUBLIC ${CMAKE_SOURCE_DIR}/extern/Catch2-master/single_include)
-add_test(TEST_sdl2pp test_sdl2pp)
+include_directories(
+        ${SDL2_INCLUDE_DIRS}
+        ${SDL2IMAGE_INCLUDE_DIRS}
+        ${SDL2TTF_INCLUDE_DIRS}
+        ${SDL2MIXER_INCLUDE_DIRS}
+        ${SDL2NET_INCLUDE_DIRS}
+        ${OPENGL_INCLUDE_DIR}
+        ${GLEW_INCLUDE_DIRS})
+target_link_libraries(sdl2pp
+        ${SDL2_LIBRARIES}
+        ${SDL2IMAGE_LIBRARIES}
+        ${SDL2TTF_LIBRARIES}
+        ${SDL2MIXER_LIBRARIES}
+        ${SDL2NET_LIBRARIES}
+        ${OPENGL_LIBRARIES}
+        ${GLEW_LIBRARIES})
+
 add_executable(main_sdl2pp ${SOURCES_EXE_SDL2PP})
+target_link_libraries(main_sdl2pp sdl2pp)
 
 ########################################################################################################################
 # lib scheduling
@@ -77,19 +131,16 @@ set(SOURCES_LIB_SCHEDULING
         src/libScheduling/SystemTimer.cpp
         src/libScheduling/SystemTimer.hpp)
 set(SOURCES_TEST_SCHEDULING
-        test/catchMain.cpp
         test/libScheduling/testProcess.cpp
         test/libScheduling/testRoundRobin.cpp
-        test/libScheduling/testScheduler.cpp
-        ${SOURCES_LIB_SCHEDULING})
+        test/libScheduling/testScheduler.cpp)
 set(SOURCES_EXE_SCHEDULING
-        main_libScheduling.cpp
-        ${SOURCES_LIB_SCHEDULING} )
+        main_libScheduling.cpp)
+
 add_library(scheduling ${SOURCES_LIB_SCHEDULING})
-add_executable(test_scheduling ${SOURCES_TEST_SCHEDULING})
-target_include_directories(test_scheduling PUBLIC ${CMAKE_SOURCE_DIR}/extern/Catch2-master/single_include)
-add_test(TEST_scheduling test_scheduling)
+
 add_executable(main_scheduling ${SOURCES_EXE_SCHEDULING})
+target_link_libraries(main_scheduling scheduling)
 
 ########################################################################################################################
 # lib hexagon
@@ -98,52 +149,22 @@ set(SOURCES_LIB_HEXAGON
         src/libHexagon/libhex.cpp
         src/libHexagon/libhex.hpp)
 set(SOURCES_TEST_HEXAGON
-        test/catchMain.cpp
         test/libHexagon/testHexagon.cpp
-        ${SOURCES_LIB_HEXAGON})
+        )
 set(SOURCES_EXE_HEXAGON
-        main_libHexagon.cpp
-        ${SOURCES_LIB_HEXAGON} )
+        main_libHexagon.cpp)
+
 add_library(hexagon ${SOURCES_LIB_HEXAGON})
-add_executable(test_hexagon ${SOURCES_TEST_HEXAGON})
-target_include_directories(test_hexagon PUBLIC ${CMAKE_SOURCE_DIR}/extern/Catch2-master/single_include)
-add_test(TEST_hexagon test_hexagon)
+
 add_executable(main_hexagon ${SOURCES_EXE_HEXAGON})
+target_link_libraries(main_hexagon hexagon)
 
 ########################################################################################################################
 # Executeables and test
 ########################################################################################################################
 
-# https://cmake.org/cmake/help/v3.0/module/FindOpenGL.html
-find_package(OpenGL REQUIRED)
-# https://cmake.org/cmake/help/v3.0/module/FindGLEW.html
-find_package(GLEW REQUIRED)
-
-include(FindPkgConfig)
-pkg_search_module(SDL2      REQUIRED sdl2)
-pkg_search_module(SDL2IMAGE REQUIRED sdl2_image)
-pkg_search_module(SDL2TTF   REQUIRED sdl2_ttf)
-pkg_search_module(SDL2MIXER REQUIRED sdl2_mixer)
-pkg_search_module(SDL2NET   REQUIRED SDL2_net)
-
-include_directories(
-        ${SDL2_INCLUDE_DIRS}
-        ${SDL2IMAGE_INCLUDE_DIRS}
-        ${SDL2TTF_INCLUDE_DIRS}
-        ${SDL2MIXER_INCLUDE_DIRS}
-        ${SDL2NET_INCLUDE_DIRS}
-        ${OPENGL_INCLUDE_DIR}
-        ${GLEW_INCLUDE_DIRS})
-target_link_libraries(sdl2pp
-        ${SDL2_LIBRARIES}
-        ${SDL2IMAGE_LIBRARIES}
-        ${SDL2TTF_LIBRARIES}
-        ${SDL2MIXER_LIBRARIES}
-        ${SDL2NET_LIBRARIES}
-        ${OPENGL_LIBRARIES}
-        ${GLEW_LIBRARIES})
-
-
+# LazyFoo Tutorial
+########################################################################################################################
 
 add_executable(LazyFooTut LazyFooSDL2Tutorial/LazyFooTut.cpp)
 target_link_libraries(LazyFooTut sdl2pp)
@@ -219,6 +240,9 @@ target_link_libraries(LFTut2_50 sdl2pp)
 add_executable(LFTut2_51 LazyFooSDL2Tutorial/51_SDL_and_modern_opengl/51_SDL_and_modern_opengl.cpp)
 target_link_libraries(LFTut2_51 sdl2pp)
 
+# Kiss Tutorial
+########################################################################################################################
+
 add_executable(kiss_example_01 kiss_sdl/kiss_example1.c
         kiss_sdl/kiss_widgets.c
         kiss_sdl/kiss_draw.c
@@ -233,38 +257,22 @@ add_executable(kiss_example_02 kiss_sdl/kiss_example2.c
 target_link_libraries(kiss_example_02 sdl2pp)
 
 
-enable_testing()
-# multiple-file modules:
-set( SOURCES_TEST_020
-        test/example/020-TestCase-1.cpp
-        test/example/020-TestCase-2.cpp
-        )
-
-# sources to combine with 000-CatchMain.cpp:
-set( SOURCES_TEST_IDIOMATIC
-        test/example/030-Asn-Require-Check.cpp
-        test/example/100-Fix-Section.cpp
-        test/example/110-Fix-ClassFixture.cpp
-        test/example/120-Bdd-ScenarioGivenWhenThen.cpp
-        )
-# define program targets:
-add_library( CatchMain OBJECT test/catchMain.cpp test/catch.hpp)
-target_include_directories( CatchMain PRIVATE test )
-
-add_executable( TestCase
-        ${SOURCES_TEST_020}
-        ${SOURCES_TEST_IDIOMATIC}
-        $<TARGET_OBJECTS:CatchMain>
-        test/catch.hpp)
-target_include_directories( TestCase PRIVATE test )
-set_property(TARGET TestCase PROPERTY CXX_STANDARD 11)
-add_test( CATCH TestCase )
+########################################################################################################################
+# UNIT TEST
+########################################################################################################################
 
 set(SOURCE_TEST
         test/TestEngine.cpp)
+
 add_executable( Test
-        ${SOURCE_TEST}
         $<TARGET_OBJECTS:CatchMain>
-        test/catch.hpp)
-target_link_libraries(Test sdl2pp)
-add_test(FullTestSuite Test)
+        ${SOURCES_TEST_CATCH_020}
+        ${SOURCES_TEST_CATCH_IDIOMATIC}
+        ${SOURCES_TEST_SDL2PP}
+        ${SOURCES_TEST_SCHEDULING}
+        ${SOURCES_TEST_HEXAGON}
+        ${SOURCE_TEST}
+        )
+target_include_directories(Test PUBLIC ${CMAKE_SOURCE_DIR}/extern/Catch2-master/single_include)
+target_link_libraries(Test sdl2pp scheduling hexagon)
+add_test( CATCH Test )

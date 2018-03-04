@@ -9,10 +9,12 @@ and may not be redistributed without written permission.*/
 #include <cmath>
 #include <iostream>
 #include <chrono>
-#include <SDL2pp/SDL2.hpp>
-#include <SDL2pp/Img/SDL2Image.hpp>
-#include <SDL2pp/TTF/SDL2TTF.hpp>
-#include <SDL2pp/Window.hpp>
+#include <libSDL2pp/SDL2.hpp>
+#include <libSDL2pp/Img/SDL2Image.hpp>
+#include <libSDL2pp/TTF/SDL2TTF.hpp>
+#include <libSDL2pp/Window.hpp>
+#include <libSDL2pp/Surface.hpp>
+#include <libSDL2pp/Renderer.hpp>
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 640;

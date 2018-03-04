@@ -3,8 +3,8 @@
 //
 
 #include <stdexcept>
-#include <SDL2pp/Error.hpp>
-#include "SDL2pp/Surface.hpp"
+#include <libSDL2pp/Error.hpp>
+#include "libSDL2pp/Surface.hpp"
 
 using namespace SDL2pp;
 

@@ -2,9 +2,9 @@
 // Created by belse on 27.12.17.
 //
 
-#include <SDL2pp/TTF/Error.hpp>
-#include "SDL2pp/Surface.hpp"
-#include "SDL2pp/TTF/Font.hpp"
+#include <libSDL2pp/TTF/Error.hpp>
+#include "libSDL2pp/Surface.hpp"
+#include "libSDL2pp/TTF/Font.hpp"
 
 
 using namespace SDL2pp::TTF;

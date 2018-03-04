@@ -4,17 +4,17 @@
 
 #include <iostream>
 #include <chrono>
-#include <SDL2pp/Img/Image.hpp>
-#include <SDL2pp/TTF/Font.hpp>
-#include <SDL2pp/Img/SDL2Image.hpp>
-#include <SDL2pp/TTF/SDL2TTF.hpp>
+#include <libSDL2pp/Img/Image.hpp>
+#include <libSDL2pp/TTF/Font.hpp>
+#include <libSDL2pp/Img/SDL2Image.hpp>
+#include <libSDL2pp/TTF/SDL2TTF.hpp>
 #include <array>
 
-#include "SDL2pp/SDL2.hpp"
-#include "SDL2pp/Window.hpp"
-#include "SDL2pp/Surface.hpp"
-#include "SDL2pp/Renderer.hpp"
-#include "SDL2pp/Texture.hpp"
+#include "libSDL2pp/SDL2.hpp"
+#include "libSDL2pp/Window.hpp"
+#include "libSDL2pp/Surface.hpp"
+#include "libSDL2pp/Renderer.hpp"
+#include "libSDL2pp/Texture.hpp"
 
 using namespace std::chrono_literals;
 using namespace std;

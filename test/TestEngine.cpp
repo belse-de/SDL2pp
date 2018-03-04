@@ -7,18 +7,18 @@
 
 using namespace std::chrono_literals;
 
-#include <SDL2pp/SDL2.hpp>
+#include <libSDL2pp/SDL2.hpp>
 #include <SDL_image.h>
-#include <SDL2pp/Img/SDL2Image.hpp>
-#include <SDL2pp/Img/Error.hpp>
+#include <libSDL2pp/Img/SDL2Image.hpp>
+#include <libSDL2pp/Img/Error.hpp>
 
-#include <SDL2pp/TTF/SDL2TTF.hpp>
-#include <SDL2pp/TTF/Error.hpp>
+#include <libSDL2pp/TTF/SDL2TTF.hpp>
+#include <libSDL2pp/TTF/Error.hpp>
 #include <SDL_mixer.h>
-#include <SDL2pp/Mix/SDL2Mixer.hpp>
-#include <SDL2pp/Mix/Error.hpp>
-#include <SDL2pp/Net/SDL2Net.hpp>
-#include <SDL2pp/Net/Error.hpp>
+#include <libSDL2pp/Mix/SDL2Mixer.hpp>
+#include <libSDL2pp/Mix/Error.hpp>
+#include <libSDL2pp/Net/SDL2Net.hpp>
+#include <libSDL2pp/Net/Error.hpp>
 
 #include "catch.hpp"
 

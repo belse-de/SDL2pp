@@ -2,8 +2,8 @@
 // Created by belse on 14.12.17.
 //
 
-#include <SDL2pp/Img/Error.hpp>
-#include "SDL2pp/Img/SDL2Image.hpp"
+#include <libSDL2pp/Img/Error.hpp>
+#include "libSDL2pp/Img/SDL2Image.hpp"
 
 using  namespace SDL2pp::Img;
 

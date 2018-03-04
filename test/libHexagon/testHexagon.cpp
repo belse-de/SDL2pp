@@ -11,36 +11,39 @@ using namespace Hexagon;
 
 void equal_Hex(const char* name, Hex a, Hex b)
 {
+    CHECK(a == b);
     if ( not (a == b) )
     {
         fprintf(stderr, "%s\n",name);
         std::cerr << glm::to_string(static_cast<glm::vec3>(a)) << std::endl;
         std::cerr << glm::to_string(static_cast<glm::vec3>(b)) << std::endl;
-        CHECK(a == b);
+        REQUIRE(a == b);
     }
 }
 
 
 void equal_offsetcoord(const char* name, OffsetCoord a, OffsetCoord b)
 {
+    CHECK(a == b);
     if ( not (a == b))
     {
         fprintf(stderr, "%s\n",name);
         std::cerr << glm::to_string(static_cast<glm::vec2>(a)) << std::endl;
         std::cerr << glm::to_string(static_cast<glm::vec2>(b)) << std::endl;
-        CHECK(a == b);
+        REQUIRE(a == b);
     }
 }
 
 
 void equal_int(const char* name, int a, int b)
 {
+    CHECK(a == b);
     if ( not (a == b))
     {
         fprintf(stderr, "%s\n",name);
         std::cerr << a << std::endl;
         std::cerr << b << std::endl;
-        CHECK(a == b);
+        REQUIRE(a == b);
     }
 }
 
@@ -152,22 +155,46 @@ void test_offset_to_cube()
 }
 
 
-void test_all()
-{
+TEST_CASE("Hexagon aritmetic", "[arithmetic][hexagon][lib]") {
     test_hex_arithmetic();
-    test_hex_direction();
-    test_hex_neighbor();
-    test_hex_diagonal();
-    test_hex_distance();
-    test_hex_round();
-    test_hex_linedraw();
-    test_layout();
-    test_conversion_roundtrip();
-    test_offset_from_cube();
-    test_offset_to_cube();
 }
 
+TEST_CASE("Hexagon direction", "[direction][hexagon][lib]") {
+    test_hex_direction();
+}
 
-TEST_CASE("Process", "[hexagon][lib]") {
-    test_all();
+TEST_CASE("Hexagon neighbor", "[neighbor][hexagon][lib]") {
+    test_hex_neighbor();
+}
+
+TEST_CASE("Hexagon diagonal", "[diagonal][hexagon][lib]") {
+    test_hex_diagonal();
+}
+
+TEST_CASE("Hexagon distance", "[distance][hexagon][lib]") {
+    test_hex_distance();
+}
+
+TEST_CASE("Hexagon round", "[round][hexagon][lib]") {
+    test_hex_round();
+}
+
+TEST_CASE("Hexagon linedraw", "[linedraw][hexagon][lib]") {
+    test_hex_linedraw();
+}
+
+TEST_CASE("Hexagon layout", "[layout][hexagon][lib]") {
+    test_layout();
+}
+
+TEST_CASE("Hexagon conversion roundtrip", "[conversion_roundtrip][hexagon][lib]") {
+    test_conversion_roundtrip();
+}
+
+TEST_CASE("Hexagon offset from cube", "[offset_from_cube][hexagon][lib]") {
+    test_offset_from_cube();
+}
+
+TEST_CASE("Hexagon offset to cube", "[offset_to_cube][hexagon][lib]") {
+    test_offset_to_cube();
 }

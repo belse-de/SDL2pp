@@ -4,10 +4,10 @@
 
 #include <iostream>
 
-#include "lib/Process.hpp"
-#include "lib/Scheduler.hpp"
-#include "lib/Strategies/RoundRobinStrategy.hpp"
-#include "lib/SystemTimer.hpp"
+#include "libScheduling/Process.hpp"
+#include "libScheduling/Scheduler.hpp"
+#include "libScheduling/Strategies/RoundRobinStrategy.hpp"
+#include "libScheduling/SystemTimer.hpp"
 
 int main() {
     std::cout << "Hello, World!" << std::endl;

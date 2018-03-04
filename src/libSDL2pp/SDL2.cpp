@@ -2,8 +2,8 @@
 // Created by belse on 12.12.17.
 //
 
-#include "SDL2pp/SDL2.hpp"
-#include "SDL2pp/Error.hpp"
+#include "libSDL2pp/SDL2.hpp"
+#include "libSDL2pp/Error.hpp"
 
 #include <SDL2/SDL.h>
 

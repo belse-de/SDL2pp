@@ -4,10 +4,10 @@
 
 #include <SDL_render.h>
 #include <stdexcept>
-#include <SDL2pp/Error.hpp>
-#include "SDL2pp/Renderer.hpp"
-#include "SDL2pp/Texture.hpp"
-#include "SDL2pp/Surface.hpp"
+#include <libSDL2pp/Error.hpp>
+#include "libSDL2pp/Renderer.hpp"
+#include "libSDL2pp/Texture.hpp"
+#include "libSDL2pp/Surface.hpp"
 
 using namespace SDL2pp;
 

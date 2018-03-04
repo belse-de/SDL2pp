@@ -5,7 +5,7 @@
 #ifndef SDL2PP_IMAGE_HPP
 #define SDL2PP_IMAGE_HPP
 
-#include "SDL2pp/Surface.hpp"
+#include "libSDL2pp/Surface.hpp"
 
 namespace SDL2pp::Img {
     class Image : public SDL2pp::Surface {

@@ -3,8 +3,8 @@
 //
 
 #include <stdexcept>
-#include <SDL2pp/Img/Error.hpp>
-#include "SDL2pp/Img/Image.hpp"
+#include <libSDL2pp/Img/Error.hpp>
+#include "libSDL2pp/Img/Image.hpp"
 
 using namespace SDL2pp::Img;
 

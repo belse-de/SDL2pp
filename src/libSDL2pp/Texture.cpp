@@ -2,8 +2,8 @@
 // Created by belse on 16.12.17.
 //
 
-#include <SDL2pp/Error.hpp>
-#include "SDL2pp/Texture.hpp"
+#include <libSDL2pp/Error.hpp>
+#include "libSDL2pp/Texture.hpp"
 
 using namespace SDL2pp;
 
