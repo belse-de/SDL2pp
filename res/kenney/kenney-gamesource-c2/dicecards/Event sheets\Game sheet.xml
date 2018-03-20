@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Game sheet</name>
+    <events>
+        <event-block sid="6623432964759176">
+            <conditions>
+                <condition id="6" name="On object clicked" sid="2560675753971701" type="mouse">
+                    <param id="0" name="Mouse button">0</param>
+                    <param id="1" name="Click type">0</param>
+                    <param id="2" name="Object clicked">cardBack</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-3" name="Create object" sid="8309925422851791" type="System">
+                    <param id="0" name="Object to create">card</param>
+                    <param id="1" name="Layer">0</param>
+                    <param id="2" name="X">cardBack.X + 200</param>
+                    <param id="3" name="Y">cardBack.Y</param>
+                </action>
+                <action id="-8" name="Set angle" sid="5432706672588859" type="card">
+                    <param id="0" name="Angle">random(15) - random(15)</param>
+                </action>
+                <action id="5" name="Set frame" sid="9443801402694395" type="card">
+                    <param id="0" name="Frame number">random(51)</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="1522316657243132">
+            <conditions>
+                <condition id="6" name="On object clicked" sid="177560491994634" type="mouse">
+                    <param id="0" name="Mouse button">0</param>
+                    <param id="1" name="Click type">0</param>
+                    <param id="2" name="Object clicked">dieRed</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="5" name="Set frame" sid="182864513012499" type="dieRed">
+                    <param id="0" name="Frame number">random(6)</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="4725549474803491">
+            <conditions>
+                <condition id="6" name="On object clicked" sid="2067131004548372" type="mouse">
+                    <param id="0" name="Mouse button">0</param>
+                    <param id="1" name="Click type">0</param>
+                    <param id="2" name="Object clicked">dieWhite</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="5" name="Set frame" sid="8981665606453833" type="dieWhite">
+                    <param id="0" name="Frame number">random(6)</param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>

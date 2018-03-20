@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Game sheet</name>
+    <events>
+        <event-block sid="7593843529110819">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="5565983178566185" type="System" />
+            </conditions>
+            <actions>
+                <action id="-1" name="Set X" sid="8140160568742511" type="bat">
+                    <param id="0" name="X">Mouse.X</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="6498596772245862">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="3062664281525735" type="ball">
+                    <param id="0" name="Object">blocks</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="3050945372025091" type="blocks" />
+            </actions>
+        </event-block>
+        <event-block sid="6240398254254679">
+            <conditions>
+                <condition id="0" name="On click" sid="9676801937611994" type="mouse">
+                    <param id="0" name="Mouse button">0</param>
+                    <param id="1" name="Click type">0</param>
+                </condition>
+                <condition behavior="Bullet" id="0" name="Compare speed" sid="9299254120958454" type="ball">
+                    <param id="0" name="Comparison">0</param>
+                    <param id="1" name="Speed">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Bullet" id="0" name="Set speed" sid="1158314397138972" type="ball">
+                    <param id="0" name="Speed">500</param>
+                </action>
+                <action behavior="Bullet" id="3" name="Set angle of motion" sid="2845181086970415" type="ball">
+                    <param id="0" name="Angle">90</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="1370095846653343">
+            <conditions>
+                <condition id="-2" name="Compare Y" sid="8803162074574065" type="ball">
+                    <param id="0" name="Comparison">4</param>
+                    <param id="1" name="Y co-ordinate">WindowHeight</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-26" name="Restart layout" sid="1319536507050312" type="System" />
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>

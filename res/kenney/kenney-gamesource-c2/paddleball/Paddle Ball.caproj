@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2project>
+    <name>Paddle Ball</name>
+    <description>Donation pack source</description>
+    <version>1.0</version>
+    <author>Kenney.nl</author>
+    <author-email>mail@kenney.nl</author-email>
+    <author-website>http://www.kenney.nl</author-website>
+    <app-id>com.kenney.paddleball</app-id>
+    <unique-id>2g1avfqon9c4s</unique-id>
+    <saved-with-version>16300</saved-with-version>
+    <used-plugins>
+        <plugin author="Scirra" id="Mouse" version="1">Mouse</plugin>
+        <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
+        <plugin author="Scirra" id="TiledBg" version="1">Tiled Background</plugin>
+    </used-plugins>
+    <used-behaviors>
+        <behavior author="Scirra" id="Bullet" version="1">Bullet</behavior>
+        <behavior author="Scirra" id="bound" version="1">Bound to layout</behavior>
+        <behavior author="Scirra" id="solid" version="1">Solid</behavior>
+    </used-behaviors>
+    <used-effects />
+    <configurations>
+        <configuration exporter-descname="HTML5" exporter-id="html5" name="HTML5" />
+    </configurations>
+    <window-size>
+        <width>800</width>
+        <height>480</height>
+    </window-size>
+    <pixel-rounding>0</pixel-rounding>
+    <use-loader-layout>0</use-loader-layout>
+    <configuration-settings>
+        <prop name="Clear background">Yes</prop>
+        <prop name="Enable WebGL">On</prop>
+        <prop name="Fullscreen in browser">Off</prop>
+        <prop name="Fullscreen scaling">High quality</prop>
+        <prop name="Loader style">Progress bar &amp; logo</prop>
+        <prop name="Orientations">Any</prop>
+        <prop name="Pause on unfocus">No</prop>
+        <prop name="Physics engine">Box2D web</prop>
+        <prop name="Preview browser">(default)</prop>
+        <prop name="Sampling">Linear</prop>
+        <prop name="Use high-DPI display">Yes</prop>
+    </configuration-settings>
+    <object-folder expanded="1">
+        <object-type name="blockBlue" sid="7585375145108375">
+            <plugin id="Sprite" />
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="4563917992940568" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.015625" y="0.03125" />
+                            <point x="0.5" y="0" />
+                            <point x="0.984375" y="0.03125" />
+                            <point x="1" y="0.5" />
+                            <point x="0.984375" y="0.96875" />
+                            <point x="0.5" y="1" />
+                            <point x="0.015625" y="0.96875" />
+                            <point x="0" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="bat" sid="3968161137284407">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="BoundToLayout" sid="8713488192229468">
+                    <behavior id="bound" />
+                </behavior-type>
+                <behavior-type name="Solid" sid="6232058730256263">
+                    <behavior id="solid" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="3036615939279443" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.0384615" y="0.166667" />
+                            <point x="0.5" y="0" />
+                            <point x="0.961538" y="0.166667" />
+                            <point x="1" y="0.5" />
+                            <point x="0.971154" y="0.875" />
+                            <point x="0.5" y="1" />
+                            <point x="0.0288462" y="0.875" />
+                            <point x="0" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="ball" sid="3547942282813927">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="Bullet" sid="2747087496919007">
+                    <behavior id="Bullet" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="2789325698345439" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.136364" y="0.136364" />
+                            <point x="0.5" y="0" />
+                            <point x="0.863636" y="0.136364" />
+                            <point x="1" y="0.5" />
+                            <point x="0.863636" y="0.863636" />
+                            <point x="0.5" y="1" />
+                            <point x="0.136364" y="0.863636" />
+                            <point x="0" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="mouse" sid="9554678469773423">
+            <plugin id="Mouse" />
+        </object-type>
+        <object-type name="bg" sid="4307890294990556">
+            <plugin id="TiledBg" />
+            <texture />
+        </object-type>
+        <object-type name="solid" sid="8516576362278295">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="Solid" sid="6088535503828184">
+                    <behavior id="solid" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="6145298818116736" speed="5">
+                    <frame duration="1" hotspotX="0" hotspotY="0" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="blockGreen" sid="4858241536755824">
+            <plugin id="Sprite" />
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="9733737502631828" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.015625" y="0.03125" />
+                            <point x="0.5" y="0" />
+                            <point x="0.984375" y="0.03125" />
+                            <point x="1" y="0.5" />
+                            <point x="0.984375" y="0.96875" />
+                            <point x="0.5" y="1" />
+                            <point x="0.015625" y="0.96875" />
+                            <point x="0" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="blockYellow" sid="6173388320007036">
+            <plugin id="Sprite" />
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="9729117303345617" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.015625" y="0.03125" />
+                            <point x="0.5" y="0" />
+                            <point x="0.984375" y="0.03125" />
+                            <point x="1" y="0.5" />
+                            <point x="0.984375" y="0.96875" />
+                            <point x="0.5" y="1" />
+                            <point x="0.015625" y="0.96875" />
+                            <point x="0" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="blockRed" sid="5332668843560618">
+            <plugin id="Sprite" />
+            <animation-folder expanded="1">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="6009801808128331" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.015625" y="0.03125" />
+                            <point x="0.5" y="0" />
+                            <point x="0.984375" y="0.03125" />
+                            <point x="1" y="0.5" />
+                            <point x="0.984375" y="0.96875" />
+                            <point x="0.5" y="1" />
+                            <point x="0.015625" y="0.96875" />
+                            <point x="0" y="0.5" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+    </object-folder>
+    <families>
+        <family name="blocks" plugin-id="Sprite" sid="6556485843228128">
+            <members>
+                <member>blockBlue</member>
+                <member>blockGreen</member>
+                <member>blockRed</member>
+                <member>blockYellow</member>
+            </members>
+            <behaviors>
+                <behavior-type name="Solid" sid="3707717006583642">
+                    <behavior id="solid" />
+                </behavior-type>
+            </behaviors>
+        </family>
+    </families>
+    <layout-folder expanded="1">
+        <layout>Game.xml</layout>
+    </layout-folder>
+    <event-folder expanded="1">
+        <event-sheet>Game sheet.xml</event-sheet>
+    </event-folder>
+    <global-instances>
+        <global-instance type="mouse" uid="34" />
+    </global-instances>
+    <sounds-folder expanded="1" />
+    <music-folder expanded="1" />
+    <files-folder expanded="1">
+        <file-folder expanded="0" name="Icons">
+            <file name="icon-16.png" />
+            <file name="icon-32.png" />
+            <file name="icon-114.png" />
+            <file name="icon-128.png" />
+            <file name="icon-256.png" />
+            <file name="loading-logo.png" />
+        </file-folder>
+    </files-folder>
+</c2project>

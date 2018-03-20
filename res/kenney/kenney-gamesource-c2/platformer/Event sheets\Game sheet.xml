@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Game sheet</name>
+    <events>
+        <event-block sid="5099347464965708">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="7795969768615635" type="alien">
+                    <param id="0" name="Object">coin</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="8537528696822941" type="coin" />
+            </actions>
+        </event-block>
+        <event-block sid="4466761369989844">
+            <conditions>
+                <condition id="0" name="On key pressed" sid="3170221371050651" type="keyboard">
+                    <param id="0" name="Key">37 (Left arrow)</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="7" name="Set mirrored" sid="3332280367031891" type="alien">
+                    <param id="0" name="State">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="9266723504048395">
+            <conditions>
+                <condition id="0" name="On key pressed" sid="6095139001394158" type="keyboard">
+                    <param id="0" name="Key">39 (Right arrow)</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="7" name="Set mirrored" sid="839464567772181" type="alien">
+                    <param id="0" name="State">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="6474200744743489">
+            <conditions>
+                <condition behavior="Platform" id="0" name="Is moving" sid="1927432466516327" type="alien" />
+                <condition behavior="Platform" id="2" name="Is on floor" sid="4075891294703851" type="alien" />
+            </conditions>
+            <actions>
+                <action id="4" name="Set animation" sid="1670384391179293" type="alien">
+                    <param id="0" name="Animation">&quot;Walk&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="6484159408500225">
+            <conditions>
+                <condition id="-22" name="Else" sid="1135703470401466" type="System" />
+            </conditions>
+            <actions>
+                <action id="4" name="Set animation" sid="1396949919668998" type="alien">
+                    <param id="0" name="Animation">&quot;Default&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="8433746575772975">
+            <conditions>
+                <condition behavior="Platform" id="3" name="Is jumping" sid="3405006382638871" type="alien" />
+                <condition id="2" name="Is playing" sid="7844554667223901" type="alien">
+                    <param id="0" name="Animation">&quot;Default&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="5" name="Set frame" sid="165536466533316" type="alien">
+                    <param id="0" name="Frame number">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="8582336406522018">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="3888003009375393" type="alien">
+                    <param id="0" name="Object">barnacle</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-26" name="Restart layout" sid="3606913014436115" type="System" />
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>
