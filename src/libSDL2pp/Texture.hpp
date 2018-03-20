@@ -6,6 +6,7 @@
 #define SDL2PP_TEXTURE_HPP
 
 #include <SDL_render.h>
+#include <memory>
 
 
 namespace SDL2pp {
@@ -22,8 +23,10 @@ namespace SDL2pp {
         void setAlphaMod(uint8_t alpha);
         void setBlendMode(SDL_BlendMode blendMode);
 
-    private:
-        SDL_Texture *texture_ = nullptr;
+        void query(uint32_t *format, int *access, int *w, int *h);
+
+    protected:
+        std::shared_ptr<SDL_Texture> texture_;
 
     };
 };

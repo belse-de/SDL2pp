@@ -12,6 +12,7 @@
 
 #include <string>
 #include <SDL_ttf.h>
+#include <memory>
 
 namespace SDL2pp {
     class Surface;
@@ -21,13 +22,15 @@ namespace SDL2pp::TTF {
     class Font {
     public:
         Font(std::string path, int pointSize);
+        //Font(Font&& other);
         virtual ~Font();
 
         SDL2pp::Surface renderSolid_Latin1(const std::string& text, SDL_Color color);
         SDL2pp::Surface renderSolid_UTF8(  const std::string& text, SDL_Color color);
 
     private:
-            TTF_Font* font_ = nullptr;
+        std::shared_ptr<TTF_Font> font_;
+            //TTF_Font* font_ = nullptr;
     };
 }
 

@@ -16,6 +16,7 @@ namespace SDL2pp {
     public:
         Window();
         Window(std::string title, int width, int height);
+        Window(std::string title, int positionX, int positionY, int width, int height);
 
         virtual ~Window();
 
@@ -26,6 +27,8 @@ namespace SDL2pp {
 
         Renderer createRenderer(int index, uint32_t flags);
 
+        void getSize(int *w, int *h);
+        void setSize(int w, int h);
 
     private:
         SDL_Window *window_ = nullptr;

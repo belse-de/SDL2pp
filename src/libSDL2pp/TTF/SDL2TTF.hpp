@@ -14,6 +14,8 @@ namespace SDL2pp::TTF {
 
         static bool wasInit();
 
+        //TODO: add Font loading and handling; font destructor may not be called after lib destructor
+
     private:
         static bool isInit_;
     };

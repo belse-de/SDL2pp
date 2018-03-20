@@ -34,6 +34,7 @@ namespace SDL2pp {
 
         void setViewport(const SDL_Rect *pRect);
 
+        SDL_Renderer* getCPtr() const {return renderer_;};
     private:
         SDL_Renderer* renderer_;
     };

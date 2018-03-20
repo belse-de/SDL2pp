@@ -6,6 +6,7 @@
 #define SDL2PP_SDL2PP_HPP
 
 #include <chrono>
+#include <SDL_rect.h>
 
 namespace SDL2pp {
     class SDL2 {
@@ -18,6 +19,7 @@ namespace SDL2pp {
         std::chrono::milliseconds getTicks();
 
         bool setHint(const char* name, const char* value) const;
+        SDL_Rect getDisplayBounds(int displayIndex);
 
     };
 };

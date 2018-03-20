@@ -5,9 +5,14 @@
 #ifndef SDL2PP_IMAGETEXTURE_HPP
 #define SDL2PP_IMAGETEXTURE_HPP
 
+#include <string>
+#include <libSDL2pp/Texture.hpp>
 
-class ImageTexture {
-
+namespace SDL2pp::Img {
+    class ImageTexture : public SDL2pp::Texture {
+    public:
+        ImageTexture(const SDL2pp::Renderer &rendere, std::string pathIMG);
+    };
 };
 
 

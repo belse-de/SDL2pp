@@ -39,3 +39,10 @@ std::chrono::milliseconds SDL2::getTicks() {
     return std::chrono::milliseconds(ticks);
 }
 
+SDL_Rect SDL2::getDisplayBounds(int displayIndex) {
+    SDL_Rect rect;
+    int ret = SDL_GetDisplayBounds(displayIndex, &rect);
+    if(ret < 0) throw Error("SDL_GetDisplayBounds failed");
+    return rect;
+}
+

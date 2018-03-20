@@ -13,13 +13,16 @@ using namespace SDL2pp;
 
 Window::Window() : Window("", 640, 480) {}
 
-Window::Window(std::string title, int width, int height) {
+Window::Window(std::string title, int width, int height) : Window(title, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height) {}
+
+
+Window::Window(std::string title, int positionX, int positionY, int width, int height) {
     SDL_Window *window;                 // Declare a pointer
     // Create an application window with the following settings:
     window = SDL_CreateWindow(
         title.c_str(),                  // window title
-        SDL_WINDOWPOS_UNDEFINED,        // initial x position
-        SDL_WINDOWPOS_UNDEFINED,        // initial y position
+        positionX,                      // initial x position
+        positionY,                      // initial y position
         width,                          // width, in pixels
         height,                         // height, in pixels
         0                               // flags
@@ -55,3 +58,12 @@ Renderer Window::createRenderer(int index, uint32_t flags) {
     if(ret == nullptr) throw Error("Renderer could not be created!");
     return Renderer(ret);
 }
+
+void Window::getSize(int *w, int *h) {
+    SDL_GetWindowSize(window_, w, h);
+}
+
+void Window::setSize(int w, int h) {
+    SDL_SetWindowSize(window_, w, h);
+}
+
