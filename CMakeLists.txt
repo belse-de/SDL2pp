@@ -25,8 +25,8 @@ pkg_search_module(SDL2NET   REQUIRED SDL2_net)
 # lib CATCH
 ########################################################################################################################
 # define program targets:
-add_library( CatchMain OBJECT test/catchMain.cpp test/catch.hpp)
-target_include_directories(CatchMain PUBLIC ${CMAKE_SOURCE_DIR}/extern/Catch2-master/single_include)
+add_library( CatchMain OBJECT test/catchMain.cpp extern/catch.hpp)
+target_include_directories(CatchMain PUBLIC ${CMAKE_SOURCE_DIR}/extern)
 
 # CATCH Examples
 ########################################################################################################################
@@ -289,6 +289,6 @@ add_executable( Test
         ${SOURCES_TEST_WIDGET}
         ${SOURCE_TEST}
         )
-target_include_directories(Test PUBLIC ${CMAKE_SOURCE_DIR}/extern/Catch2-master/single_include)
+target_include_directories(Test PUBLIC ${CMAKE_SOURCE_DIR}/extern)
 target_link_libraries(Test sdl2pp scheduling hexagon)
 add_test( CATCH Test )

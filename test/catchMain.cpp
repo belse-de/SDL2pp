@@ -5,5 +5,5 @@
 #define CATCH_CONFIG_MAIN
 #define CATCH_CONFIG_ENABLE_ALL_STRINGMAKERS
 
-#include "catch.hpp"
+#include <catch.hpp>
 

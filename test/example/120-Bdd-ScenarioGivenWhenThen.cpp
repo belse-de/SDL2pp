@@ -2,7 +2,7 @@
 
 // main() provided in 000-CatchMain.cpp
 
-#include "catch.hpp"
+#include "../../extern/catch.hpp"
 
 SCENARIO( "vectors can be sized and resized", "[vector]" ) {
 

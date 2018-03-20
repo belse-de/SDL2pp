@@ -2,7 +2,7 @@
 // Created by belse on 27.01.18.
 //
 
-#include <catch.hpp>
+#include "../../extern/catch.hpp"
 #include <libScheduling/Process.hpp>
 
 using Catch::Matchers::Equals;

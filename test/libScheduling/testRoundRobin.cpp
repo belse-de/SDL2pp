@@ -2,7 +2,7 @@
 // Created by belse on 09.01.18.
 //
 
-#include <catch.hpp>
+#include "../../extern/catch.hpp"
 #include <libScheduling/Strategies/RoundRobinStrategy.hpp>
 #include <libScheduling/Process.hpp>
 

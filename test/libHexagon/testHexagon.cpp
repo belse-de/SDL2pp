@@ -3,7 +3,7 @@
 #include <iostream>
 #include <glm/ext.hpp>
 
-#include <catch.hpp>
+#include "../../extern/catch.hpp"
 
 #include "libHexagon/libhex.hpp"
 

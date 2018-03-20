@@ -2,7 +2,7 @@
 // Created by belse on 22.02.18.
 //
 
-#include <catch.hpp>
+#include "../../extern/catch.hpp"
 #include <libScheduling/SystemTimer.hpp>
 #include <libScheduling/Strategies/RoundRobinStrategy.hpp>
 #include <libScheduling/Scheduler.hpp>
