@@ -7,9 +7,9 @@
 
 
 #include <libSDL2pp/Window.hpp>
-#include <libWidget/Widget.hpp>
+#include <libWidget/Base.hpp>
 namespace Widget{
-    class Window : public Widget{
+    class Window : public Base{
     public:
         Window(SDL2pp::Window &w);
         void render(SDL2pp::Renderer & renderer) override;

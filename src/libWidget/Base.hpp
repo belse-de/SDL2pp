@@ -12,7 +12,7 @@
 #include <libSDL2pp/Renderer.hpp>
 
 namespace Widget {
-    class Widget {
+    class Base {
     public:
         virtual void handleEvent(SDL_Event *event);
 
@@ -26,7 +26,7 @@ namespace Widget {
         bool _redraw = false;
         SDL_Rect _hitBox;
 
-        std::shared_ptr<Widget> parent;
+        std::shared_ptr<Base> parent;
 
         virtual void handleEventMouse(SDL_Event *event);
         virtual void handleEventMouseOutside(SDL_Event *pEvent);

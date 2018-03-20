@@ -6,12 +6,12 @@
 #define SDL2PP_WIDGET_BUTTON_HPP
 
 #include <variant>
-#include <libWidget/Widget.hpp>
+#include <libWidget/Base.hpp>
 #include <libSDL2pp/Texture.hpp>
 #include "../../extern/overloaded.hpp"
 
 namespace Widget {
-    class Button : public Widget {
+    class Button : public Base {
     public:
         Button(SDL2pp::Texture & imageNormal, SDL2pp::Texture & imageHighlight, SDL2pp::Texture & imageActive, SDL_Rect source);
         void render(SDL2pp::Renderer & renderer) override ;

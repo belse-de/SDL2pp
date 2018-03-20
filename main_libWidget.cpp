@@ -19,7 +19,7 @@
 #include <libSDL2pp/TTF/SDL2TTF.hpp>
 #include <libSDL2pp/TTF/Font.hpp>
 
-#include <libWidget/Widget.hpp>
+#include <libWidget/Base.hpp>
 #include <libWidget/Window.hpp>
 #include <libWidget/Image.hpp>
 #include <libWidget/Button.hpp>

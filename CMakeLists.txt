@@ -163,8 +163,8 @@ target_link_libraries(main_hexagon hexagon)
 # lib widget
 ########################################################################################################################
 set(SOURCES_LIB_WIDGET
-        src/libWidget/Widget.cpp
-        src/libWidget/Widget.hpp src/libWidget/Window.cpp src/libWidget/Window.hpp src/libWidget/Textbox.cpp src/libWidget/Textbox.hpp src/libWidget/Button.cpp src/libWidget/Button.hpp src/libWidget/Image.cpp src/libWidget/Image.hpp)
+        src/libWidget/Base.cpp
+        src/libWidget/Base.hpp src/libWidget/Window.cpp src/libWidget/Window.hpp src/libWidget/Textbox.cpp src/libWidget/Textbox.hpp src/libWidget/Button.cpp src/libWidget/Button.hpp src/libWidget/Image.cpp src/libWidget/Image.hpp)
 set(SOURCES_TEST_WIDGET
         test/libWidget/testWidget.cpp
         )

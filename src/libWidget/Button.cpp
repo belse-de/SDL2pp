@@ -14,30 +14,30 @@ Button::Button(SDL2pp::Texture &imageNormal, SDL2pp::Texture &imageHighlight, SD
 
 
 void Button::handleEventMouseOutside(SDL_Event *pEvent) {
-    Widget::handleEventMouseOutside(pEvent);
+    Base::handleEventMouseOutside(pEvent);
     Signal_t si = SignalOut();
    _state = std::visit(transitionTable(),_state,si);
 
 }
 
 void Button::handleEventMouseOver(SDL_Event *pEvent) {
-    Widget::handleEventMouseOver(pEvent);
+    Base::handleEventMouseOver(pEvent);
     Signal_t si = SignalOver();
     _state = std::visit(transitionTable(),_state,si);
 }
 
 void Button::handleEventMouseWheel(SDL_Event *pEvent) {
-    Widget::handleEventMouseWheel(pEvent);
+    Base::handleEventMouseWheel(pEvent);
 }
 
 void Button::handleEventMouseDown(SDL_Event *pEvent) {
-    Widget::handleEventMouseDown(pEvent);
+    Base::handleEventMouseDown(pEvent);
     Signal_t si = SignalDown();
     _state = std::visit(transitionTable(),_state,si);
 }
 
 void Button::handleEventMouseUp(SDL_Event *pEvent) {
-    Widget::handleEventMouseUp(pEvent);
+    Base::handleEventMouseUp(pEvent);
     Signal_t si = SignalUp();
     _state = std::visit(transitionTable(),_state,si);
 }

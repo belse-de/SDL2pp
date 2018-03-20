@@ -4,16 +4,16 @@
 
 #include <SDL_events.h>
 #include <iostream>
-#include "Widget.hpp"
+#include "Base.hpp"
 
 using namespace Widget;
 
 
-void Widget::Widget::setHitBox(SDL_Rect hitBox) {
+void Base::setHitBox(SDL_Rect hitBox) {
     _hitBox = hitBox;
 }
 
-void Widget::Widget::handleEvent(SDL_Event *event) {
+void Base::handleEvent(SDL_Event *event) {
     if (not event) { return; }
     if (not _visible) { return; }
 
@@ -29,7 +29,7 @@ void Widget::Widget::handleEvent(SDL_Event *event) {
     }
 }
 
-void Widget::Widget::handleEventMouse(SDL_Event *event) {
+void Base::handleEventMouse(SDL_Event *event) {
     //Get mouse position
     int x, y;
     SDL_GetMouseState(&x, &y);
@@ -62,18 +62,18 @@ void Widget::Widget::handleEventMouse(SDL_Event *event) {
 }
 
 
-void Widget::Widget::handleEventMouseOutside(SDL_Event *pEvent) {
+void Base::handleEventMouseOutside(SDL_Event *pEvent) {
 }
 
-void Widget::Widget::handleEventMouseOver(SDL_Event *pEvent) {
+void Base::handleEventMouseOver(SDL_Event *pEvent) {
 }
 
-void Widget::Widget::handleEventMouseWheel(SDL_Event *pEvent) {
+void Base::handleEventMouseWheel(SDL_Event *pEvent) {
 }
 
-void Widget::Widget::handleEventMouseDown(SDL_Event *pEvent) {
+void Base::handleEventMouseDown(SDL_Event *pEvent) {
 }
 
-void Widget::Widget::handleEventMouseUp(SDL_Event *pEvent) {
+void Base::handleEventMouseUp(SDL_Event *pEvent) {
 }
 

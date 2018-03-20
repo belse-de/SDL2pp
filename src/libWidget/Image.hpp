@@ -5,12 +5,12 @@
 #ifndef SDL2PP_WIDGET_IMAGE_HPP
 #define SDL2PP_WIDGET_IMAGE_HPP
 
-#include <libWidget/Widget.hpp>
+#include <libWidget/Base.hpp>
 
 #include <libSDL2pp/Texture.hpp>
 
 namespace Widget {
-    class Image : public Widget {
+    class Image : public Base {
     public:
         Image(SDL2pp::Texture & image, SDL_Rect source);
         void render(SDL2pp::Renderer & renderer);
