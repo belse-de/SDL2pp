@@ -61,8 +61,8 @@ set(SOURCES_LIB_SDL2PP
         src/libSDL2pp/Window.hpp
         src/libSDL2pp/Surface.cpp
         src/libSDL2pp/Surface.hpp
-        src/libSDL2pp/Img/Image.cpp
-        src/libSDL2pp/Img/Image.hpp
+        src/libSDL2pp/Img/ImageSurface.cpp
+        src/libSDL2pp/Img/ImageSurface.hpp
         src/libSDL2pp/Img/SDL2Image.cpp
         src/libSDL2pp/Img/SDL2Image.hpp
         src/libSDL2pp/Renderer.cpp
@@ -76,7 +76,7 @@ set(SOURCES_LIB_SDL2PP
         src/libSDL2pp/Mix/SDL2Mixer.cpp
         src/libSDL2pp/Mix/SDL2Mixer.hpp
         src/libSDL2pp/Net/SDL2Net.cpp
-        src/libSDL2pp/Net/SDL2Net.hpp)
+        src/libSDL2pp/Net/SDL2Net.hpp src/libSDL2pp/Img/ImageTexture.cpp src/libSDL2pp/Img/ImageTexture.hpp)
 set(SOURCES_TEST_SDL2PP
         )
 set(SOURCES_EXE_SDL2PP
@@ -160,15 +160,28 @@ add_executable(main_hexagon ${SOURCES_EXE_HEXAGON})
 target_link_libraries(main_hexagon hexagon)
 
 ########################################################################################################################
+# lib widget
+########################################################################################################################
+set(SOURCES_LIB_WIDGET
+        src/libWidget/Widget.cpp
+        src/libWidget/Widget.hpp src/libWidget/Window.cpp src/libWidget/Window.hpp src/libWidget/Textbox.cpp src/libWidget/Textbox.hpp src/libWidget/Button.cpp src/libWidget/Button.hpp src/libWidget/Image.cpp src/libWidget/Image.hpp)
+set(SOURCES_TEST_WIDGET
+        test/libWidget/testWidget.cpp
+        )
+set(SOURCES_EXE_WIDGET
+        main_libWidget.cpp)
+
+add_library(widget ${SOURCES_LIB_WIDGET})
+
+add_executable(main_widget ${SOURCES_EXE_WIDGET})
+target_link_libraries(main_widget sdl2pp widget)
+
+########################################################################################################################
 # Executeables and test
 ########################################################################################################################
 
 # LazyFoo Tutorial
 ########################################################################################################################
-
-add_executable(LazyFooTut LazyFooSDL2Tutorial/LazyFooTut.cpp)
-target_link_libraries(LazyFooTut sdl2pp)
-
 add_executable(LFTut2_19 LazyFooSDL2Tutorial/19_gamepads_and_joysticks/19_gamepads_and_joysticks.cpp)
 target_link_libraries(LFTut2_19 sdl2pp)
 
@@ -244,12 +257,14 @@ target_link_libraries(LFTut2_51 sdl2pp)
 ########################################################################################################################
 
 add_executable(kiss_example_01 kiss_sdl/kiss_example1.c
+        kiss_sdl/kiss_sdl.h
         kiss_sdl/kiss_widgets.c
         kiss_sdl/kiss_draw.c
         kiss_sdl/kiss_general.c
         kiss_sdl/kiss_posix.c)
 target_link_libraries(kiss_example_01 sdl2pp)
 add_executable(kiss_example_02 kiss_sdl/kiss_example2.c
+        kiss_sdl/kiss_sdl.h
         kiss_sdl/kiss_widgets.c
         kiss_sdl/kiss_draw.c
         kiss_sdl/kiss_general.c
@@ -271,6 +286,7 @@ add_executable( Test
         ${SOURCES_TEST_SDL2PP}
         ${SOURCES_TEST_SCHEDULING}
         ${SOURCES_TEST_HEXAGON}
+        ${SOURCES_TEST_WIDGET}
         ${SOURCE_TEST}
         )
 target_include_directories(Test PUBLIC ${CMAKE_SOURCE_DIR}/extern/Catch2-master/single_include)
