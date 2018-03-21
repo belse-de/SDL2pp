@@ -3,3 +3,10 @@
 //
 
 #include "SoftwareRenderer.hpp"
+
+using namespace SDL2pp;
+
+
+SoftwareRenderer::SoftwareRenderer(Surface &surface) {
+
+}

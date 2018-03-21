@@ -117,7 +117,7 @@ int main(int argc, char* argv[]) {
         img_w.render(renderer);
         but_w.render(renderer);
         renderer.present();
-
+        //SDL_CreateTextureFromSurface()
         //Wait
         sdl.delay( reactionDelay );
     }

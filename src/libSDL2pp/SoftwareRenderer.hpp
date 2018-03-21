@@ -5,10 +5,14 @@
 #ifndef SDL2PP_SOFTWARERENDERER_HPP
 #define SDL2PP_SOFTWARERENDERER_HPP
 
+#include "Renderer.hpp"
 
-class SoftwareRenderer {
+namespace SDL2pp {
+    class Surface;
 
+    class SoftwareRenderer : public Renderer{
+        SoftwareRenderer(Surface &surface);
+    };
 };
-
 
 #endif //SDL2PP_SOFTWARERENDERER_HPP
