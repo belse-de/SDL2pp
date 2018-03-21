@@ -76,7 +76,11 @@ set(SOURCES_LIB_SDL2PP
         src/libSDL2pp/Mix/SDL2Mixer.cpp
         src/libSDL2pp/Mix/SDL2Mixer.hpp
         src/libSDL2pp/Net/SDL2Net.cpp
-        src/libSDL2pp/Net/SDL2Net.hpp src/libSDL2pp/Img/ImageTexture.cpp src/libSDL2pp/Img/ImageTexture.hpp src/libSDL2pp/SoftwareRenderer.cpp src/libSDL2pp/SoftwareRenderer.hpp)
+        src/libSDL2pp/Net/SDL2Net.hpp
+        src/libSDL2pp/Img/ImageTexture.cpp
+        src/libSDL2pp/Img/ImageTexture.hpp
+        src/libSDL2pp/SoftwareRenderer.cpp
+        src/libSDL2pp/SoftwareRenderer.hpp)
 set(SOURCES_TEST_SDL2PP
         )
 set(SOURCES_EXE_SDL2PP
