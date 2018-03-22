@@ -31,6 +31,7 @@ namespace SDL2pp {
         int getWidth();
         int getHeight();
 
+        SDL_Surface* get(){ return surface_; }
     protected:
         SDL_Surface* surface_ = nullptr;
         bool hasToBeFreed_ = false;

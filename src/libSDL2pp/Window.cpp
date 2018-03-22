@@ -54,6 +54,7 @@ void Window::updateSurface() {
 }
 
 Renderer Window::createRenderer(int index, uint32_t flags) {
+    //TODO: make Renderer Ctor
     SDL_Renderer* ret = SDL_CreateRenderer(window_, index, flags);
     if(ret == nullptr) throw Error("Renderer could not be created!");
     return Renderer(ret);

@@ -11,7 +11,7 @@ namespace SDL2pp {
     class Surface;
 
     class SoftwareRenderer : public Renderer{
-        SoftwareRenderer(Surface &surface);
+        SoftwareRenderer();
     };
 };
 
