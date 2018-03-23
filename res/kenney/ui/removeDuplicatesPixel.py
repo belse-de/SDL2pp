@@ -114,10 +114,13 @@ if __name__ == "__main__":
         
         for xy in ids:
             template = sheet.crop(posFromI(xy, spriteSize))
+            
             for png in pngs:
                 sprite = Image.open(png)
+                
                 diff1 = ImageChops.subtract(template, sprite)
                 diff2 = ImageChops.subtract(sprite, template)
                 if isBlackTrans(diff1) and isBlackTrans(diff2):
                     print(rmPrefix(path, fileDir), xy, rmPrefix(png, fileDir))
                     #silentRmFile(png)
+                    break
