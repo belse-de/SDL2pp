@@ -122,5 +122,5 @@ if __name__ == "__main__":
                 diff2 = ImageChops.subtract(sprite, template)
                 if isBlackTrans(diff1) and isBlackTrans(diff2):
                     print(rmPrefix(path, fileDir), xy, rmPrefix(png, fileDir))
-                    #silentRmFile(png)
+                    silentRmFile(png)
                     break
