@@ -296,3 +296,7 @@ add_executable( Test
 target_include_directories(Test PUBLIC ${CMAKE_SOURCE_DIR}/extern)
 target_link_libraries(Test sdl2pp scheduling hexagon)
 add_test( CATCH Test )
+
+set(SOURCE_SVG_PLAYGROUND
+        main_svg_playground.cpp)
+add_executable(svg_playground ${SOURCE_SVG_PLAYGROUND})

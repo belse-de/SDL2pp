@@ -4,6 +4,8 @@
 Created on Thu Mar 22 18:09:15 2018
 
 @author: belse
+
+./splittPixelSpriteSheet.py; ./removeDuplicatesPixel.py > dup_res.txt
 """
 
 import os
@@ -48,7 +50,7 @@ slicePathes = [
 ]
 slicePathes.sort()
 
-pngDirGlob = './pixel/PNG/*.png'
+pngDirGlob = './pixel/PNG/16x16_*.png'
 spriteSize = (16, 16)
 
 def countFromSize(imageSize, spriteSize):
@@ -59,12 +61,12 @@ def countFromSize(imageSize, spriteSize):
 def posFromI(i, spriteSize):
     x = i[0] * spriteSize[0]
     y = i[1] * spriteSize[1]
-    dx = x + spriteSize[0]
-    dy = y + spriteSize[0]
+    dx = x + spriteSize[0] -1
+    dy = y + spriteSize[1] -1
     return (x, y, dx, dy)
     
 def isBlackTrans(image):
-    result = True
+    result = not image.getbbox()
     data = image.load()
     for y in range(image.size[1]):
         for x in range(image.size[0]):
@@ -74,7 +76,10 @@ def isBlackTrans(image):
 
 def rmPrefix(string, prefix):
     if string.startswith(prefix):
-        return string[len(prefix):]
+        if string[len(prefix):].startswith('/'):
+            return string[len(prefix)+1:]        
+        else:
+            return string[len(prefix):]
     return string
 
 
@@ -111,16 +116,38 @@ if __name__ == "__main__":
         for yi in range(count[1]):
             for xi in range(count[0]):
                 ids.append((xi, yi))
+                
+        nineSlice = Image.new('RGBA', sheet.size)
         
         for xy in ids:
             template = sheet.crop(posFromI(xy, spriteSize))
+            data = template.load()
+            for y in range(spriteSize[1]):
+                for x in range(spriteSize[0]):
+                    r,g,b,a = data[x,y]
+                    if a == 0:
+                        data[x,y] = (0,0,0,0)
+            
+            pngs = glob.glob(os.path.realpath(pngDirGlob))
+            pngs.sort()
+            
+            posXY = posFromI(xy, spriteSize)
             
             for png in pngs:
                 sprite = Image.open(png)
                 
                 diff1 = ImageChops.subtract(template, sprite)
                 diff2 = ImageChops.subtract(sprite, template)
+                
                 if isBlackTrans(diff1) and isBlackTrans(diff2):
                     print(rmPrefix(path, fileDir), xy, rmPrefix(png, fileDir))
                     silentRmFile(png)
+                    nineSlice.paste(sprite, (posXY[0],posXY[1]))
                     break
+                
+            else:
+                print(rmPrefix(path, fileDir), xy, 'MISSING')
+            
+        pngPath = os.path.realpath('pixel/PNG')
+        ninePath = os.path.join(pngPath, rmPrefix(path, fileDir).replace('/','.'))
+        nineSlice.save(ninePath)

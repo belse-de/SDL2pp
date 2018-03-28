@@ -57,6 +57,13 @@ if __name__ == "__main__":
             sprite = sheet.crop(posXYI)
             if not sprite.getchannel('A').getbbox():
                 continue # skip complete transparent sprites
+                
+            data = sprite.load()
+            for y in range(spriteSize[1]):
+                for x in range(spriteSize[0]):
+                    r,g,b,a = data[x,y]
+                    if a == 0:
+                        data[x,y] = (0,0,0,0)
             
             name = "{:d}x{:d}_{:03d}_{:02d}x{:02d}y.png".format(spriteSize[0], spriteSize[1], group, xyi[0], xyi[1])
             fullPath = os.path.join(spriteSheetDir, '..', 'PNG', name)
