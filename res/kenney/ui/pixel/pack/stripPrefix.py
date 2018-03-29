@@ -10,7 +10,7 @@ Created on Tue Mar 29 10:50:37 2018
 if __name__ == "__main__":
     import os, glob
     pngsGlobStr = './**/16x16_???_??x??y.png'
-    pngsGlob = glob.glob(pngsGlobStr)
+    pngsGlob = glob.glob(pngsGlobStr, recursive=True)
     
     for png in pngsGlob:
         pngDir  = os.path.dirname(png)
