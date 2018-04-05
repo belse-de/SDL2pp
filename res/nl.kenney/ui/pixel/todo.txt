@@ -1,0 +1,11 @@
+[+] arrow
+[-] bar
+  [+] bar/hor
+  [+] bar/ver
+  [ ] bar/bid
+[ ] button
+[+] check_box
+[+] combo_box
+[+] cursor
+[+] radio_button
+[+] slider
