@@ -1,7 +1,8 @@
 #!/bin/bash
 
-RES="640x480"
-RATE="60"
+RES="1024x768"
+#RES="640x480"
+RATE="30"
 PROJECT="sdl2pp"
 
 GS_TITLE="--title $PROJECT"
@@ -10,11 +11,16 @@ GS_LOGO=""
 #GS_DATE='--date-format "%FT%TZ"'
 GS_DATE="--date-format %F"
 #GS_HIDE="--hide bloom,date,dirnames,files,filenames,mouse,progress,tree,users,usernames"
-GS_HIDE=""
-GS="gource $GS_TITLE $GS_LOGO $GS_DATE $GS_HIDE"
+GS_HIDE="--hide filenames"
+#Camera mode (overview,track)
+GS_CAM="--camera-mode overview"       
+GS="gource $GS_TITLE $GS_LOGO $GS_DATE $GS_HIDE $GS_CAM"
 #--seconds-per-day 1
 
 # webm
+$GS -$RES
+
+exit
 $GS -$RES -o - | ffmpeg -y -r $RATE -f image2pipe -vcodec ppm -i - -vcodec libvpx -b 10000K ../$PROJECT-gource.webm
 
 #mp4
