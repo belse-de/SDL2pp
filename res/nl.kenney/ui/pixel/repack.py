@@ -16,6 +16,7 @@ prefixes = [
         'color.green',
         'color.blue',
         'color.yellow',
+        'space',
         ]
 
 # execute only if run as a script
@@ -43,8 +44,8 @@ if __name__ == "__main__":
                 
             print('  ', pngName, '->', newName)
             print('     ', os.path.join(newDir,newName))
-            #shutil.copy(png, os.path.join(newDir,newName))
-            shutil.move(png, os.path.join(newDir,newName))
+            shutil.copy(png, os.path.join(newDir,newName))
+            #shutil.move(png, os.path.join(newDir,newName))
             
             
             #pngNewName = pngName[10:]
