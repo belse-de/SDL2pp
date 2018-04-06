@@ -17,12 +17,10 @@ prefixes = [
         'color.blue',
         'color.yellow',
         ]
-prefixes = [
-        'ancient.white',
-        ]
+
 # execute only if run as a script
 if __name__ == "__main__":
-    import os, glob
+    import os, glob, shutil
     pngsGlobStr = './pack/**/'
     for pre in prefixes:
         globStr = pngsGlobStr + pre + '.*.png'
@@ -30,15 +28,23 @@ if __name__ == "__main__":
         pngsGlob = glob.glob(globStr, recursive=True)
         pngsGlob.sort()
         oldDir = ''
+        newDir = ''
         for png in pngsGlob:
             pngDir  = os.path.dirname(png)
             pngName = os.path.basename(png)
             
+            newName = pngName[len(pre)+1:]
+            
             if oldDir != pngDir:
-                print(pngDir)
+                newDir = pngDir.replace('pack', 'packed/' + pre, 1)
+                print(pngDir, '->', )
                 oldDir = pngDir
+                os.makedirs(newDir)
                 
-            print('  ', pngName)
+            print('  ', pngName, '->', newName)
+            print('     ', os.path.join(newDir,newName))
+            #shutil.copy(png, os.path.join(newDir,newName))
+            shutil.move(png, os.path.join(newDir,newName))
             
             
             #pngNewName = pngName[10:]

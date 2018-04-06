@@ -4,6 +4,9 @@
   [+] bar/ver
   [ ] bar/bid
 [ ] button
+[+] slim_button
+[-] pannel
+[+] inlay
 [+] check_box
 [+] combo_box
 [+] cursor
