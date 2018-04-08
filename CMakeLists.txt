@@ -50,6 +50,7 @@ set( SOURCES_TEST_CATCH_IDIOMATIC
 # lib sdl2pp
 ########################################################################################################################
 set(SOURCES_LIB_SDL2PP
+        src/stdLib_helper.hpp
         src/libSDL2pp/Error.hpp
         src/libSDL2pp/Img/Error.hpp
         src/libSDL2pp/TTF/Error.hpp
