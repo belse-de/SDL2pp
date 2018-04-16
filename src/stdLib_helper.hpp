@@ -66,6 +66,7 @@ inline void error(const std::string& s, int i)
     error(os.str());
 }
 
+// trim functions from: https://stackoverflow.com/questions/216823/whats-the-best-way-to-trim-stdstring
 // trim from start (in place)
 static inline std::string & ltrim(std::string &s) {
     s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](int ch) {
@@ -102,4 +103,18 @@ static inline std::string trim_copy(std::string s) {
     return trim(s);
 }
 
+
+#include <rttr/rttr_enable.h>
+struct Printable {
+    virtual std::string to_string() const = 0;
+    RTTR_ENABLE();
+};
+std::ostream &operator<<(std::ostream &os, const Printable &obj);
+
+#include <boost/core/demangle.hpp>
+template <class T>
+inline std::string getTypeName(T& t){
+    return boost::core::demangle(typeid(t).name());
+    //return rttr::type::get(static_cast<T*>(this)).get_name();
+}
 #endif //SDL2PP_STDLIB_HELPER_HPP

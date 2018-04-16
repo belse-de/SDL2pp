@@ -2,42 +2,52 @@ cmake_minimum_required(VERSION 3.8)
 project(sdl2pp CXX C)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_C_STANDARD 11)
-
 set(CMAKE_VERBOSE_MAKEFILE OFF)
 
 enable_testing()
 
-include_directories(src/ include/)
+include_directories(src/ include/ extern/)
 
-# https://cmake.org/cmake/help/v3.0/module/FindOpenGL.html
-find_package(OpenGL REQUIRED)
-# https://cmake.org/cmake/help/v3.0/module/FindGLEW.html
-find_package(GLEW REQUIRED)
+set(UPDATE_DISCONNECTED_IF_AVAILABLE "UPDATE_DISCONNECTED 1")
+include(extern/DownloadProject/DownloadProject.cmake)
+download_project(
+        PROJ rttr
+        GIT_REPOSITORY  https://github.com/rttrorg/rttr
+        GIT_TAG master
+        ${UPDATE_DISCONNECTED_IF_AVAILABLE}
+        )
+# we do not install or package RTTR
+set(BUILD_RTTR_DYNAMIC ON)
+set(BUILD_STATIC ON)
+set(BUILD_INSTALLER OFF)
+set(BUILD_PACKAGE OFF)
+add_subdirectory(${rttr_SOURCE_DIR} ${rttr_BINARY_DIR})
+include_directories("${rttr_SOURCE_DIR}/src" "${rttr_BINARY_DIR}/src")
 
-include(FindPkgConfig)
-pkg_search_module(SDL2      REQUIRED sdl2)
-pkg_search_module(SDL2IMAGE REQUIRED sdl2_image)
-pkg_search_module(SDL2TTF   REQUIRED sdl2_ttf)
-pkg_search_module(SDL2MIXER REQUIRED sdl2_mixer)
-pkg_search_module(SDL2NET   REQUIRED SDL2_net)
+download_project(
+        PROJ boost_magic_get
+        GIT_REPOSITORY  https://github.com/apolukhin/magic_get.git
+        GIT_TAG master
+        ${UPDATE_DISCONNECTED_IF_AVAILABLE}
+)
+include_directories("${boost_magic_get_SOURCE_DIR}/include")
 
 ########################################################################################################################
 # lib CATCH
 ########################################################################################################################
 # define program targets:
-add_library( CatchMain OBJECT test/catchMain.cpp extern/catch.hpp)
+add_library(CatchMain OBJECT test/catchMain.cpp extern/catch.hpp)
 target_include_directories(CatchMain PUBLIC ${CMAKE_SOURCE_DIR}/extern)
 
 # CATCH Examples
 ########################################################################################################################
 # multiple-file modules:
-set( SOURCES_TEST_CATCH_020
+set(SOURCES_TEST_CATCH_020
         test/example/020-TestCase-1.cpp
         test/example/020-TestCase-2.cpp
         )
 # sources to combine with 000-CatchMain.cpp:
-set( SOURCES_TEST_CATCH_IDIOMATIC
-
+set(SOURCES_TEST_CATCH_IDIOMATIC
         test/example/100-Fix-Section.cpp
         test/example/110-Fix-ClassFixture.cpp
         test/example/120-Bdd-ScenarioGivenWhenThen.cpp
@@ -49,103 +59,12 @@ set( SOURCES_TEST_CATCH_IDIOMATIC
 ########################################################################################################################
 # lib sdl2pp
 ########################################################################################################################
-set(SOURCES_LIB_SDL2PP
-        src/stdLib_helper.hpp
-        src/libSDL2pp/Error.hpp
-        src/libSDL2pp/Img/Error.hpp
-        src/libSDL2pp/TTF/Error.hpp
-        src/libSDL2pp/Mix/Error.hpp
-        src/libSDL2pp/Net/Error.hpp
-        src/libSDL2pp/SDL2.cpp
-        src/libSDL2pp/SDL2.hpp
-        src/libSDL2pp/Window.cpp
-        src/libSDL2pp/Window.hpp
-        src/libSDL2pp/Surface.cpp
-        src/libSDL2pp/Surface.hpp
-        src/libSDL2pp/Img/ImageSurface.cpp
-        src/libSDL2pp/Img/ImageSurface.hpp
-        src/libSDL2pp/Img/SDL2Image.cpp
-        src/libSDL2pp/Img/SDL2Image.hpp
-        src/libSDL2pp/Renderer.cpp
-        src/libSDL2pp/Renderer.hpp
-        src/libSDL2pp/Texture.cpp
-        src/libSDL2pp/Texture.hpp
-        src/libSDL2pp/TTF/SDL2TTF.cpp
-        src/libSDL2pp/TTF/SDL2TTF.hpp
-        src/libSDL2pp/TTF/Font.cpp
-        src/libSDL2pp/TTF/Font.hpp
-        src/libSDL2pp/Mix/SDL2Mixer.cpp
-        src/libSDL2pp/Mix/SDL2Mixer.hpp
-        src/libSDL2pp/Net/SDL2Net.cpp
-        src/libSDL2pp/Net/SDL2Net.hpp
-        src/libSDL2pp/Img/ImageTexture.cpp
-        src/libSDL2pp/Img/ImageTexture.hpp
-        src/libSDL2pp/SoftwareRenderer.cpp
-        src/libSDL2pp/SoftwareRenderer.hpp)
-set(SOURCES_TEST_SDL2PP
-        )
-set(SOURCES_EXE_SDL2PP
-        main_libSDL2pp.cpp)
-
-add_library(sdl2pp ${SOURCES_LIB_SDL2PP})
-include_directories(
-        ${SDL2_INCLUDE_DIRS}
-        ${SDL2IMAGE_INCLUDE_DIRS}
-        ${SDL2TTF_INCLUDE_DIRS}
-        ${SDL2MIXER_INCLUDE_DIRS}
-        ${SDL2NET_INCLUDE_DIRS}
-        ${OPENGL_INCLUDE_DIR}
-        ${GLEW_INCLUDE_DIRS})
-target_link_libraries(sdl2pp
-        ${SDL2_LIBRARIES}
-        ${SDL2IMAGE_LIBRARIES}
-        ${SDL2TTF_LIBRARIES}
-        ${SDL2MIXER_LIBRARIES}
-        ${SDL2NET_LIBRARIES}
-        ${OPENGL_LIBRARIES}
-        ${GLEW_LIBRARIES})
-
-add_executable(main_sdl2pp ${SOURCES_EXE_SDL2PP})
-target_link_libraries(main_sdl2pp sdl2pp)
+add_subdirectory(src/libSDL2pp)
 
 ########################################################################################################################
 # lib scheduling
 ########################################################################################################################
-set(SOURCES_LIB_SCHEDULING
-        extern/overloaded.hpp
-        src/libScheduling/Printable.cpp
-        src/libScheduling/Printable.hpp
-        src/libScheduling/Process.cpp
-        src/libScheduling/Process.hpp
-        src/libScheduling/ProcessStatistics.cpp
-        src/libScheduling/ProcessStatistics.hpp
-        src/libScheduling/Scheduler.cpp
-        src/libScheduling/Scheduler.hpp
-        src/libScheduling/SchedulingStrategy.cpp
-        src/libScheduling/SchedulingStrategy.hpp
-        src/libScheduling/Strategies/RoundRobinStrategy.cpp
-        src/libScheduling/Strategies/RoundRobinStrategy.hpp
-        src/libScheduling/Strategies/ShortesJobFirstStrategy.cpp
-        src/libScheduling/Strategies/ShortesJobFirstStrategy.hpp
-        src/libScheduling/Strategies/FirstComeFirstServedStrategy.cpp
-        src/libScheduling/Strategies/FirstComeFirstServedStrategy.hpp
-        src/libScheduling/Strategies/PriorityStrategy.cpp
-        src/libScheduling/Strategies/PriorityStrategy.hpp
-        src/libScheduling/SystemTimerSubscriber.cpp
-        src/libScheduling/SystemTimerSubscriber.hpp
-        src/libScheduling/SystemTimer.cpp
-        src/libScheduling/SystemTimer.hpp)
-set(SOURCES_TEST_SCHEDULING
-        test/libScheduling/testProcess.cpp
-        test/libScheduling/testRoundRobin.cpp
-        test/libScheduling/testScheduler.cpp)
-set(SOURCES_EXE_SCHEDULING
-        main_libScheduling.cpp)
-
-add_library(scheduling ${SOURCES_LIB_SCHEDULING})
-
-add_executable(main_scheduling ${SOURCES_EXE_SCHEDULING})
-target_link_libraries(main_scheduling scheduling)
+add_subdirectory(src/libScheduling)
 
 ########################################################################################################################
 # lib hexagon
@@ -167,19 +86,7 @@ target_link_libraries(main_hexagon hexagon)
 ########################################################################################################################
 # lib widget
 ########################################################################################################################
-set(SOURCES_LIB_WIDGET
-        src/libWidget/Base.cpp
-        src/libWidget/Base.hpp src/libWidget/Window.cpp src/libWidget/Window.hpp src/libWidget/Textbox.cpp src/libWidget/Textbox.hpp src/libWidget/Button.cpp src/libWidget/Button.hpp src/libWidget/Image.cpp src/libWidget/Image.hpp)
-set(SOURCES_TEST_WIDGET
-        test/libWidget/testWidget.cpp
-        )
-set(SOURCES_EXE_WIDGET
-        main_libWidget.cpp)
-
-add_library(widget ${SOURCES_LIB_WIDGET})
-
-add_executable(main_widget ${SOURCES_EXE_WIDGET})
-target_link_libraries(main_widget sdl2pp widget)
+add_subdirectory(src/libWidget)
 
 ########################################################################################################################
 # Executeables and test
@@ -282,9 +189,9 @@ target_link_libraries(kiss_example_02 sdl2pp)
 ########################################################################################################################
 
 set(SOURCE_TEST
-        test/TestEngine.cpp)
+        src/libSDL2pp/test/TestEngine.cpp)
 
-add_executable( Test
+add_executable(Test
         $<TARGET_OBJECTS:CatchMain>
         ${SOURCES_TEST_CATCH_020}
         ${SOURCES_TEST_CATCH_IDIOMATIC}
@@ -294,9 +201,9 @@ add_executable( Test
         ${SOURCES_TEST_WIDGET}
         ${SOURCE_TEST}
         )
-target_include_directories(Test PUBLIC ${CMAKE_SOURCE_DIR}/extern)
-target_link_libraries(Test sdl2pp scheduling hexagon)
-add_test( CATCH Test )
+#target_include_directories(Test PUBLIC ${CMAKE_SOURCE_DIR}/extern)
+target_link_libraries(Test sdl2pp scheduling hexagon widget)
+add_test(CATCH Test)
 
 set(SOURCE_SVG_PLAYGROUND
         main_svg_playground.cpp)

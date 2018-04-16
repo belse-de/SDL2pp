@@ -6,26 +6,14 @@ Created on Tue Mar 29 10:50:37 2018
 @author: belse
 """
 
-dryRun = True
+dryRun = False
 verbose = False
-fileMove = True
-
-fileMode = 'dry'
-if dryRun:
-    if verbose:
-        fileMode = 'dry_verbose'
-    else:
-        fileMode = 'dry'
-elif fileMove:
-    fileMode = 'mv'
-else:
-    fileMode = 'cp'
-
+fileMove = False
 
 commenPrefixes = [
         'ancient',
         'color',
-        'space'
+        #'space'
         ]
 
 prefixes = {
@@ -42,8 +30,7 @@ prefixes = {
             'color.blue',
             'color.yellow',
             ],
-        'space':[
-                ]
+        'space':{}
         }
 
 
@@ -58,7 +45,7 @@ def fileCpMv(src, dst, mode='dry_verbose'):
     elif mode == 'dry_verbose':
         print(src, '->', dst)
     else:
-        dstDir = os.path.dirname(png)
+        dstDir = os.path.dirname(dst)
         if not os.path.exists(dstDir):
             os.makedirs(dstDir)
                         
@@ -69,17 +56,46 @@ def fileCpMv(src, dst, mode='dry_verbose'):
         else:
             assert False, 'Not valide mode.'
 
-def recDictTraversal(d, handle=None):
-  for k, v in d.items():
-    if isinstance(v, dict):
-      recDictTraversal(v, handle)
-    else:
-      handle(k, v)
+def recDictTraversal(d, handle=None, keys=[], visited=[]):
+    def travers(key, value, keyList):
+        newKeys = list(keyList) # make copy
+        newKeys.append(key) # extend copy
+        if value not in visited:
+            visited.append(value)
+            if isinstance(value, dict) or isinstance(value, list):
+                return recDictTraversal(v, handle, newKeys, visited)
+            else:
+                return handle(newKeys, v)
+            
+    if isinstance(d, dict):
+        res = []
+        for k, v in d.items():
+            res.append(travers(k, v, keys))
+        return keys, res
 
+    elif isinstance(d, list):
+        res = []
+        for i, v in enumerate(d):
+            res.append(travers(i, v, keys))
+        return keys, res
+    else:
+        return keys, d
+        
 # execute only if run as a script
 if __name__ == "__main__":
     import os, glob, shutil
     pngsGlobStr = './pack/**/'
+    fileMode = 'dry'
+    if dryRun:
+        if verbose:
+            fileMode = 'dry_verbose'
+        else:
+            fileMode = 'dry'
+    elif fileMove:
+        fileMode = 'mv'
+    else:
+        fileMode = 'cp'
+    
     
     for com in commenPrefixes:
         comPngsGlob = globRecSorted(pngsGlobStr + com + '.*.png')

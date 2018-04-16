@@ -7,13 +7,13 @@ and may not be redistributed without written permission.*/
 #include <sstream>
 #include <chrono>
 #include <iostream>
-#include <libSDL2pp/SDL2.hpp>
+#include <libSDL2pp/src/SDL2.hpp>
 #include <libSDL2pp/Img/SDL2Image.hpp>
 #include <libSDL2pp/TTF/SDL2TTF.hpp>
-#include <libSDL2pp/Window.hpp>
+#include <libSDL2pp/src/Window.hpp>
 #include <libSDL2pp/TTF/Font.hpp>
-#include <libSDL2pp/Surface.hpp>
-#include <libSDL2pp/Renderer.hpp>
+#include <libSDL2pp/src/Surface.hpp>
+#include <libSDL2pp/src/Renderer.hpp>
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 640;
