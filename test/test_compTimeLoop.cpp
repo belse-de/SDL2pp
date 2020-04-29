@@ -5,7 +5,7 @@
 #include <catch.hpp>
 #include <iostream>
 
-#include "../ext/compile_time_loop.hpp"
+#include "../src/compile_time_loop.hpp"
 
 template <long I> struct Fibo    { static constexpr long value = 0; };
 template <>       struct Fibo<1> { static constexpr long value = 1; };

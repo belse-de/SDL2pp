@@ -7,8 +7,8 @@
 
 using namespace std::chrono_literals;
 
-#include <SDL_image.h>
-#include <SDL_mixer.h>
+#include <SDL2/SDL_image.h>
+#include <SDL2/SDL_mixer.h>
 
 #include <libSDL2pp/src/SDL2.hpp>
 #include <libSDL2pp/src/Img/SDL2Image.hpp>

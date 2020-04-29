@@ -4,8 +4,8 @@
 
 #include <iostream>
 #include <SDL_ttf.h>
-#include <libSDL2pp/TTF/Error.hpp>
-#include "libSDL2pp/TTF/SDL2TTF.hpp"
+#include "Error.hpp"
+#include "SDL2TTF.hpp"
 
 using  namespace SDL2pp::TTF;
 

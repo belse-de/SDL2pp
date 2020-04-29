@@ -8,7 +8,7 @@
 
 #include <string>
 #include <stdexcept>
-#include <SDL_ttf.h>
+#include <SDL2/SDL_ttf.h>
 
 namespace SDL2pp::TTF {
     struct Error : public std::runtime_error {

@@ -2,6 +2,7 @@
 // Created by belse on 15.03.18.
 //
 
+#include <iostream>
 #include "catch.hpp"
 
 #include "../src/PointRect.hpp"
@@ -9,11 +10,6 @@
 #include "../src/Rect.hpp"
 
 using namespace Widget;
-
-TEST_CASE( "dummy", "[widget][lib]" ) {
-    REQUIRE(true);
-}
-
 
 TEST_CASE("point inside rect", "[rect][point][widget][lib]"){
 

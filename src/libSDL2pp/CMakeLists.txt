@@ -50,7 +50,7 @@ set(SOURCES_LIB_SDL2PP
         src/Net/SDL2Net.hpp
         src/Img/ImageTexture.cpp
         src/Img/ImageTexture.hpp
-        )
+        ../funtions1D.cpp ../funtions1D.hpp ../../../../../CLionProjects/todo.txt-cli/ext/compile_time_loop.hpp)
 set(SOURCES_TEST_SDL2PP
         test/catchMain.cpp
         test/TestEngine.cpp)
@@ -74,7 +74,7 @@ target_link_libraries(sdl2pp
         ${SDL2NET_LIBRARIES}
         ${OPENGL_LIBRARIES}
         ${GLEW_LIBRARIES})
-target_link_libraries(sdl2pp RTTR::Core_Lib)     # rttr as static library
+#target_link_libraries(sdl2pp RTTR::Core_Lib)     # rttr as static library
 
 add_executable(main_sdl2pp ${SOURCES_EXE_SDL2PP})
 target_link_libraries(main_sdl2pp sdl2pp)
@@ -85,3 +85,6 @@ add_executable(TestSdl2pp
 
 #target_include_directories(Test PUBLIC ${CMAKE_SOURCE_DIR}/extern)
 add_test(CATCH_TestSdl2pp TestSdl2pp)
+
+add_executable(magic_ex magic_get_examples.cpp)
+add_executable(magic_q_ex magic_get_quick_examples.cpp)

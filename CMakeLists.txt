@@ -9,34 +9,34 @@ enable_testing()
 include_directories(src/ include/ extern/)
 
 set(UPDATE_DISCONNECTED_IF_AVAILABLE "UPDATE_DISCONNECTED 1")
-include(extern/DownloadProject/DownloadProject.cmake)
-download_project(
-        PROJ rttr
-        GIT_REPOSITORY  https://github.com/rttrorg/rttr
-        GIT_TAG master
-        ${UPDATE_DISCONNECTED_IF_AVAILABLE}
-        )
+#include(extern/DownloadProject/DownloadProject.cmake)
+#download_project(
+#        PROJ rttr
+#        GIT_REPOSITORY  https://github.com/rttrorg/rttr
+#        GIT_TAG master
+#        ${UPDATE_DISCONNECTED_IF_AVAILABLE}
+#        )
 # we do not install or package RTTR
-set(BUILD_RTTR_DYNAMIC ON)
-set(BUILD_STATIC ON)
-set(BUILD_INSTALLER OFF)
-set(BUILD_PACKAGE OFF)
-add_subdirectory(${rttr_SOURCE_DIR} ${rttr_BINARY_DIR})
-include_directories("${rttr_SOURCE_DIR}/src" "${rttr_BINARY_DIR}/src")
+#set(BUILD_RTTR_DYNAMIC ON)
+#set(BUILD_STATIC ON)
+#set(BUILD_INSTALLER OFF)
+#set(BUILD_PACKAGE OFF)
+#add_subdirectory(${rttr_SOURCE_DIR} ${rttr_BINARY_DIR})
+#include_directories("${rttr_SOURCE_DIR}/src" "${rttr_BINARY_DIR}/src")
 
-download_project(
-        PROJ boost_magic_get
-        GIT_REPOSITORY  https://github.com/apolukhin/magic_get.git
-        GIT_TAG master
-        ${UPDATE_DISCONNECTED_IF_AVAILABLE}
-)
-include_directories("${boost_magic_get_SOURCE_DIR}/include")
+#download_project(
+#        PROJ boost_magic_get
+#        GIT_REPOSITORY  https://github.com/apolukhin/magic_get.git
+#        GIT_TAG master
+#        ${UPDATE_DISCONNECTED_IF_AVAILABLE}
+#)
+#include_directories("${boost_magic_get_SOURCE_DIR}/include")
 
 ########################################################################################################################
 # lib CATCH
 ########################################################################################################################
 # define program targets:
-add_library(CatchMain OBJECT test/catchMain.cpp extern/catch.hpp)
+add_library(CatchMain OBJECT extern/catch.hpp)
 target_include_directories(CatchMain PUBLIC ${CMAKE_SOURCE_DIR}/extern)
 
 # CATCH Examples
@@ -69,24 +69,17 @@ add_subdirectory(src/libScheduling)
 ########################################################################################################################
 # lib hexagon
 ########################################################################################################################
-set(SOURCES_LIB_HEXAGON
-        src/libHexagon/libhex.cpp
-        src/libHexagon/libhex.hpp)
-set(SOURCES_TEST_HEXAGON
-        test/libHexagon/testHexagon.cpp
-        )
-set(SOURCES_EXE_HEXAGON
-        main_libHexagon.cpp)
-
-add_library(hexagon ${SOURCES_LIB_HEXAGON})
-
-add_executable(main_hexagon ${SOURCES_EXE_HEXAGON})
-target_link_libraries(main_hexagon hexagon)
+add_subdirectory(src/libHexagon)
 
 ########################################################################################################################
 # lib widget
 ########################################################################################################################
 add_subdirectory(src/libWidget)
+
+########################################################################################################################
+# examples
+########################################################################################################################
+add_subdirectory(src/examples)
 
 ########################################################################################################################
 # Executeables and test
@@ -189,10 +182,14 @@ target_link_libraries(kiss_example_02 sdl2pp)
 ########################################################################################################################
 
 set(SOURCE_TEST
-        src/libSDL2pp/test/TestEngine.cpp)
-
+        src/libSDL2pp/test/TestEngine.cpp
+        src/compile_time_loop.hpp
+        test/test_compTimeLoop.cpp
+        test/test_smoothingFunctions.cpp)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fconcepts")
 add_executable(Test
         $<TARGET_OBJECTS:CatchMain>
+        test/catchMain.cpp
         ${SOURCES_TEST_CATCH_020}
         ${SOURCES_TEST_CATCH_IDIOMATIC}
         ${SOURCES_TEST_SDL2PP}
@@ -206,5 +203,5 @@ target_link_libraries(Test sdl2pp scheduling hexagon widget)
 add_test(CATCH Test)
 
 set(SOURCE_SVG_PLAYGROUND
-        main_svg_playground.cpp)
+        main_svg_playground.cpp )
 add_executable(svg_playground ${SOURCE_SVG_PLAYGROUND})

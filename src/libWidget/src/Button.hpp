@@ -13,13 +13,7 @@
 namespace Widget {
     class Button : public Base {
     public:
-        Button(SDL2pp::Texture & imageNormal, SDL2pp::Texture & imageHighlight, SDL2pp::Texture & imageActive, SDL_Rect source);
-        void render(SDL2pp::Renderer & renderer) override ;
-    private:
-        SDL2pp::Texture & _imageNormal;
-        SDL2pp::Texture & _imageHighlight;
-        SDL2pp::Texture & _imageActive;
-        SDL_Rect _source;
+
 
         class StateNormal{};
         class StateHighlighted{};
@@ -50,12 +44,6 @@ namespace Widget {
         };
         State_t _state;
 
-    protected:
-        void handleEventMouseOutside(SDL_Event *pEvent) override ;
-        void handleEventMouseOver(SDL_Event *pEvent) override ;
-        void handleEventMouseWheel(SDL_Event *pEvent) override ;
-        void handleEventMouseDown(SDL_Event *pEvent) override ;
-        void handleEventMouseUp(SDL_Event *pEvent) override ;
     };
 };
 

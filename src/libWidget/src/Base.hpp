@@ -5,55 +5,52 @@
 #ifndef SDL2PP_WIDGET_HPP
 #define SDL2PP_WIDGET_HPP
 
+#include <memory>
+#include <vector>
 
 #include <SDL_rect.h>
 #include <SDL_events.h>
 #include <boost/core/demangle.hpp>
-#include <rttr/rttr_enable.h>
 
-#include <libSDL2pp/src/Renderer.hpp>
 #include <stdLib_helper.hpp>
 
+#include "Rect.hpp"
 
 namespace Widget {
-    class Base : public Printable{
-        RTTR_ENABLE(Printable);
+    class Base : public Printable{ ;
     public:
-        virtual void handleEvent(SDL_Event *event);
-
-        virtual void render(SDL2pp::Renderer & renderer) = 0;
-        virtual
-
-        void setHitBox(SDL_Rect hitBox);
-
-        void setVisible(bool visible){
-            _visible = visible;
-        }
-
-        //std::string to_string() const override;
-        // override can not be used with rttr
-        // TODO: make request on rttr for override support
-        virtual std::string to_string() const;
+        std::string to_string() const override;
         virtual std::string type_name() const;
 
+        bool hasParent();
+        void registerParent(std::weak_ptr<Base> parent);
+        // only for optimisation
+        // void registerParent(std::weak_ptr<Base>&& parent);
 
-    protected:
+        bool hasChildren();
+        void registerChild(std::shared_ptr<Base> child);
+        // only for optimisation
+        // void registerChild(std::shared_ptr<Base>&& child);
+
+        void updateAbsolute();
+    //protected:
+        unsigned int id = 0;
+        std::string _name = "unnamed";
+
+        // make weak_ptr;
+        std::weak_ptr<Base> _parent;
+        std::vector<std::shared_ptr<Base>> _children;
+
+        Rect _area{0,0,0,0};
+        Rect _hitbox{0,0,0,0};
+
+        Rect _areaAbsolute{0,0,0,0};
+        Rect _hitboxAbsolute{0,0,0,0};
+
         bool _visible = true;
-        bool _focus = false;
+        bool _focusMouse = false;
+        bool _focusKeyboard = false;
         bool _redraw = false;
-        SDL_Rect _hitBox;
-
-        std::string _name = "unknown";
-
-        std::shared_ptr<Base> parent;
-
-        virtual void handleEventMouse(SDL_Event *event);
-        virtual void handleEventMouseOutside(SDL_Event *pEvent);
-        virtual void handleEventMouseOver(SDL_Event *pEvent);
-        virtual void handleEventMouseWheel(SDL_Event *pEvent);
-        virtual void handleEventMouseDown(SDL_Event *pEvent);
-        virtual void handleEventMouseUp(SDL_Event *pEvent);
-
     };
 };
 

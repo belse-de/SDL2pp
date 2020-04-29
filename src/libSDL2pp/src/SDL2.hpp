@@ -6,7 +6,7 @@
 #define SDL2PP_SDL2PP_HPP
 
 #include <chrono>
-#include <SDL_rect.h>
+#include <SDL2/SDL_rect.h>
 
 namespace SDL2pp {
     class SDL2 {

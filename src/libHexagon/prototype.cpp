@@ -12,7 +12,7 @@ using std::min;
 #include <glm/glm.hpp>// glm::vec2
 #include <glm/ext.hpp>
 
-#include "libhex.hpp"
+#include "libHexagon/src/libhex.hpp"
 
 static int windowID = -1;
 // window size

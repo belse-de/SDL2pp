@@ -104,17 +104,23 @@ static inline std::string trim_copy(std::string s) {
 }
 
 
-#include <rttr/rttr_enable.h>
-struct Printable {
-    virtual std::string to_string() const = 0;
-    RTTR_ENABLE();
-};
+
+struct Printable { virtual std::string to_string() const = 0; };
 std::ostream &operator<<(std::ostream &os, const Printable &obj);
+std::ostream &operator<<(std::ostream &os, const bool &obj);
 
 #include <boost/core/demangle.hpp>
 template <class T>
 inline std::string getTypeName(T& t){
     return boost::core::demangle(typeid(t).name());
-    //return rttr::type::get(static_cast<T*>(this)).get_name();
 }
+
+template <typename T1, typename T2>
+inline bool operator!=(const T1 &lhs, const T2 &rhs) { return not(lhs == rhs); }
+
+template <typename T1, typename T2>
+inline bool operator<=(const T1 &lhs, const T2 &rhs) { return lhs == rhs or lhs < rhs; }
+
+template <typename T1, typename T2>
+inline bool operator>=(const T1 &lhs, const T2 &rhs) { return lhs == rhs or lhs > rhs; }
 #endif //SDL2PP_STDLIB_HELPER_HPP

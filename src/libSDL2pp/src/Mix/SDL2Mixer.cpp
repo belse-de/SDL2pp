@@ -2,10 +2,10 @@
 // Created by belse on 31.12.17.
 //
 
-#include "libSDL2pp/Mix/SDL2Mixer.hpp"
+#include "SDL2Mixer.hpp"
 
 #include <SDL_mixer.h>
-#include <libSDL2pp/Mix/Error.hpp>
+#include "Error.hpp"
 
 using namespace SDL2pp::Mix;
 

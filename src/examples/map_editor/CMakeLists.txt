@@ -6,6 +6,8 @@ set(CMAKE_CXX_STANDARD 17)
 
 # AudioEffect Lib
 set(TILEMAP_EDITOR_SOURCE_LIB
+        src/libary.cpp
+        src/libary.hpp
        )
 set(TILEMAP_EDITOR_LIB_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
 add_library(tilemap_editor_lib ${TILEMAP_EDITOR_SOURCE_LIB})
@@ -20,6 +22,7 @@ target_include_directories(tilemap_editor_lib INTERFACE ${TILEMAP_EDITOR_LIB_INC
 
 # unit test executable
 set(TILEMAP_EDITOR_SOURCE_TEST
+        test/catchMain.cpp
         )
 add_executable(tilemap_editor_CatchTest ${TILEMAP_EDITOR_SOURCE_TEST})
 target_link_libraries(tilemap_editor_CatchTest tilemap_editor_lib Catch)
@@ -27,6 +30,7 @@ add_test(TEST_tilemap_editor tilemap_editor_CatchTest)
 enable_testing()
 
 set(TILEMAP_EDITOR_SOURCE_MAIN
+        main.cpp
         )
 add_executable(tilemap_editor ${TILEMAP_EDITOR_SOURCE_MAIN})
 target_link_libraries(tilemap_editor tilemap_editor_lib Catch)

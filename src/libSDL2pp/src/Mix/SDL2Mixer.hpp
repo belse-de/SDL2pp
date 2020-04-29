@@ -6,7 +6,7 @@
 #define SDL2PP_SDL2MIXER_HPP
 
 #include <cstdint>
-#include <SDL_mixer.h>
+#include <SDL2/SDL_mixer.h>
 
 namespace SDL2pp::Mix {
     class SDL2Mixer {

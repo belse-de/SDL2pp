@@ -6,11 +6,9 @@
 #define SDL2PP_LIBARY_HPP
 
 
-
 class libary {
 
 };
-
 
 
 #endif //SDL2PP_LIBARY_HPP

@@ -10,10 +10,10 @@
 #include <libWidget/src/Base.hpp>
 namespace Widget{
     class Window : public Base{
-        RTTR_ENABLE(Base);
+
     public:
         Window(SDL2pp::Window &w);
-        void render(SDL2pp::Renderer & renderer) override;
+        void render(SDL2pp::Renderer & renderer);
 
     private:
         SDL2pp::Window &_window;

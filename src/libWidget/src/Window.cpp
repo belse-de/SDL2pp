@@ -11,6 +11,7 @@ Widget::Window::Window(SDL2pp::Window &w) : _window{w}{
 }
 
 void Widget::Window::render(SDL2pp::Renderer &renderer) {
+    /*
     //Initialize renderer color
     renderer.setDrawColor(0xFF, 0xFF, 0xFF, 0xFF);
     //Clear screen
@@ -20,4 +21,5 @@ void Widget::Window::render(SDL2pp::Renderer &renderer) {
     SDL_Rect frame = {5,5,w-10,h-10};
     renderer.setDrawColor(0x00, 0x00, 0x00, 0xFF);
     renderer.drawRect(&frame);
+    */
 }

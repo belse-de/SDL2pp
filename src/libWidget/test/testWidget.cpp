@@ -7,3 +7,4 @@
 TEST_CASE( "dummy", "[widget][lib]" ) {
     REQUIRE(true);
 }
+

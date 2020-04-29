@@ -14,6 +14,9 @@ include_directories(
         ${SDL2TTF_INCLUDE_DIRS})
 
 set(SOURCES_LIB_WIDGET
+        src/Rect.hpp
+        src/Point.hpp
+        src/PointRect.hpp
         src/Base.cpp
         src/Base.hpp
         src/Window.cpp
@@ -26,7 +29,9 @@ set(SOURCES_LIB_WIDGET
         src/Image.hpp)
 set(SOURCES_TEST_WIDGET
         test/catchMain.cpp
-        test/testWidget.cpp)
+        test/testWidget.cpp
+        test/testWidget_PointRect.cpp
+        test/testWidget_Base.cpp)
 set(SOURCES_EXE_WIDGET
         main_libWidget.cpp)
 
