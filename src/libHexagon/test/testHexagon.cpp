@@ -5,7 +5,7 @@
 
 #include "../../extern/catch.hpp"
 
-#include "libHexagon/libhex.hpp"
+#include "libHexagon/src/libhex.hpp"
 
 using namespace Hexagon;
 
