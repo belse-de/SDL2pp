@@ -12,9 +12,9 @@ find_package(GLEW REQUIRED)
 
 include(FindPkgConfig)
 pkg_search_module(SDL2 REQUIRED sdl2)
-pkg_search_module(SDL2IMAGE REQUIRED sdl2_image)
-pkg_search_module(SDL2TTF REQUIRED sdl2_ttf)
-pkg_search_module(SDL2MIXER REQUIRED sdl2_mixer)
+pkg_search_module(SDL2IMAGE REQUIRED SDL2_image)
+pkg_search_module(SDL2TTF REQUIRED SDL2_ttf)
+pkg_search_module(SDL2MIXER REQUIRED SDL2_mixer)
 pkg_search_module(SDL2NET REQUIRED SDL2_net)
 
 
